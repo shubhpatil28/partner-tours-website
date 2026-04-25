@@ -1,8 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Mail, Phone, MapPin, MessageSquare, Camera, Clock } from 'lucide-react';
 import './Contact.css';
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    service: '',
+    message: ''
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleWhatsAppSubmit = (e) => {
+    e.preventDefault();
+    
+    const { name, phone, service, message } = formData;
+    
+    // Simple Validation
+    if (!name || !phone || !message) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+
+    const whatsappNumber = "918421514348";
+    
+    // Formatting message as per requirements
+    const formattedMessage = `Hi, I am ${name}
+Phone: ${phone}
+Service: ${service || 'General Inquiry'}
+Details: ${message}`;
+
+    const encodedMessage = encodeURIComponent(formattedMessage);
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    
+    // Direct redirect (no popup)
+    window.location.href = whatsappUrl;
+  };
+
   return (
     <div className="contact-page">
       <div className="page-header section-padding">
@@ -53,18 +94,44 @@ const Contact = () => {
             <div className="contact-form-box">
                <h3>Send an Inquiry</h3>
                <p>Fill out the form below and our team will get back to you shortly.</p>
-               <form className="c-form" onSubmit={(e) => e.preventDefault()}>
+               <form className="c-form" onSubmit={handleWhatsAppSubmit}>
                   <div className="form-row">
-                    <input type="text" placeholder="Full Name" required />
-                    <input type="tel" placeholder="Phone Number" required />
+                    <input 
+                      type="text" 
+                      name="name"
+                      placeholder="Full Name" 
+                      value={formData.name}
+                      onChange={handleChange}
+                      required 
+                    />
+                    <input 
+                      type="tel" 
+                      name="phone"
+                      placeholder="Phone Number" 
+                      value={formData.phone}
+                      onChange={handleChange}
+                      required 
+                    />
                   </div>
-                  <select required>
+                  <select 
+                    name="service"
+                    value={formData.service}
+                    onChange={handleChange}
+                    required
+                  >
                      <option value="">Select Service</option>
-                     <option value="bus">Bus Booking</option>
-                     <option value="flight">Flight Booking</option>
-                     <option value="tour">Tour Package</option>
+                     <option value="Bus Booking">Bus Booking</option>
+                     <option value="Flight Booking">Flight Booking</option>
+                     <option value="Tour Package">Tour Package</option>
                   </select>
-                  <textarea rows="4" placeholder="Your Message / Destination" required></textarea>
+                  <textarea 
+                    name="message"
+                    rows="4" 
+                    placeholder="Your Message / Destination" 
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                  ></textarea>
                   <button type="submit" className="btn btn-primary full-width">Send Message</button>
                </form>
                <div className="whatsapp-box mt-20">
