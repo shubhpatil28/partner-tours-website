@@ -1,0 +1,39 @@
+.floating-contact {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 999;
+}
+
+.floating-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  transition: var(--transition);
+}
+
+.call-btn {
+  background: var(--primary-blue);
+}
+
+.whatsapp-btn {
+  background: var(--whatsapp-green);
+}
+
+.floating-btn:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+@media (max-width: 768px) {
+  .floating-contact {
+    display: none; /* Hidden on mobile because of sticky bottom bar */
+  }
+}

@@ -1,0 +1,150 @@
+.vehicle-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.v-tag {
+  background: var(--light-blue);
+  color: var(--primary-blue);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.vehicle-pricing-overlay {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  background: var(--primary-blue);
+  color: white;
+  padding: 5px 15px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.vehicle-main-features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.v-feat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--gray);
+  gap: 5px;
+}
+
+.v-feature-list {
+  margin-bottom: 25px;
+}
+
+.v-feature-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+
+.rental-action-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 15px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.action-price small {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--gray);
+}
+
+.action-price strong {
+  font-size: 1.3rem;
+  color: var(--primary-blue);
+}
+
+/* Pricing Table */
+.table-responsive {
+  overflow-x: auto;
+  margin-top: 30px;
+}
+
+.rental-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.rental-table th {
+  background: var(--primary-blue);
+  color: white;
+  padding: 15px;
+  text-align: left;
+}
+
+.rental-table td {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.rental-table tr:hover {
+  background: var(--light-blue);
+}
+
+/* Notes Grid */
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.note-card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.note-card svg {
+  color: var(--primary-blue);
+  margin-bottom: 15px;
+}
+
+.note-card h4 {
+  margin-bottom: 10px;
+  color: var(--primary-blue);
+}
+
+.note-card p {
+  font-size: 0.9rem;
+  color: var(--gray);
+}
+
+@media (max-width: 768px) {
+  .notes-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .vehicle-main-features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

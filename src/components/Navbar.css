@@ -1,0 +1,154 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 0;
+  z-index: 1000;
+  transition: var(--transition);
+  background: transparent;
+}
+
+.navbar.scrolled {
+  background: var(--white);
+  padding: 12px 0;
+  box-shadow: var(--shadow);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary-blue);
+  letter-spacing: -0.5px;
+}
+
+.navbar.scrolled .logo {
+  color: var(--primary-blue);
+}
+
+/* For transparent navbar over hero, white logo might look better, but let's stick to blue for brand consistency or use white when unscrolled */
+.navbar:not(.scrolled) .logo {
+  color: var(--white);
+}
+
+.logo span {
+  color: var(--secondary-blue);
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.nav-links a {
+  font-weight: 500;
+  color: var(--white);
+  transition: var(--transition);
+  position: relative;
+}
+
+.navbar.scrolled .nav-links a {
+  color: var(--dark);
+}
+
+.nav-links a:hover, .nav-links a.active {
+  color: var(--secondary-blue);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--secondary-blue);
+  transition: var(--transition);
+}
+
+.nav-links a:hover::after, .nav-links a.active::after {
+  width: 100%;
+}
+
+.nav-cta-desktop {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.phone-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.navbar.scrolled .phone-link {
+  color: var(--primary-blue);
+}
+
+.nav-cta-mobile, .menu-toggle {
+  display: none;
+}
+
+@media (max-width: 992px) {
+  .nav-cta-desktop {
+    display: none;
+  }
+  
+  .menu-toggle {
+    display: block;
+    background: none;
+    border: none;
+    color: var(--white);
+    cursor: pointer;
+  }
+  
+  .navbar.scrolled .menu-toggle {
+    color: var(--dark);
+  }
+  
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background: var(--white);
+    flex-direction: column;
+    padding: 100px 30px;
+    transition: 0.4s ease;
+    box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+  }
+  
+  .nav-links.active {
+    right: 0;
+  }
+  
+  .nav-links a {
+    color: var(--dark) !important;
+    font-size: 1.1rem;
+    width: 100%;
+  }
+  
+  .nav-cta-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .nav-cta-mobile .btn {
+    justify-content: center;
+  }
+}

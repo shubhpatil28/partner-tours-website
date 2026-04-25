@@ -1,0 +1,123 @@
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 50px;
+}
+
+.contact-info-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.info-card {
+  display: flex;
+  gap: 20px;
+  background: var(--light-gray);
+  padding: 25px;
+  border-radius: 15px;
+  transition: var(--transition);
+}
+
+.info-card:hover {
+  background: var(--light-blue);
+  transform: translateX(10px);
+}
+
+.info-icon {
+  width: 50px;
+  height: 50px;
+  background: var(--primary-blue);
+  color: var(--white);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.info-card h4 {
+  margin-bottom: 5px;
+  color: var(--primary-blue);
+}
+
+.info-card p {
+  color: var(--gray);
+  font-size: 0.9rem;
+}
+
+.whatsapp-cta-card {
+  background: var(--whatsapp-green);
+  color: var(--white);
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.whatsapp-cta-card h4 {
+  margin-bottom: 10px;
+}
+
+.whatsapp-cta-card p {
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+
+.whatsapp-cta-card .btn {
+  background: white;
+  color: var(--whatsapp-green);
+}
+
+.contact-form-container {
+  background: var(--white);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+}
+
+.contact-form-container h3 {
+  margin-bottom: 30px;
+  color: var(--primary-blue);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.contact-form textarea {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-family: inherit;
+  resize: none;
+}
+
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--secondary-blue);
+}
+
+@media (max-width: 992px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .contact-form-container {
+    padding: 25px;
+  }
+}
