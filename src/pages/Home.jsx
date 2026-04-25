@@ -13,24 +13,24 @@ const Home = () => {
       {/* Hero Section */}
       <section className="hero">
         <div className="hero-overlay"></div>
-        <img src={heroImg} alt="Partner's Tours & Travels" className="hero-bg" loading="lazy" />
+        <img src={heroImg} alt="Partner's Tours & Travels Chalisgaon" className="hero-bg" loading="lazy" />
         <div className="container hero-content fade-in-up">
-          <div className="badge badge-orange">Trusted Since 10+ Years</div>
-          <h1>Explore India with <br/><span>Partner's Tours & Travels</span></h1>
-          <p>Your one-stop destination for Bus, Flight, and Curated Tour Bookings. Based in Chalisgaon, serving All India.</p>
+          <div className="badge badge-orange">Best Travel Agency in Chalisgaon</div>
+          <h1>Top Rated Travel Partner in <br/><span>Chalisgaon & Jalgaon</span></h1>
+          <p>The leading travel agency near you for Bus Booking, Flight Tickets, and Curated Tour Packages across Maharashtra and India.</p>
           <div className="hero-btns">
             <a href="tel:+918421514348" className="btn btn-primary btn-lg">
               <Phone size={22}/> Call +91 8421514348
             </a>
-            <a href="https://wa.me/918421514348?text=Hi, I want to book a travel service. Please share details." className="btn btn-whatsapp btn-lg">
+            <a href="https://wa.me/918421514348?text=Hi, I am looking for a travel agency near me in Chalisgaon. Please share details." className="btn btn-whatsapp btn-lg">
               <MessageSquare size={22}/> WhatsApp Now
             </a>
           </div>
           
           <div className="trust-badges mt-40">
-            <div className="t-badge"><span className="num">10+</span> <span className="lab">Years Exp.</span></div>
-            <div className="t-badge"><span className="num">1000+</span> <span className="lab">Happy Clients</span></div>
-            <div className="t-badge"><span className="num">24/7</span> <span className="lab">Support</span></div>
+            <div className="t-badge"><span className="num">10+</span> <span className="lab">Years in Jalgaon</span></div>
+            <div className="t-badge"><span className="num">1000+</span> <span className="lab">Happy Travelers</span></div>
+            <div className="t-badge"><span className="num">24/7</span> <span className="lab">Local Support</span></div>
           </div>
         </div>
       </section>
@@ -39,42 +39,42 @@ const Home = () => {
       <section className="section-padding bg-light">
         <div className="container">
           <div className="section-title">
-            <h2>Our <span>Premium Services</span></h2>
-            <p>From daily travel needs to luxury vacations, we handle everything for you.</p>
+            <h2>Our <span>Travel Services in Jalgaon</span></h2>
+            <p>Providing the best travel solutions in Chalisgaon and across Maharashtra for over a decade.</p>
           </div>
           
           <div className="grid grid-3">
             <div className="service-card">
               <div className="s-icon"><Bus size={40}/></div>
-              <h3>Bus Booking</h3>
-              <p>Daily luxury bus services to Pune, Mumbai, Surat, and many more cities.</p>
+              <h3>Bus Booking Jalgaon</h3>
+              <p>Daily luxury bus services from Chalisgaon to Pune, Mumbai, Surat, and other major cities.</p>
               <ul className="s-list">
-                <li><CheckCircle size={14}/> AC / Non-AC Buses</li>
-                <li><CheckCircle size={14}/> Return Tickets Available</li>
+                <li><CheckCircle size={14}/> AC / Non-AC Luxury Buses</li>
+                <li><CheckCircle size={14}/> Daily Jalgaon to Pune Routes</li>
               </ul>
-              <Link to="/rental" className="s-link">View Routes <ArrowRight size={16}/></Link>
+              <Link to="/rental" className="s-link">Explore Routes <ArrowRight size={16}/></Link>
             </div>
             
             <div className="service-card">
               <div className="s-icon"><Plane size={40}/></div>
-              <h3>Flight Booking</h3>
-              <p>Hassle-free Domestic and International flight tickets at competitive rates.</p>
+              <h3>Flight Booking Chalisgaon</h3>
+              <p>Lowest fare Domestic and International flight tickets available at our Chalisgaon office.</p>
               <ul className="s-list">
-                <li><CheckCircle size={14}/> Best Fare Guarantee</li>
-                <li><CheckCircle size={14}/> Instant Cancellation</li>
+                <li><CheckCircle size={14}/> Exclusive Local Discounts</li>
+                <li><CheckCircle size={14}/> Instant Ticket Booking</li>
               </ul>
-              <a href="https://wa.me/918421514348" className="s-link">Inquire Now <ArrowRight size={16}/></a>
+              <a href="https://wa.me/918421514348" className="s-link">Check Fares <ArrowRight size={16}/></a>
             </div>
             
             <div className="service-card">
               <div className="s-icon"><Globe size={40}/></div>
-              <h3>Tour Packages</h3>
-              <p>Customized holiday packages for Goa, Manali, Kashmir, and International destinations.</p>
+              <h3>Tour Packages Maharashtra</h3>
+              <p>Customized holiday and pilgrimage packages starting from Jalgaon to all over India.</p>
                <ul className="s-list">
-                <li><CheckCircle size={14}/> Family & Honeymoon</li>
-                <li><CheckCircle size={14}/> Group Tours</li>
+                <li><CheckCircle size={14}/> Group Tours from Chalisgaon</li>
+                <li><CheckCircle size={14}/> Affordable Honeymoon Deals</li>
               </ul>
-              <Link to="/packages" className="s-link">View Packages <ArrowRight size={16}/></Link>
+              <Link to="/packages" className="s-link">See Packages <ArrowRight size={16}/></Link>
             </div>
           </div>
         </div>
@@ -85,8 +85,8 @@ const Home = () => {
         <div className="container">
           <div className="grid grid-2 align-center">
             <div className="city-info">
-              <h2>Major <span>Cities Covered</span></h2>
-              <p>We provide reliable daily travel services connecting Chalisgaon to major hubs across India.</p>
+              <h2>Major <span>Routes from Chalisgaon</span></h2>
+              <p>We connect Chalisgaon and Jalgaon district to the most popular business and tourism hubs in India.</p>
               <div className="city-grid">
                 <span className="city-tag">Pune</span>
                 <span className="city-tag">Mumbai</span>
@@ -97,10 +97,10 @@ const Home = () => {
                 <span className="city-tag">Bhopal</span>
                 <span className="city-tag">Nasik</span>
               </div>
-              <p className="mt-20"><strong>All India Services Available.</strong> Contact us for any destination.</p>
+              <p className="mt-20"><strong>Best Bus Booking Near Me.</strong> Reliable travels across Maharashtra.</p>
             </div>
             <div className="city-img-container">
-               <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=800" alt="Travel Network" className="rounded-img" />
+               <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=800" alt="Bus Booking Service Jalgaon" className="rounded-img" loading="lazy" />
             </div>
           </div>
         </div>
@@ -110,7 +110,7 @@ const Home = () => {
       <section className="section-padding">
         <div className="container">
           <div className="section-title">
-            <h2>Best <span>Tour Deals</span></h2>
+            <h2>Popular <span>Packages from Jalgaon</span></h2>
           </div>
           <div className="grid grid-3">
              <PackageSummaryCard 
@@ -135,6 +135,9 @@ const Home = () => {
                 price="₹7,999" 
              />
           </div>
+          <div className="text-center mt-40">
+             <Link to="/packages" className="btn btn-secondary">View All Tour Packages</Link>
+          </div>
         </div>
       </section>
 
@@ -142,23 +145,23 @@ const Home = () => {
       <section className="section-padding bg-light">
         <div className="container">
           <div className="section-title">
-            <h2>What Our <span>Traveling Partners</span> Say</h2>
+            <h2>Trusted by <span>Chalisgaon Residents</span></h2>
           </div>
           <div className="grid grid-3">
             <div className="testimonial-item">
               <div className="stars"><Star size={16} fill="#FFC107" color="#FFC107" /> x 5</div>
-              <p>"Partner's Tours provided excellent service for our group trip to Ahmedabad. The bus was clean and on time."</p>
-              <div className="client-info">- Manoj Patil (Chalisgaon)</div>
+              <p>"Partner's Tours is the best travel agency in Chalisgaon. Their bus service to Pune is always prompt and comfortable."</p>
+              <div className="client-info">- Manoj Patil (Bhadgaon Road)</div>
             </div>
             <div className="testimonial-item">
               <div className="stars"><Star size={16} fill="#FFC107" color="#FFC107" /> x 5</div>
-              <p>"Booked my international flights here. Got the best price compared to online portals. Very helpful staff!"</p>
-              <div className="client-info">- Sumit Shinde (Pune)</div>
+              <p>"Excellent group tour arrangements. They handled everything from Jalgaon to Kashmir perfectly."</p>
+              <div className="client-info">- Sumit Shinde (Chalisgaon)</div>
             </div>
              <div className="testimonial-item">
               <div className="stars"><Star size={16} fill="#FFC107" color="#FFC107" /> x 5</div>
-              <p>"Their Goa package was perfectly managed. Hotels and travel were top-notch. Truly trusted partners."</p>
-              <div className="client-info">- Neha Mahajan (Nasik)</div>
+              <p>"Highly recommend for flight bookings. Got the best rates in Jalgaon district!"</p>
+              <div className="client-info">- Neha Mahajan (Pachora Area)</div>
             </div>
           </div>
         </div>
@@ -169,7 +172,7 @@ const Home = () => {
 
 const PackageSummaryCard = ({ id, image, title, dur, price }) => (
   <div className="p-sum-card">
-    <div className="p-img"><img src={image} alt={title} /></div>
+    <div className="p-img"><img src={image} alt={`${title} Tour Package`} loading="lazy" /></div>
     <div className="p-content">
       <div className="p-meta"><span>{dur}</span> <span>Starts from {price}</span></div>
       <h3>{title}</h3>
