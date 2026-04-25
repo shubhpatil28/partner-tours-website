@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone, MapPin, MessageSquare, Instagram, Clock } from 'lucide-react';
+import { Mail, Phone, MapPin, MessageSquare, Camera, Clock } from 'lucide-react';
 import './Contact.css';
 
 const Contact = () => {
@@ -33,7 +33,7 @@ const Contact = () => {
               </div>
 
                <div className="c-info-card">
-                <div className="c-icon"><Instagram size={24}/></div>
+                <div className="c-icon"><Camera size={24}/></div>
                 <div className="c-text">
                   <h4>Follow Us</h4>
                   <p><a href="https://instagram.com/partners_tours" target="_blank" rel="noreferrer">@partners_tours</a></p>

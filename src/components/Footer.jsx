@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Instagram, Youtube, Facebook } from 'lucide-react';
+import { Mail, Phone, MapPin, Camera, Video, Globe } from 'lucide-react';
 import './Footer.css';
 
 const Footer = () => {
@@ -14,9 +14,9 @@ const Footer = () => {
             </Link>
             <p>Your trusted travel partner based in Chalisgaon. Specializing in Bus bookings, Flight tickets, and memorable Tour packages across India.</p>
             <div className="social-links">
-              <a href="https://instagram.com/partners_tours" target="_blank" rel="noreferrer"><Instagram size={20}/></a>
-              <a href="#"><Facebook size={20}/></a>
-              <a href="#"><Youtube size={20}/></a>
+              <a href="https://instagram.com/partners_tours" target="_blank" rel="noreferrer"><Camera size={20}/></a>
+              <a href="#"><Globe size={20}/></a>
+              <a href="#"><Video size={20}/></a>
             </div>
           </div>
           
