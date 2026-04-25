@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, MessageSquare, MapPin, Bus, Plane, Globe, Star, ShieldCheck, Users, Clock, ArrowRight, CheckCircle } from 'lucide-react';
+import { Phone, MessageSquare, MapPin, Bus, Plane, Globe, Star, Users, Clock, ArrowRight, CheckCircle } from 'lucide-react';
 import './Home.css';
 import heroImg from '../assets/hero.png';
 import goaImg from '../assets/goa.png';

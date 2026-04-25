@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Clock, MapPin, Search, Zap } from 'lucide-react';
+import { Clock, MapPin, Search, Zap, Shield, Award, Star } from 'lucide-react';
 import './Packages.css';
 import goaImg from '../assets/goa.png';
 import manaliImg from '../assets/manali.png';
@@ -158,11 +158,5 @@ const Packages = () => {
   );
 };
 
-const Award = ({ size, color }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="8" r="7" />
-    <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
-  </svg>
-);
 
 export default Packages;
