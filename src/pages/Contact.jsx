@@ -14,9 +14,19 @@ const Contact = () => {
   const [errorFallback, setErrorFallback] = useState(false);
   const nameInputRef = useRef(null);
 
+  // --- GOOGLE ANALYTICS EVENT TRACKING ---
+  const trackEvent = (eventName, params = {}) => {
+    if (window.gtag) {
+      window.gtag('event', eventName, params);
+    }
+  };
+
   useEffect(() => {
     if (nameInputRef.current) nameInputRef.current.focus();
     cleanupAndSyncLeads();
+    
+    // Track page view explicitly if needed (optional as gtag auto-tracks)
+    trackEvent('page_view', { page_title: 'Contact Us' });
   }, []);
 
   // --- ENTERPRISE SECURITY: AES-GCM & WEB CRYPTO ---
@@ -133,6 +143,12 @@ const Contact = () => {
     e.preventDefault();
     if (formData.botField) return;
 
+    // --- GA Event: form_submit ---
+    trackEvent('form_submit', { 
+      service_type: formData.service,
+      user_name: formData.name 
+    });
+
     setIsSubmitting(true);
     
     // Background API Sync
@@ -145,6 +161,12 @@ const Contact = () => {
     setTimeout(() => {
       setShowSuccess(true);
       setIsSubmitting(false);
+
+      // --- GA Event: whatsapp_redirect ---
+      trackEvent('whatsapp_redirect', { 
+        service_type: formData.service 
+      });
+
       setTimeout(() => { window.location.href = whatsappUrl; }, 500); 
     }, 300);
 
@@ -154,6 +176,13 @@ const Contact = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleCallClick = () => {
+    // --- GA Event: call_click ---
+    trackEvent('call_click', {
+      phone_number: '+91 8421514348'
+    });
   };
 
   return (
@@ -205,7 +234,13 @@ const Contact = () => {
                    <p>Opening WhatsApp.</p>
                    {errorFallback && (
                       <div className="redirect-fallback-notice mt-20">
-                         <a href={`https://wa.me/918421514348?text=Hi`} className="btn-whatsapp">Open Manually</a>
+                         <a 
+                           href={`https://wa.me/918421514348?text=Hi`} 
+                           className="btn-whatsapp"
+                           onClick={() => trackEvent('whatsapp_manual_click')}
+                         >
+                           Open Manually
+                         </a>
                       </div>
                    )}
                 </div>
@@ -256,7 +291,13 @@ const Contact = () => {
                           {isSubmitting ? <><RefreshCw size={20} className="spinner" /> Securing...</> : <><Send size={18}/> Get Quote on WhatsApp</>}
                         </button>
                         <div className="fallback-divider"><span>OR CALL</span></div>
-                        <a href="tel:+918421514348" className="btn-call-fallback">+91 8421514348</a>
+                        <a 
+                          href="tel:+918421514348" 
+                          className="btn-call-fallback"
+                          onClick={handleCallClick}
+                        >
+                          +91 8421514348
+                        </a>
                     </div>
                     <p className="privacy-note">🔒 Local data is encrypted with AES-GCM before storage.</p>
                   </form>
