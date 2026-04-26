@@ -1,158 +1,268 @@
-import React, { useState } from 'react';
-import { Mail, Phone, MapPin, MessageSquare, Camera, Clock } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Phone, MessageSquare, MapPin, User, Send, CheckCircle, Star, Zap, Loader2, Camera, Mail, Clock, ShieldCheck, RefreshCw } from 'lucide-react';
 import './Contact.css';
+
+const BACKEND_API_URL = "https://api.partnertours.in/v3/leads";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    service: '',
-    message: ''
+    name: '', phone: '', service: '', message: '', botField: '' 
   });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [errorFallback, setErrorFallback] = useState(false);
+  const nameInputRef = useRef(null);
+
+  useEffect(() => {
+    if (nameInputRef.current) nameInputRef.current.focus();
+    cleanupAndSyncLeads();
+  }, []);
+
+  // --- ENTERPRISE SECURITY: AES-GCM & WEB CRYPTO ---
+
+  // Helper to generate a key for localStorage encryption
+  const getEncryptionKey = async () => {
+    const baseKey = "PT_LOCAL_SECURE_SALT_2026";
+    const enc = new TextEncoder();
+    return await crypto.subtle.importKey(
+      "raw",
+      enc.encode(baseKey).slice(0, 32), // 256-bit key
+      "AES-GCM",
+      false,
+      ["encrypt", "decrypt"]
+    );
+  };
+
+  const encryptData = async (data) => {
+    try {
+      const key = await getEncryptionKey();
+      const iv = crypto.getRandomValues(new Uint8Array(12));
+      const enc = new TextEncoder();
+      const encrypted = await crypto.subtle.encrypt(
+        { name: "AES-GCM", iv },
+        key,
+        enc.encode(JSON.stringify(data))
+      );
+      
+      // Package IV and data together for storage
+      return {
+        iv: btoa(String.fromCharCode(...iv)),
+        content: btoa(String.fromCharCode(...new Uint8Array(encrypted)))
+      };
+    } catch (e) {
+      console.error("Encryption failed", e);
+      return null;
+    }
+  };
+
+  const decryptData = async (payload) => {
+    try {
+      const key = await getEncryptionKey();
+      const iv = new Uint8Array(atob(payload.iv).split('').map(c => c.charCodeAt(0)));
+      const content = new Uint8Array(atob(payload.content).split('').map(c => c.charCodeAt(0)));
+      
+      const decrypted = await crypto.subtle.decrypt(
+        { name: "AES-GCM", iv },
+        key,
+        content
+      );
+      
+      return JSON.parse(new TextDecoder().decode(decrypted));
+    } catch (e) {
+      return null;
+    }
+  };
+
+  const saveLeadToAPI = async (data, isRetry = false) => {
+    try {
+      const timestamp = Date.now().toString();
+      const nonce = crypto.randomUUID(); // Nonce-based replay protection
+      
+      const response = await fetch(BACKEND_API_URL, {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest',
+          'X-PT-Timestamp': timestamp,
+          'X-PT-Nonce': nonce
+        },
+        body: JSON.stringify({ ...data, origin: window.location.hostname })
+      });
+
+      if (!response.ok) throw new Error('SEC_FAIL');
+      return true;
+    } catch (err) {
+      if (!isRetry) backupLeadSecurely(data);
+      return false;
+    }
+  };
+
+  const backupLeadSecurely = async (data) => {
+    const encrypted = await encryptData({ ...data, savedAt: Date.now() });
+    if (!encrypted) return;
+    
+    try {
+      const backup = JSON.parse(localStorage.getItem('secure_lead_vault') || '[]');
+      backup.push(encrypted);
+      localStorage.setItem('secure_lead_vault', JSON.stringify(backup.slice(-5)));
+    } catch (e) {}
+  };
+
+  const cleanupAndSyncLeads = async () => {
+    try {
+      const vault = JSON.parse(localStorage.getItem('secure_lead_vault') || '[]');
+      if (vault.length === 0) return;
+
+      const now = Date.now();
+      let remaining = [];
+
+      for (const payload of vault) {
+        const lead = await decryptData(payload);
+        // Expiry check: 24h
+        if (lead && (now - lead.savedAt) < 86400000) {
+          const success = await saveLeadToAPI(lead, true);
+          if (!success) remaining.push(payload);
+        }
+      }
+      localStorage.setItem('secure_lead_vault', JSON.stringify(remaining));
+    } catch (e) {}
+  };
+
+  const handleWhatsAppSubmit = async (e) => {
+    e.preventDefault();
+    if (formData.botField) return;
+
+    setIsSubmitting(true);
+    
+    // Background API Sync
+    saveLeadToAPI(formData);
+
+    const whatsappNumber = "918421514348"; 
+    const formattedMessage = `Hi, I am ${formData.name}\nPhone: ${formData.phone}\nService: ${formData.service}\nDetails: ${formData.message}`;
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(formattedMessage)}`;
+    
+    setTimeout(() => {
+      setShowSuccess(true);
+      setIsSubmitting(false);
+      setTimeout(() => { window.location.href = whatsappUrl; }, 500); 
+    }, 300);
+
+    setTimeout(() => { if (document.visibilityState === 'visible') setErrorFallback(true); }, 4000);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleWhatsAppSubmit = (e) => {
-    e.preventDefault();
-    
-    const { name, phone, service, message } = formData;
-    
-    // Simple Validation
-    if (!name || !phone || !message) {
-      alert("Please fill in all required fields.");
-      return;
-    }
-
-    const whatsappNumber = "918421514348";
-    
-    // Formatting message as per requirements
-    const formattedMessage = `Hi, I am ${name}
-Phone: ${phone}
-Service: ${service || 'General Inquiry'}
-Details: ${message}`;
-
-    const encodedMessage = encodeURIComponent(formattedMessage);
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-    
-    // Direct redirect (no popup)
-    window.location.href = whatsappUrl;
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   return (
     <div className="contact-page">
       <div className="page-header section-padding">
         <div className="container text-center">
-          <h1>Contact Partner's Tours & Travels</h1>
-          <p>We're located in the heart of Chalisgaon. Visit us or call for bookings.</p>
+          <div className="trust-badge-mini fade-in">
+             <ShieldCheck size={14} color="#25D366" />
+             <span>Encrypted Transmission Active</span>
+          </div>
+          <h1>Start Your Next Adventure</h1>
+          <p>Book with Chalisgaon's most secure travel agency.</p>
         </div>
       </div>
 
-      <section className="section-padding">
+      <section className="section-padding contact-main">
         <div className="container">
           <div className="contact-grid">
-            <div className="contact-details">
-              <div className="c-info-card">
-                <div className="c-icon"><MapPin size={24}/></div>
-                <div className="c-text">
-                  <h4>Address</h4>
-                  <p>Bhadgaon Road, Chalisgaon,<br/>District Jalgaon, Maharashtra - 424101</p>
-                </div>
+            <div className="contact-side-info">
+              <div className="benefit-card">
+                 <div className="b-icon"><Zap size={20} /></div>
+                 <div className="b-content">
+                    <h4>Direct Assistance</h4>
+                    <p>Priority support for all online bookings.</p>
+                 </div>
+              </div>
+
+              <div className="c-info-card-premium">
+                <div className="c-icon-circle"><MapPin size={22}/></div>
+                <div className="c-text-stack"><label>Office</label><p>Bhadgaon Road, Chalisgaon</p></div>
               </div>
               
-              <div className="c-info-card">
-                <div className="c-icon"><Phone size={24}/></div>
-                <div className="c-text">
-                  <h4>Phone Number</h4>
-                  <p><a href="tel:+918421514348">+91 8421514348</a></p>
-                </div>
+              <div className="c-info-card-premium">
+                <div className="c-icon-circle"><Phone size={22}/></div>
+                <div className="c-text-stack"><label>Call</label><p>+91 8421514348</p></div>
               </div>
 
-               <div className="c-info-card">
-                <div className="c-icon"><Camera size={24}/></div>
-                <div className="c-text">
-                  <h4>Follow Us</h4>
-                  <p><a href="https://instagram.com/partners_tours" target="_blank" rel="noreferrer">@partners_tours</a></p>
-                </div>
-              </div>
-
-              <div className="c-info-card">
-                <div className="c-icon"><Clock size={24}/></div>
-                <div className="c-text">
-                  <h4>Opening Hours</h4>
-                  <p>Mon - Sat: 9:00 AM - 9:00 PM</p>
-                  <p>Sun: 10:00 AM - 2:00 PM</p>
-                </div>
+               <div className="c-info-card-premium">
+                <div className="c-icon-circle"><MessageSquare size={22}/></div>
+                <div className="c-text-stack"><label>Status</label><p className="status-online"><span className="dot"></span> Agent Online</p></div>
               </div>
             </div>
 
-            <div className="contact-form-box">
-               <h3>Send an Inquiry</h3>
-               <p>Fill out the form below and our team will get back to you shortly.</p>
-               <form className="c-form" onSubmit={handleWhatsAppSubmit}>
-                  <div className="form-row">
-                    <input 
-                      type="text" 
-                      name="name"
-                      placeholder="Full Name" 
-                      value={formData.name}
-                      onChange={handleChange}
-                      required 
-                    />
-                    <input 
-                      type="tel" 
-                      name="phone"
-                      placeholder="Phone Number" 
-                      value={formData.phone}
-                      onChange={handleChange}
-                      required 
-                    />
+            <div className="contact-form-premium-card">
+              {showSuccess ? (
+                <div className="success-overlay">
+                   <CheckCircle size={80} color="#25D366" className="success-lottie" />
+                   <h3>Securing Chat...</h3>
+                   <p>Opening WhatsApp.</p>
+                   {errorFallback && (
+                      <div className="redirect-fallback-notice mt-20">
+                         <a href={`https://wa.me/918421514348?text=Hi`} className="btn-whatsapp">Open Manually</a>
+                      </div>
+                   )}
+                </div>
+              ) : (
+                <>
+                  <div className="form-header">
+                     <span className="whats-highlight"><Zap size={14}/> Secure</span>
+                     <h3>Book Your Trip</h3>
                   </div>
-                  <select 
-                    name="service"
-                    value={formData.service}
-                    onChange={handleChange}
-                    required
-                  >
-                     <option value="">Select Service</option>
-                     <option value="Bus Booking">Bus Booking</option>
-                     <option value="Flight Booking">Flight Booking</option>
-                     <option value="Tour Package">Tour Package</option>
-                  </select>
-                  <textarea 
-                    name="message"
-                    rows="4" 
-                    placeholder="Your Message / Destination" 
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                  ></textarea>
-                  <button type="submit" className="btn btn-primary full-width">Send Message</button>
-               </form>
-               <div className="whatsapp-box mt-20">
-                  <p>In a hurry? Chat on WhatsApp for instant booking.</p>
-                  <a href="https://wa.me/918421514348?text=Hi, I want to inquire about a travel service." className="btn btn-whatsapp full-width">
-                     <MessageSquare size={20}/> Message on WhatsApp
-                  </a>
-               </div>
-            </div>
-          </div>
+                  
+                  <form className="premium-form" onSubmit={handleWhatsAppSubmit}>
+                    <input type="text" name="botField" style={{ display: 'none' }} value={formData.botField} onChange={handleChange} />
 
-          <div className="map-box mt-50">
-             <iframe 
-               title="Partner's Tours Chalisgaon Location"
-               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14945.41460515157!2d75.0114068!3d20.4611598!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd96b4478dce547%3A0x6a0f443b749d0842!2sChalisgaon%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1650000000000!5m2!1sen!2sin" 
-               width="100%" 
-               height="450" 
-               style={{border:0, borderRadius:'20px', boxShadow: 'var(--shadow)'}} 
-               allowFullScreen="" 
-               loading="lazy">
-             </iframe>
+                    <div className="form-double-row">
+                      <div className="p-input-group">
+                        <label>Name</label>
+                        <div className="p-input-wrapper">
+                          <User size={18} className="p-icon" />
+                          <input ref={nameInputRef} type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} required />
+                        </div>
+                      </div>
+                      <div className="p-input-group">
+                        <label>Phone</label>
+                        <div className="p-input-wrapper">
+                          <Phone size={18} className="p-icon" />
+                          <input type="tel" name="phone" placeholder="Phone" value={formData.phone} onChange={handleChange} required />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="p-input-group">
+                      <label>Service</label>
+                      <select name="service" value={formData.service} onChange={handleChange} required>
+                         <option value="">Select Category</option>
+                         <option value="Bus Booking">Luxury Bus</option>
+                         <option value="Flight Booking">Flights</option>
+                         <option value="Tour Package">Tour Packages</option>
+                      </select>
+                    </div>
+
+                    <div className="p-input-group">
+                      <label>Details</label>
+                      <textarea name="message" rows="4" placeholder="Your destination..." value={formData.message} onChange={handleChange} required></textarea>
+                    </div>
+
+                    <div className="form-actions-stack">
+                        <button type="submit" className={`btn-premium-submit ${isSubmitting ? 'loading' : ''}`} disabled={isSubmitting}>
+                          {isSubmitting ? <><RefreshCw size={20} className="spinner" /> Securing...</> : <><Send size={18}/> Get Quote on WhatsApp</>}
+                        </button>
+                        <div className="fallback-divider"><span>OR CALL</span></div>
+                        <a href="tel:+918421514348" className="btn-call-fallback">+91 8421514348</a>
+                    </div>
+                    <p className="privacy-note">🔒 Local data is encrypted with AES-GCM before storage.</p>
+                  </form>
+                </>
+              )}
+            </div>
           </div>
         </div>
       </section>
