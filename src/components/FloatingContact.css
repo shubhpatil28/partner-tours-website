@@ -1,39 +1,54 @@
 .floating-contact {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: 2rem;
+  right: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 1rem;
   z-index: 999;
 }
 
 .floating-btn {
-  width: 60px;
-  height: 60px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  color: var(--white);
+  box-shadow: var(--shadow-xl);
+  transition: var(--transition);
+  position: relative;
+}
+
+.floating-btn::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  opacity: 0;
   transition: var(--transition);
 }
 
-.call-btn {
-  background: var(--primary-blue);
-}
-
-.whatsapp-btn {
-  background: var(--whatsapp-green);
+.floating-btn:hover::before {
+  opacity: 1;
 }
 
 .floating-btn:hover {
-  transform: scale(1.1) rotate(5deg);
+  transform: scale(1.12) translateY(-3px);
+}
+
+.call-btn {
+  background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+}
+
+.whatsapp-btn {
+  background: linear-gradient(135deg, #25d366, #128c7e);
 }
 
 @media (max-width: 768px) {
   .floating-contact {
-    display: none; /* Hidden on mobile because of sticky bottom bar */
+    display: none;
   }
 }

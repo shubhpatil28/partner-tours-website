@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, MessageSquare } from 'lucide-react';
 import './Navbar.css';
+import { CONTACT_CONFIG } from '../config';
+import { trackEvent, ANALYTICS_EVENTS } from '../utils/analytics';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,14 +38,38 @@ const Navbar = () => {
           <Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>Contact</Link>
           
           <div className="nav-cta-mobile">
-             <a href="tel:+918421514348" className="btn btn-primary"><Phone size={18}/> Call Now</a>
-             <a href="https://wa.me/918421514348" className="btn btn-whatsapp"><MessageSquare size={18}/> WhatsApp</a>
+             <a 
+               href={`tel:${CONTACT_CONFIG.WHATSAPP_NUMBER}`} 
+               className="btn btn-primary"
+               onClick={() => trackEvent(ANALYTICS_EVENTS.CALL_CLICK, { location: 'navbar_mobile' })}
+             >
+               <Phone size={18}/> Call Now
+             </a>
+             <a 
+               href={`https://wa.me/${CONTACT_CONFIG.WHATSAPP_NUMBER}`} 
+               className="btn btn-whatsapp"
+               onClick={() => trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { location: 'navbar_mobile' })}
+             >
+               <MessageSquare size={18}/> WhatsApp
+             </a>
           </div>
         </div>
 
         <div className="nav-cta-desktop">
-          <a href="tel:+918421514348" className="phone-link"><Phone size={20}/> +91 8421514348</a>
-          <a href="https://wa.me/918421514348" className="btn btn-whatsapp"><MessageSquare size={18}/> WhatsApp</a>
+          <a 
+            href={`tel:${CONTACT_CONFIG.WHATSAPP_NUMBER}`} 
+            className="phone-link"
+            onClick={() => trackEvent(ANALYTICS_EVENTS.CALL_CLICK, { location: 'navbar_desktop' })}
+          >
+            <Phone size={20}/> {CONTACT_CONFIG.PHONE_NUMBER}
+          </a>
+          <a 
+            href={`https://wa.me/${CONTACT_CONFIG.WHATSAPP_NUMBER}`} 
+            className="btn btn-whatsapp"
+            onClick={() => trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { location: 'navbar_desktop' })}
+          >
+            <MessageSquare size={18}/> WhatsApp
+          </a>
         </div>
 
         <button className="menu-toggle" onClick={() => setIsOpen(!isOpen)}>
@@ -55,3 +81,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

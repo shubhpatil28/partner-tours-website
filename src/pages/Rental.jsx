@@ -1,6 +1,11 @@
 import React from 'react';
 import { Users, Briefcase, Settings, MessageSquare, Wind, Fuel, Map, CheckCircle, ShieldCheck } from 'lucide-react';
 import './Rental.css';
+import kashmirImg from '../assets/kashmir.png';
+import manaliImg from '../assets/manali.png';
+import heroImg from '../assets/hero.png';
+import { CONTACT_CONFIG } from '../config';
+import { trackEvent, ANALYTICS_EVENTS } from '../utils/analytics';
 
 const vehicles = [
   {
@@ -13,7 +18,7 @@ const vehicles = [
     priceKm: "₹12",
     priceDay: "₹2,500",
     features: ["Clean Interiors", "USB Charger", "Bluetooth", "Experienced Driver"],
-    image: "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&q=80&w=800"
+    image: kashmirImg
   },
   {
     id: 2,
@@ -25,7 +30,7 @@ const vehicles = [
     priceKm: "₹18",
     priceDay: "₹4,500",
     features: ["Spacious Legroom", "Rear AC Vents", "Carrier included", "Luxury Seats"],
-    image: "https://images.unsplash.com/photo-1620891549027-942fdc95d3f5?auto=format&fit=crop&q=80&w=800"
+    image: manaliImg
   },
   {
     id: 3,
@@ -37,11 +42,16 @@ const vehicles = [
     priceKm: "₹25",
     priceDay: "₹6,000",
     features: ["High Roof", "Reclining Seats", "Music System", "Perfect for Groups"],
-    image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=800"
+    image: heroImg
   }
 ];
 
+
 const Rental = () => {
+  const handleImageError = (e) => {
+    e.target.src = 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=800'; // Car fallback
+  };
+
   return (
     <div className="rental-page">
       <div className="page-header section-padding">
@@ -57,7 +67,7 @@ const Rental = () => {
             {vehicles.map(vehicle => (
               <div key={vehicle.id} className="vehicle-card fade-in">
                 <div className="vehicle-img">
-                  <img src={vehicle.image} alt={vehicle.name} loading="lazy" />
+                  <img src={vehicle.image} alt={vehicle.name} loading="lazy" onError={handleImageError} />
                   <div className="vehicle-pricing-overlay">
                     <span>From {vehicle.priceKm}/km</span>
                   </div>
@@ -86,9 +96,12 @@ const Rental = () => {
                        <small>Local Day Rate</small>
                        <strong>{vehicle.priceDay}</strong>
                     </div>
-                    <a href={`https://wa.me/919876543210?text=Hi, I want to book a ${vehicle.name} for rental. Please share availability.`} 
-                       className="btn btn-whatsapp">
-                      <MessageSquare size={18}/> Book Now
+                    <a 
+                      href={`https://wa.me/${CONTACT_CONFIG.WHATSAPP_NUMBER}?text=Hi, I want to book a ${vehicle.name} for rental. Please share availability.`} 
+                      className="btn btn-whatsapp"
+                      onClick={() => trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { vehicle: vehicle.name })}
+                    >
+                      <MessageSquare size={18}/> Book on WhatsApp
                     </a>
                   </div>
                 </div>
@@ -169,3 +182,4 @@ const Rental = () => {
 
 
 export default Rental;
+

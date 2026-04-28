@@ -3,16 +3,18 @@
   top: 0;
   left: 0;
   width: 100%;
-  padding: 20px 0;
   z-index: 1000;
+  padding: 1.5rem 0;
   transition: var(--transition);
-  background: transparent;
 }
 
 .navbar.scrolled {
-  background: var(--white);
-  padding: 12px 0;
-  box-shadow: var(--shadow);
+  padding: 0.875rem 0;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-md);
+  border-bottom: 1px solid var(--slate-100);
 }
 
 .nav-container {
@@ -24,131 +26,145 @@
 .logo {
   font-size: 1.5rem;
   font-weight: 800;
-  color: var(--primary-blue);
-  letter-spacing: -0.5px;
+  color: var(--white);
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.02em;
 }
 
 .navbar.scrolled .logo {
-  color: var(--primary-blue);
-}
-
-/* For transparent navbar over hero, white logo might look better, but let's stick to blue for brand consistency or use white when unscrolled */
-.navbar:not(.scrolled) .logo {
-  color: var(--white);
+  color: var(--primary);
 }
 
 .logo span {
-  color: var(--secondary-blue);
+  color: var(--accent);
 }
 
 .nav-links {
   display: flex;
-  gap: 30px;
+  gap: 2.5rem;
   align-items: center;
 }
 
 .nav-links a {
-  font-weight: 500;
-  color: var(--white);
-  transition: var(--transition);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
   position: relative;
 }
 
 .navbar.scrolled .nav-links a {
-  color: var(--dark);
+  color: var(--slate-600);
 }
 
-.nav-links a:hover, .nav-links a.active {
-  color: var(--secondary-blue);
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--white);
+}
+
+.navbar.scrolled .nav-links a:hover,
+.navbar.scrolled .nav-links a.active {
+  color: var(--accent);
 }
 
 .nav-links a::after {
   content: '';
   position: absolute;
-  bottom: -5px;
+  bottom: -4px;
   left: 0;
   width: 0;
   height: 2px;
-  background: var(--secondary-blue);
+  background: currentColor;
   transition: var(--transition);
+  border-radius: var(--radius-full);
 }
 
-.nav-links a:hover::after, .nav-links a.active::after {
+.nav-links a:hover::after,
+.nav-links a.active::after {
   width: 100%;
 }
 
 .nav-cta-desktop {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 1.5rem;
 }
 
 .phone-link {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-weight: 600;
+  gap: 0.5rem;
+  font-weight: 700;
   color: var(--white);
+  font-size: 0.9375rem;
 }
 
 .navbar.scrolled .phone-link {
-  color: var(--primary-blue);
+  color: var(--primary);
 }
 
-.nav-cta-mobile, .menu-toggle {
+.nav-cta-mobile {
   display: none;
 }
 
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+}
+
+.navbar.scrolled .menu-toggle {
+  color: var(--primary);
+}
+
 @media (max-width: 992px) {
-  .nav-cta-desktop {
-    display: none;
-  }
-  
-  .menu-toggle {
-    display: block;
-    background: none;
-    border: none;
-    color: var(--white);
-    cursor: pointer;
-  }
-  
-  .navbar.scrolled .menu-toggle {
-    color: var(--dark);
-  }
-  
   .nav-links {
     position: fixed;
     top: 0;
     right: -100%;
     width: 80%;
-    max-width: 300px;
     height: 100vh;
     background: var(--white);
     flex-direction: column;
-    padding: 100px 30px;
-    transition: 0.4s ease;
-    box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+    justify-content: center;
+    padding: 2rem;
+    transition: var(--transition);
+    box-shadow: var(--shadow-xl);
   }
-  
+
   .nav-links.active {
     right: 0;
   }
-  
+
   .nav-links a {
-    color: var(--dark) !important;
-    font-size: 1.1rem;
+    color: var(--slate-600) !important;
+    font-size: 1.125rem;
     width: 100%;
+    text-align: center;
+    padding: 1rem;
   }
-  
+
+  .nav-links a.active {
+    color: var(--accent) !important;
+    background: var(--slate-50);
+    border-radius: var(--radius-md);
+  }
+
+  .nav-cta-desktop {
+    display: none;
+  }
+
   .nav-cta-mobile {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 1rem;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 2rem;
   }
-  
-  .nav-cta-mobile .btn {
-    justify-content: center;
+
+  .menu-toggle {
+    display: block;
+    z-index: 1001;
   }
 }

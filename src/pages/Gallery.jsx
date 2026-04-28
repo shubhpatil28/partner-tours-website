@@ -1,40 +1,81 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Camera, MapPin, ExternalLink } from 'lucide-react';
 import './Gallery.css';
 import goaImg from '../assets/goa.png';
 import manaliImg from '../assets/manali.png';
 import kashmirImg from '../assets/kashmir.png';
 import heroImg from '../assets/hero.png';
+import dubaiImg from '../assets/dubai.png';
+import thailandImg from '../assets/thailand.png';
 
 const galleryImages = [
-  { id: 1, src: goaImg, title: "Sunny Goa Beaches" },
-  { id: 2, src: manaliImg, title: "Manali Snow Peaks" },
-  { id: 3, src: kashmirImg, title: "Kashmir Dal Lake" },
-  { id: 4, src: heroImg, title: "Incredible India" },
-  { id: 5, src: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&q=80&w=800", title: "Taj Mahal Agra" },
-  { id: 6, src: "https://images.unsplash.com/photo-1514222139745-d186a89a65e8?auto=format&fit=crop&q=80&w=800", title: "Varanasi Ghats" },
-  { id: 7, src: "https://images.unsplash.com/photo-1590603740183-980e7f6920eb?auto=format&fit=crop&q=80&w=800", title: "Kerala Backwaters" },
-  { id: 8, src: "https://images.unsplash.com/photo-1506461883276-594a12b11cf3?auto=format&fit=crop&q=80&w=800", title: "Jaipur Hawa Mahal" },
-  { id: 9, src: "https://images.unsplash.com/photo-1598330106281-789a4918e977?auto=format&fit=crop&q=80&w=800", title: "Spiti Valley" }
+  { id: 1, src: goaImg, title: "Sunny Goa", location: "South Goa Beaches" },
+  { id: 2, src: manaliImg, title: "Manali Peaks", location: "Solang Valley" },
+  { id: 3, src: kashmirImg, title: "Dal Lake", location: "Srinagar, Kashmir" },
+  { id: 4, src: heroImg, title: "Incredible India", location: "Cultural Heritage" },
+  { id: 5, src: dubaiImg, title: "Dubai Skyline", location: "United Arab Emirates" },
+  { id: 6, src: thailandImg, title: "Phi Phi Islands", location: "Thailand Paradise" },
+  { id: 7, src: goaImg, title: "Goa Nightlife", location: "North Goa" },
+  { id: 8, src: manaliImg, title: "Snow Adventure", location: "Rohtang Pass" },
+  { id: 9, src: kashmirImg, title: "Gulmarg", location: "Kashmir Meadows" }
 ];
 
 const Gallery = () => {
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.gallery-item').forEach(el => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
+  const handleImageError = (e) => {
+    e.target.src = 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&q=80&w=800'; // Nature fallback
+  };
+
   return (
     <div className="gallery-page">
       <div className="page-header section-padding">
         <div className="container">
-          <h1>Travel Gallery</h1>
-          <p>A glimpse into the beautiful destinations we've explored with our clients.</p>
+          <div className="badge badge-white">Captured Moments</div>
+          <h1>Travel <span>Gallery</span></h1>
+          <p>A glimpse into the extraordinary destinations we've explored with our premium travelers.</p>
         </div>
       </div>
 
       <section className="section-padding">
         <div className="container">
           <div className="gallery-grid">
-            {galleryImages.map(img => (
-              <div key={img.id} className="gallery-item fade-in">
-                <img src={img.src} alt={img.title} />
-                <div className="gallery-overlay">
-                  <h4>{img.title}</h4>
+            {galleryImages.map((img, index) => (
+              <div 
+                key={img.id} 
+                className="gallery-item"
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
+                <div className="gallery-card">
+                  <img src={img.src} alt={`${img.title} at ${img.location}`} loading="lazy" onError={handleImageError} />
+                  <div className="gallery-overlay">
+                    <div className="overlay-content">
+                      <div className="loc-info">
+                        <MapPin size={14} />
+                        <span>{img.location}</span>
+                      </div>
+                      <h4>{img.title}</h4>
+                      <button className="btn-view-details">
+                        View Details <ExternalLink size={14} />
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
@@ -46,3 +87,4 @@ const Gallery = () => {
 };
 
 export default Gallery;
+

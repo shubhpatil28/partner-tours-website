@@ -10,6 +10,8 @@ import Rental from './pages/Rental';
 import Gallery from './pages/Gallery';
 import Contact from './pages/Contact';
 import { Phone, MessageSquare } from 'lucide-react';
+import { CONTACT_CONFIG } from './config';
+import { trackEvent, ANALYTICS_EVENTS } from './utils/analytics';
 
 function App() {
   return (
@@ -32,17 +34,27 @@ function App() {
         {/* Mobile Sticky Bar */}
         <div className="mobile-cta-shell">
           <div className="mobile-sticky-bar">
-            <a href="tel:+918421514348" className="m-cta-btn m-call">
+            <a 
+              href={`tel:${CONTACT_CONFIG.WHATSAPP_NUMBER}`} 
+              className="m-cta-btn m-call"
+              onClick={() => trackEvent(ANALYTICS_EVENTS.CALL_CLICK, { location: 'sticky_bar' })}
+            >
               <Phone size={20} /> Call Now
             </a>
-            <a href="https://wa.me/918421514348?text=Hi, I want to book a travel service. Please share details." className="m-cta-btn m-whatsapp">
+            <a 
+              href={`https://wa.me/${CONTACT_CONFIG.WHATSAPP_NUMBER}?text=Hi, I want to book a travel service. Please share details.`} 
+              className="m-cta-btn m-whatsapp"
+              onClick={() => trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { location: 'sticky_bar' })}
+            >
               <MessageSquare size={20} /> WhatsApp
             </a>
           </div>
         </div>
+
       </div>
     </Router>
   );
 }
 
 export default App;
+

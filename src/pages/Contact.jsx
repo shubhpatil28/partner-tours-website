@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Phone, MessageSquare, MapPin, User, Send, CheckCircle, Star, Zap, Loader2, Camera, Mail, Clock, ShieldCheck, RefreshCw } from 'lucide-react';
 import './Contact.css';
+import { CONTACT_CONFIG } from '../config';
+import { trackEvent, ANALYTICS_EVENTS } from '../utils/analytics';
 
 const BACKEND_API_URL = "https://api.partnertours.in/v3/leads";
 
@@ -14,18 +16,10 @@ const Contact = () => {
   const [errorFallback, setErrorFallback] = useState(false);
   const nameInputRef = useRef(null);
 
-  // --- GOOGLE ANALYTICS EVENT TRACKING ---
-  const trackEvent = (eventName, params = {}) => {
-    if (window.gtag) {
-      window.gtag('event', eventName, params);
-    }
-  };
-
   useEffect(() => {
     if (nameInputRef.current) nameInputRef.current.focus();
     cleanupAndSyncLeads();
     
-    // Track page view explicitly if needed (optional as gtag auto-tracks)
     trackEvent('page_view', { page_title: 'Contact Us' });
   }, []);
 
@@ -144,8 +138,7 @@ const Contact = () => {
     
     if (formData.botField) return;
 
-    // --- GA Event: form_submit ---
-    trackEvent('form_submit', { 
+    trackEvent(ANALYTICS_EVENTS.FORM_SUBMIT, { 
       service_type: formData.service,     
       user_name: formData.name, 
     });
@@ -155,7 +148,7 @@ const Contact = () => {
     // Background API Sync
     saveLeadToAPI(formData);
 
-    const whatsappNumber = "919730704731"; 
+    const whatsappNumber = CONTACT_CONFIG.WHATSAPP_NUMBER; 
     const formattedMessage = `Hi, I am ${formData.name}\nPhone: ${formData.phone}\nService: ${formData.service}\nDetails: ${formData.message}`;
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(formattedMessage)}`;
     
@@ -163,8 +156,7 @@ const Contact = () => {
       setShowSuccess(true);
       setIsSubmitting(false);
 
-      // --- GA Event: whatsapp_redirect ---
-      trackEvent('whatsapp_redirect', { 
+      trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { 
         service_type: formData.service 
       });
 
@@ -180,9 +172,8 @@ const Contact = () => {
   };
 
   const handleCallClick = () => {
-    // --- GA Event: call_click ---
-    trackEvent('call_click', {
-      phone_number: '+91 8421514348'
+    trackEvent(ANALYTICS_EVENTS.CALL_CLICK, {
+      phone_number: CONTACT_CONFIG.PHONE_NUMBER
     });
   };
 
@@ -213,12 +204,12 @@ const Contact = () => {
 
               <div className="c-info-card-premium">
                 <div className="c-icon-circle"><MapPin size={22}/></div>
-                <div className="c-text-stack"><label>Office</label><p>Bhadgaon Road, Chalisgaon</p></div>
+                <div className="c-text-stack"><label>Office</label><p>{CONTACT_CONFIG.ADDRESS}</p></div>
               </div>
               
               <div className="c-info-card-premium">
                 <div className="c-icon-circle"><Phone size={22}/></div>
-                <div className="c-text-stack"><label>Call</label><p>+91 8421514348</p></div>
+                <div className="c-text-stack"><label>Call</label><p>{CONTACT_CONFIG.PHONE_NUMBER}</p></div>
               </div>
 
                <div className="c-info-card-premium">
@@ -236,7 +227,7 @@ const Contact = () => {
                    {errorFallback && (
                       <div className="redirect-fallback-notice mt-20">
                          <a 
-                           href={`https://wa.me/918421514348?text=Hi`} 
+                           href={`https://wa.me/${CONTACT_CONFIG.WHATSAPP_NUMBER}?text=Hi`} 
                            className="btn-whatsapp"
                            onClick={() => trackEvent('whatsapp_manual_click')}
                          >
@@ -293,11 +284,11 @@ const Contact = () => {
                         </button>
                         <div className="fallback-divider"><span>OR CALL</span></div>
                         <a 
-                          href="tel:+918421514348" 
+                          href={`tel:${CONTACT_CONFIG.WHATSAPP_NUMBER}`} 
                           className="btn-call-fallback"
                           onClick={handleCallClick}
                         >
-                          +91 8421514348
+                          {CONTACT_CONFIG.PHONE_NUMBER}
                         </a>
                     </div>
                     <p className="privacy-note">🔒 Local data is encrypted with AES-GCM before storage.</p>
@@ -313,3 +304,4 @@ const Contact = () => {
 };
 
 export default Contact;
+

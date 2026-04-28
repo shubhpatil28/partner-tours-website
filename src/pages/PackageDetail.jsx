@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Clock, MapPin, CheckCircle, MessageSquare, Hotel, Coffee, Car, Zap, ShieldCheck } from 'lucide-react';
 import './PackageDetail.css';
@@ -7,6 +7,8 @@ import manaliImg from '../assets/manali.png';
 import kashmirImg from '../assets/kashmir.png';
 import dubaiImg from '../assets/dubai.png';
 import thailandImg from '../assets/thailand.png';
+import { CONTACT_CONFIG } from '../config';
+import { trackEvent, ANALYTICS_EVENTS } from '../utils/analytics';
 
 const packagesData = {
   'kashmir-trip': {
@@ -67,12 +69,21 @@ const PackageDetail = () => {
   const { id } = useParams();
   const pkg = packagesData[id] || packagesData['kashmir-trip'];
 
-  const whatsappLink = `https://wa.me/919876543210?text=Hi, I am interested in the ${pkg.title} (${pkg.duration}) package for ₹${pkg.price}. Please provide more details and availability.`;
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    trackEvent(ANALYTICS_EVENTS.PACKAGE_VIEW, { package_id: id, title: pkg.title });
+  }, [id, pkg.title]);
+
+  const handleImageError = (e) => {
+    e.target.src = 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=800';
+  };
+
+  const whatsappLink = `https://wa.me/${CONTACT_CONFIG.WHATSAPP_NUMBER}?text=Hi, I am interested in the ${pkg.title} (${pkg.duration}) package for ₹${pkg.price}. Please provide more details and availability.`;
 
   return (
     <div className="package-detail-page">
       <div className="detail-hero">
-        <img src={pkg.image} alt={pkg.title} className="detail-hero-img" loading="lazy" />
+        <img src={pkg.image} alt={pkg.title} className="detail-hero-img" loading="lazy" onError={handleImageError} />
         <div className="container">
           <div className="detail-header-content fade-in">
             <span className="duration-pill"><Clock size={16}/> {pkg.duration}</span>
@@ -141,12 +152,22 @@ const PackageDetail = () => {
               <div className="sidebar-price">
                 Offer Price per person: <span>{pkg.price}</span>
               </div>
-              <a href={whatsappLink} className="btn btn-whatsapp btn-lg full-width">
-                <MessageSquare size={20}/> Book via WhatsApp
+              <a 
+                href={whatsappLink} 
+                className="btn btn-whatsapp btn-lg full-width"
+                onClick={() => trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { package_id: id, title: pkg.title })}
+              >
+                <MessageSquare size={20}/> Book on WhatsApp
               </a>
               <div className="sidebar-support">
                  <p>Have Questions? Talk to our expert.</p>
-                 <a href="tel:+919876543210" className="phone-cta">+91 98765 43210</a>
+                 <a 
+                   href={`tel:${CONTACT_CONFIG.WHATSAPP_NUMBER}`} 
+                   className="phone-cta"
+                   onClick={() => trackEvent(ANALYTICS_EVENTS.CALL_CLICK)}
+                 >
+                   {CONTACT_CONFIG.PHONE_NUMBER}
+                 </a>
               </div>
             </div>
 
@@ -172,3 +193,4 @@ const PackageDetail = () => {
 };
 
 export default PackageDetail;
+

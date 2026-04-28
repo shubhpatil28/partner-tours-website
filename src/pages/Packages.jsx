@@ -7,6 +7,7 @@ import manaliImg from '../assets/manali.png';
 import kashmirImg from '../assets/kashmir.png';
 import dubaiImg from '../assets/dubai.png';
 import thailandImg from '../assets/thailand.png';
+import { trackEvent, ANALYTICS_EVENTS } from '../utils/analytics';
 
 const packagesData = [
   { 
@@ -94,6 +95,10 @@ const packagesData = [
 ];
 
 const Packages = () => {
+  const handleImageError = (e) => {
+    e.target.src = 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=800';
+  };
+
   return (
     <div className="packages-page">
       <div className="page-header section-padding">
@@ -122,7 +127,7 @@ const Packages = () => {
             {packagesData.map(pkg => (
               <div key={pkg.id} className="package-card fade-in">
                 <div className="package-img">
-                  <img src={pkg.image} alt={pkg.title} loading="lazy" />
+                  <img src={pkg.image} alt={`${pkg.title} Tour Package`} loading="lazy" onError={handleImageError} />
                   <span className="price-tag">{pkg.price}</span>
                   {pkg.badge && <span className={`badge badge-${pkg.badgeType} floating-badge`}>{pkg.badge}</span>}
                 </div>
@@ -134,7 +139,13 @@ const Packages = () => {
                     <span><MapPin size={16}/> {pkg.category === 'International' ? 'Abroad' : 'India'}</span>
                   </div>
                   {pkg.urgency && <div className="urgency-text"><Zap size={14}/> {pkg.urgency}</div>}
-                  <Link to={`/package/${pkg.id}`} className="btn btn-primary full-width mt-15">View Itinerary</Link>
+                  <Link 
+                    to={`/package/${pkg.id}`} 
+                    className="btn btn-primary full-width mt-15"
+                    onClick={() => trackEvent(ANALYTICS_EVENTS.PACKAGE_VIEW, { package_id: pkg.id, title: pkg.title })}
+                  >
+                    View Itinerary
+                  </Link>
                 </div>
               </div>
             ))}
@@ -158,5 +169,5 @@ const Packages = () => {
   );
 };
 
-
 export default Packages;
+
