@@ -141,12 +141,13 @@ const Contact = () => {
 
   const handleWhatsAppSubmit = async (e) => {
     e.preventDefault();
+    
     if (formData.botField) return;
 
     // --- GA Event: form_submit ---
     trackEvent('form_submit', { 
-      service_type: formData.service,
-      user_name: formData.name 
+      service_type: formData.service,     
+      user_name: formData.name, 
     });
 
     setIsSubmitting(true);
@@ -154,7 +155,7 @@ const Contact = () => {
     // Background API Sync
     saveLeadToAPI(formData);
 
-    const whatsappNumber = "918421514348"; 
+    const whatsappNumber = "919730704731"; 
     const formattedMessage = `Hi, I am ${formData.name}\nPhone: ${formData.phone}\nService: ${formData.service}\nDetails: ${formData.message}`;
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(formattedMessage)}`;
     
