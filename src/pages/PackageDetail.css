@@ -160,8 +160,13 @@
   color: var(--slate-700);
 }
 
-.trust-item svg { color: var(--success); }
-.trust-item:last-child { margin-bottom: 0; }
+.trust-item svg {
+  color: var(--success);
+}
+
+.trust-item:last-child {
+  margin-bottom: 0;
+}
 
 /* Inclusion / Exclusion Boxes */
 .inclusion-box {
@@ -189,6 +194,7 @@
   .detail-grid {
     grid-template-columns: 1fr;
   }
+
   .booking-card {
     position: static;
   }
@@ -200,6 +206,7 @@
     min-height: 400px;
     padding-bottom: 3rem;
   }
+
   .detail-header-content h1 {
     font-size: 2.25rem;
   }
