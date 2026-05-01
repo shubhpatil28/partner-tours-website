@@ -23,8 +23,9 @@
   --slate-800: #1e293b;
   --slate-900: #0f172a;
   
-  --glass: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass: rgba(15, 23, 42, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-light: rgba(255, 255, 255, 0.8);
   
   --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
@@ -100,9 +101,16 @@ img {
 /* Glassmorphism Utility */
 .glass {
   background: var(--glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+}
+
+.glass-light {
+  background: var(--glass-light);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 /* Buttons */
