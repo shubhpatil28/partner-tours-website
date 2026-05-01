@@ -7,7 +7,9 @@ import manaliImg from '../assets/manali.png';
 import kashmirImg from '../assets/kashmir.png';
 import dubaiImg from '../assets/dubai.png';
 import thailandImg from '../assets/thailand.png';
+import { CONTACT_CONFIG } from '../config';
 import { trackEvent, ANALYTICS_EVENTS } from '../utils/analytics';
+import { updateMetaTags, injectStructuredData, getTourSchema } from '../utils/seo';
 
 const packagesData = [
   { 
@@ -94,7 +96,6 @@ const packagesData = [
   }
 ];
 
-import { updateMetaTags, injectStructuredData, getTourSchema } from '../utils/seo';
 
 const Packages = ({ onEnquiry }) => {
   const [activeCategory, setActiveCategory] = React.useState('All Deals');
@@ -215,6 +216,7 @@ const Packages = ({ onEnquiry }) => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
+            </div>
             <div className="category-filters">
               {categories.map(cat => (
                 <button 

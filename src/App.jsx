@@ -10,12 +10,12 @@ import { CONTACT_CONFIG } from './config';
 import { trackEvent, ANALYTICS_EVENTS } from './utils/analytics';
 
 // Lazy loading components for performance
-const Home = lazy(() => import('./pages/Home'));
-const Packages = lazy(() => import('./pages/Packages'));
-const PackageDetail = lazy(() => import('./pages/PackageDetail'));
-const Rental = lazy(() => import('./pages/Rental'));
-const Gallery = lazy(() => import('./pages/Gallery'));
-const Contact = lazy(() => import('./pages/Contact'));
+const Home = lazy(() => import('./pages/Home.jsx'));
+const Packages = lazy(() => import('./pages/Packages.jsx'));
+const PackageDetail = lazy(() => import('./pages/PackageDetail.jsx'));
+const Rental = lazy(() => import('./pages/Rental.jsx'));
+const Gallery = lazy(() => import('./pages/Gallery.jsx'));
+const Contact = lazy(() => import('./pages/Contact.jsx'));
 
 // Loading Fallback
 const PageLoader = () => (
