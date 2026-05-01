@@ -7,15 +7,19 @@ import { trackEvent, ANALYTICS_EVENTS } from '../utils/analytics';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      const navbar = document.querySelector(".navbar");
+      if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
@@ -24,11 +28,11 @@ const Navbar = () => {
   }, [location]);
 
   return (
-    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+    <nav className="navbar">
       <div className="container nav-container">
-        <Link to="/" className="logo">
-          Partner's<span>Tours</span>
-        </Link>
+        <h1 className="logo">
+          <Link to="/">Partner's<span>Tours</span></Link>
+        </h1>
 
         <div className={`nav-links ${isOpen ? 'active' : ''}`}>
           <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link>
