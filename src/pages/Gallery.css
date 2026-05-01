@@ -6,7 +6,7 @@
 .gallery-page .page-header {
   background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
   color: var(--white);
-  padding: 160px 0 100px;
+  padding: 120px 0 80px;
   text-align: center;
 }
 

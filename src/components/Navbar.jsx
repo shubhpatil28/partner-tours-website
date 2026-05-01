@@ -39,36 +39,36 @@ const Navbar = () => {
           
           <div className="nav-cta-mobile">
              <a 
-               href={`tel:${CONTACT_CONFIG.WHATSAPP_NUMBER}`} 
-               className="btn btn-primary"
+               href={`tel:${CONTACT_CONFIG.PHONE_NUMBER}`} 
+               className="btn btn-primary ripple"
                onClick={() => trackEvent(ANALYTICS_EVENTS.CALL_CLICK, { location: 'navbar_mobile' })}
              >
                <Phone size={18}/> Call Now
              </a>
              <a 
-               href={`https://wa.me/${CONTACT_CONFIG.WHATSAPP_NUMBER}`} 
-               className="btn btn-whatsapp"
+               href={`https://wa.me/${CONTACT_CONFIG.WHATSAPP_NUMBER}?text=${CONTACT_CONFIG.DEFAULT_WA_MESSAGE}`} 
+               className="btn btn-whatsapp ripple"
                onClick={() => trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { location: 'navbar_mobile' })}
              >
-               <MessageSquare size={18}/> WhatsApp
+               <MessageSquare size={18}/> Book on WhatsApp
              </a>
           </div>
         </div>
 
         <div className="nav-cta-desktop">
           <a 
-            href={`tel:${CONTACT_CONFIG.WHATSAPP_NUMBER}`} 
-            className="phone-link"
+            href={`tel:${CONTACT_CONFIG.PHONE_NUMBER}`} 
+            className="phone-link ripple"
             onClick={() => trackEvent(ANALYTICS_EVENTS.CALL_CLICK, { location: 'navbar_desktop' })}
           >
             <Phone size={20}/> {CONTACT_CONFIG.PHONE_NUMBER}
           </a>
           <a 
-            href={`https://wa.me/${CONTACT_CONFIG.WHATSAPP_NUMBER}`} 
-            className="btn btn-whatsapp"
+            href={`https://wa.me/${CONTACT_CONFIG.WHATSAPP_NUMBER}?text=${CONTACT_CONFIG.DEFAULT_WA_MESSAGE}`} 
+            className="btn btn-whatsapp ripple"
             onClick={() => trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { location: 'navbar_desktop' })}
           >
-            <MessageSquare size={18}/> WhatsApp
+            <MessageSquare size={18}/> Book on WhatsApp
           </a>
         </div>
 

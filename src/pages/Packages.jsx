@@ -94,74 +94,291 @@ const packagesData = [
   }
 ];
 
-const Packages = () => {
+import { updateMetaTags, injectStructuredData, getTourSchema } from '../utils/seo';
+
+const Packages = ({ onEnquiry }) => {
+  const [activeCategory, setActiveCategory] = React.useState('All Deals');
+  const [searchQuery, setSearchQuery] = React.useState('');
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [recentlyViewed, setRecentlyViewed] = React.useState([]);
+
+  React.useEffect(() => {
+    updateMetaTags({
+      title: 'Tour Packages',
+      description: 'Explore our premium tour packages. Best prices guaranteed.',
+      image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=800',
+    });
+
+    // Recently Viewed logic
+    const saved = JSON.parse(localStorage.getItem('recently_viewed') || '[]');
+    setRecentlyViewed(saved);
+
+    const timer = setTimeout(() => setIsLoading(false), 800);
+    return () => clearTimeout(timer);
+  }, []);
+
   const handleImageError = (e) => {
     e.target.src = 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=800';
   };
 
+  const handlePackageClick = (pkg) => {
+    // Save to recently viewed
+    const updated = [pkg, ...recentlyViewed.filter(p => p.id !== pkg.id)].slice(0, 4);
+    setRecentlyViewed(updated);
+    localStorage.setItem('recently_viewed', JSON.stringify(updated));
+    
+    onEnquiry(pkg.title);
+    trackEvent(ANALYTICS_EVENTS.PACKAGE_VIEW, { package_id: pkg.id, title: pkg.title, category: pkg.category });
+  };
+
+  const handleLeadCapture = (pkg) => {
+    const lead = {
+      package: pkg.title,
+      timestamp: new Date().toISOString(),
+      source: 'packages_page'
+    };
+    localStorage.setItem('last_lead', JSON.stringify(lead));
+    trackEvent('whatsapp_lead_capture', { package_name: pkg.title });
+  };
+
+  const filteredPackages = packagesData.filter(pkg => {
+    const matchesCategory = activeCategory === 'All Deals' || pkg.category === activeCategory || (activeCategory === 'Domestic' && pkg.category !== 'International');
+    const matchesSearch = pkg.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                          pkg.category.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
+
+  const categories = ['All Deals', 'Domestic', 'International', 'Adventure'];
+  const suggestions = ['Goa', 'Kashmir', 'Manali', 'Kerala', 'Dubai'];
+
+  const SkeletonCard = () => (
+    <div className="package-card skeleton">
+      <div className="package-img skeleton-shimmer"></div>
+      <div className="package-info">
+        <div className="skeleton-line skeleton-shimmer" style={{ width: '40%' }}></div>
+        <div className="skeleton-line skeleton-shimmer" style={{ height: '24px', width: '80%', margin: '10px 0' }}></div>
+        <div className="skeleton-line skeleton-shimmer" style={{ width: '60%', marginBottom: '20px' }}></div>
+        <div className="card-actions">
+           <div className="skeleton-button skeleton-shimmer"></div>
+           <div className="skeleton-button skeleton-shimmer"></div>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div className="packages-page">
-      <div className="page-header section-padding">
+      <div className="page-header section-padding parallax-hero">
         <div className="container">
-          <h1>Tour Packages</h1>
-          <p>Discover hand-picked travel experiences with guaranteed best prices.</p>
+          <h1 className="fade-in-up">Tour Packages</h1>
+          <p className="fade-in-up">Discover hand-picked travel experiences with guaranteed best prices.</p>
         </div>
       </div>
 
-      <section className="section-padding">
+      {/* Trust Section */}
+      <section className="trust-badges-section glass-effect">
         <div className="container">
-          <div className="filter-bar">
-            <div className="search-box">
-              <Search size={20}/>
-              <input type="text" placeholder="Search destinations (e.g. Goa, Kashmir)..." />
-            </div>
-            <div className="category-filters">
-              <button className="active">All Deals</button>
-              <button>Domestic</button>
-              <button>International</button>
-              <button>Adventure</button>
-            </div>
-          </div>
-
-          <div className="grid grid-3">
-            {packagesData.map(pkg => (
-              <div key={pkg.id} className="package-card fade-in">
-                <div className="package-img">
-                  <img src={pkg.image} alt={`${pkg.title} Tour Package`} loading="lazy" onError={handleImageError} />
-                  <span className="price-tag">{pkg.price}</span>
-                  {pkg.badge && <span className={`badge badge-${pkg.badgeType} floating-badge`}>{pkg.badge}</span>}
-                </div>
-                <div className="package-info">
-                  <div className="category-label">{pkg.category}</div>
-                  <h3>{pkg.title}</h3>
-                  <div className="package-meta">
-                    <span><Clock size={16}/> {pkg.duration}</span>
-                    <span><MapPin size={16}/> {pkg.category === 'International' ? 'Abroad' : 'India'}</span>
-                  </div>
-                  {pkg.urgency && <div className="urgency-text"><Zap size={14}/> {pkg.urgency}</div>}
-                  <Link 
-                    to={`/package/${pkg.id}`} 
-                    className="btn btn-primary full-width mt-15"
-                    onClick={() => trackEvent(ANALYTICS_EVENTS.PACKAGE_VIEW, { package_id: pkg.id, title: pkg.title })}
-                  >
-                    View Itinerary
-                  </Link>
-                </div>
+          <div className="trust-badges-grid">
+            <div className="trust-badge">
+              <div className="badge-icon">✔</div>
+              <div className="badge-content">
+                <h4>1000+ Happy Travelers</h4>
+                <p>Real experiences, real memories</p>
               </div>
-            ))}
+            </div>
+            <div className="trust-badge">
+              <div className="badge-icon">✔</div>
+              <div className="badge-content">
+                <h4>Best Price Guarantee</h4>
+                <p>Found it cheaper? We'll match it</p>
+              </div>
+            </div>
+            <div className="trust-badge">
+              <div className="badge-icon">✔</div>
+              <div className="badge-content">
+                <h4>24/7 Support</h4>
+                <p>We're here when you need us</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Trust Section */}
+      <section className="section-padding">
+        <div className="container">
+          <div className="filter-bar sticky-filters">
+            <div className="search-box">
+              <Search size={20} className="search-icon"/>
+              <input 
+                type="text" 
+                placeholder="Search destinations (e.g. Goa, Kashmir)..." 
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            <div className="category-filters">
+              {categories.map(cat => (
+                <button 
+                  key={cat}
+                  className={activeCategory === cat ? 'active ripple' : 'ripple'}
+                  onClick={() => setActiveCategory(cat)}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Personalization: Recently Viewed */}
+          {!isLoading && recentlyViewed.length > 0 && searchQuery === '' && activeCategory === 'All Deals' && (
+            <div className="recently-viewed-section mb-50">
+               <h4 className="section-subtitle">Pick up where you left off</h4>
+               <div className="grid grid-4">
+                  {recentlyViewed.map(pkg => (
+                    <div key={`rv-${pkg.id}`} className="rv-card ripple" onClick={() => handlePackageClick(pkg)}>
+                       <img src={pkg.image} alt={pkg.title} />
+                       <div className="rv-info">
+                          <h5>{pkg.title}</h5>
+                          <span>{pkg.price}</span>
+                       </div>
+                    </div>
+                  ))}
+               </div>
+            </div>
+          )}
+
+          <div className="grid grid-3">
+            {isLoading ? (
+              Array(6).fill(0).map((_, i) => <SkeletonCard key={i} />)
+            ) : (
+              filteredPackages.map(pkg => (
+                <div key={pkg.id} className="package-card fade-in-up" onClick={() => handlePackageClick(pkg)}>
+                  <div className="package-img">
+                    <img src={pkg.image} alt={`${pkg.title} Tour Package`} loading="lazy" onError={handleImageError} />
+                    <div className="card-overlay"></div>
+                    <span className="price-tag">
+                      <small>Starting from</small>
+                      {pkg.price}
+                    </span>
+                    <div className="card-badges">
+                      {pkg.badge && <span className={`badge badge-${pkg.badgeType} floating-badge`}>{pkg.badge}</span>}
+                      {Math.random() > 0.6 && <span className="badge badge-bestseller floating-badge">Best Seller</span>}
+                      <span className="rating-badge">
+                         <Star size={12} fill="currentColor" /> 4.8
+                      </span>
+                    </div>
+                    <div className="urgency-badge">
+                       <Zap size={10} /> 12 people viewed this today
+                    </div>
+                  </div>
+                  <div className="package-info">
+                    <div className="category-label">{pkg.category}</div>
+                    <h3>{pkg.title}</h3>
+                    <div className="package-meta">
+                      <span><Clock size={16}/> {pkg.duration}</span>
+                      <span><MapPin size={16}/> {pkg.category === 'International' ? 'Abroad' : 'India'}</span>
+                    </div>
+                    <div className="urgency-microcopy">
+                       Only 3 slots left for next week!
+                    </div>
+                    <div className="card-actions">
+                      <Link 
+                        to={`/package/${pkg.id}`} 
+                        className="btn btn-outline ripple"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handlePackageClick(pkg);
+                        }}
+                      >
+                        Details
+                      </Link>
+                      <a 
+                        href={`https://wa.me/${CONTACT_CONFIG.WHATSAPP_NUMBER}?text=${CONTACT_CONFIG.DEFAULT_WA_MESSAGE}`}
+                        className="btn btn-whatsapp ripple"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleLeadCapture(pkg);
+                        }}
+                      >
+                        Book on WhatsApp
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+          {!isLoading && filteredPackages.length === 0 && (
+            <div className="no-results">
+              <div className="no-results-icon">🔍</div>
+              <h3>No packages found for "{searchQuery}"</h3>
+              <p>Try one of these popular destinations:</p>
+              <div className="suggestions mt-20">
+                {suggestions.map(s => (
+                  <button key={s} className="suggestion-pill ripple" onClick={() => setSearchQuery(s)}>{s}</button>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Testimonials Slider */}
+      <section className="testimonials-section section-padding glass-effect">
+        <div className="container">
+          <div className="section-title">
+            <h2>What Our <span>Travelers</span> Say</h2>
+            <p>1000+ happy explorers across India.</p>
+          </div>
+          <div className="testimonial-slider-container">
+             <div className="testimonial-track">
+                <div className="testimonial-card premium-card">
+                  <div className="stars">⭐⭐⭐⭐⭐</div>
+                  <p>"The Kashmir trip was flawlessly organized. Everything from houseboats to transport was premium."</p>
+                  <div className="user">
+                    <div className="user-avatar">R</div>
+                    <div className="user-info">
+                      <strong>Rahul Sharma</strong>
+                      <span>Mumbai, India</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="testimonial-card premium-card">
+                  <div className="stars">⭐⭐⭐⭐⭐</div>
+                  <p>"Best prices I found online. The team was available 24/7 for my Dubai trip. Truly high-end."</p>
+                  <div className="user">
+                    <div className="user-avatar">A</div>
+                    <div className="user-info">
+                      <strong>Anjali Gupta</strong>
+                      <span>Delhi, India</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="testimonial-card premium-card">
+                  <div className="stars">⭐⭐⭐⭐⭐</div>
+                  <p>"Seamless booking through WhatsApp. Loved the itinerary for Manali. Professional service."</p>
+                  <div className="user">
+                    <div className="user-avatar">V</div>
+                    <div className="user-info">
+                      <strong>Vikram Singh</strong>
+                      <span>Bangalore, India</span>
+                    </div>
+                  </div>
+                </div>
+             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust Section Icons */}
       <section className="booking-trust section-padding">
          <div className="container text-center">
-            <h3>Safe & Secure Booking</h3>
-            <p>100% Refund on cancellations made 7 days prior to travel.</p>
-            <div className="trust-icons mt-30">
-               <Shield size={40} color="var(--primary-blue)"/>
+            <h3>Our Premium Partners</h3>
+            <div className="trust-icons mt-40">
+               <Shield size={40} color="var(--accent)"/>
                <Star size={40} color="#FFC107" fill="#FFC107"/>
-               <Award size={40} color="var(--secondary-blue)"/>
+               <Award size={40} color="var(--primary)"/>
             </div>
          </div>
       </section>

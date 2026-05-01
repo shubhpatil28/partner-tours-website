@@ -1,10 +1,10 @@
 export const CONTACT_CONFIG = {
-  WHATSAPP_NUMBER: "919730704731",
-  PHONE_NUMBER: "+91 97307 04731",
+  WHATSAPP_NUMBER: "918421514348",
+  PHONE_NUMBER: "+91 84215 14348",
   EMAIL: "partners.tours@gmail.com",
   ADDRESS: "Bhadgaon Road, Chalisgaon, Jalgaon, MH",
   SITE_URL: "https://partnertours.in",
-  DEFAULT_WA_MESSAGE: encodeURIComponent("Hi, I want to book a travel service. Please share details.")
+  DEFAULT_WA_MESSAGE: encodeURIComponent("Hi, I am interested in your travel services. Please share details.")
 };
 
 export const SITE_METADATA = {
