@@ -51,6 +51,9 @@ export const sendWhatsApp = (type, item) => {
               `👥 Passengers: \n\n` +
               `Please share the best price and availability.`;
   }
+  else if (type === "simple_tour") {
+    message = `Hi, I want to book a tour package. Please share details.`;
+  }
   else {
     message = `Hi, I want to enquire about your travel services.`;
   }
