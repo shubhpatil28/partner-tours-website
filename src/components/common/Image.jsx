@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import { FALLBACK_IMAGE } from "../../utils/imageUtils";
 
 /**
- * Enterprise++ Optimized Image component for Partner's Tours & Travels.
+ * Clean & Production-Safe Image component for Partner's Tours & Travels.
  * 
- * Enhancements:
- * - Smart Retry: Detects and prevents duplicate retry parameters.
- * - SEO Enforcement: Fallback alt text ensures search engine accessibility.
- * - LCP Tuning: decoding="sync" for priority assets to speed up Largest Contentful Paint.
- * - Stability: Retains all previous hardening (srcSet, fetchPriority, block-layout).
+ * Optimized for:
+ * - UI Stability: Block-level rendering and zero CLS.
+ * - Loading Strategy: Conditional priority for above-the-fold content.
+ * - Resilience: Smart 1-step retry with duplicate prevention.
+ * - Accessibility: Guaranteed fallback and alt text protection.
  */
 const Image = React.memo(({
   src,
-  alt,
+  alt = "Tour Image",
   width,
   height,
   priority = false,
@@ -25,13 +25,13 @@ const Image = React.memo(({
   const [errorCount, setErrorCount] = useState(0);
 
   const handleError = (e) => {
-    // Safety check for fallback failure
-    if (e.target.src === FALLBACK_IMAGE) return;
+    // Immediate stop for empty sources or failed fallbacks
+    if (!src || e.target.src === FALLBACK_IMAGE) return;
 
     if (errorCount < 1) {
       setErrorCount(1);
       
-      // Prevent duplicate retry parameters
+      // Prevent duplicate retry parameters in URL
       const retrySrc = src.includes("retry=")
         ? src
         : src.includes("?")
@@ -47,16 +47,16 @@ const Image = React.memo(({
 
   return (
     <img
-      src={src}
+      src={src || FALLBACK_IMAGE}
       srcSet={srcSet}
       sizes={sizes}
-      alt={alt || "Travel destination image"}
+      alt={alt}
       width={width}
       height={height}
       loading={priority ? "eager" : "lazy"}
-      // @ts-ignore
+      // @ts-ignore - modern browser and React support
       fetchpriority={priority ? "high" : "auto"}
-      decoding={priority ? "sync" : "async"}
+      decoding="async"
       referrerPolicy="no-referrer"
       onError={handleError}
       className={`image-component ${className}`}
@@ -64,7 +64,7 @@ const Image = React.memo(({
         display: "block",
         backgroundColor: "#0f172a",
         objectFit: "cover",
-        transition: "all 0.4s ease-in-out",
+        transition: "opacity 0.4s ease-in-out",
         ...style
       }}
       {...props}
