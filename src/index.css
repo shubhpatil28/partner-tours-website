@@ -399,38 +399,30 @@ main {
   grid-column: 1 / -1;
 }
 
-:root {
-  --sticky-height: 85px;
-  --z-sticky: 99999;
-  --z-menu: 99998;
-  --z-navbar: 100000;
-}
-
-/* --- MINIMALIST MOBILE STICKY CONTACT BAR --- */
+/* --- MOBILE STICKY CONTACT BAR (STABLE & HIGH-CONVERSION) --- */
 .sticky-contact-bar {
   display: none;
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  z-index: var(--z-sticky);
+  z-index: 1000;
   background: rgba(15, 23, 42, 0.95);
-  backdrop-filter: blur(8px);
-  /* Modern Safe-Area & Compact Padding */
-  padding: 0.5rem 1rem calc(0.5rem + env(safe-area-inset-bottom, 0px));
+  backdrop-filter: blur(4px);
+  padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom, 0px));
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
   flex-direction: column;
   align-items: center;
   gap: 0.25rem;
-  height: auto;
 }
 
 .sticky-trust-text {
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.5);
   font-weight: 500;
-  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .sticky-bar-btns {
@@ -447,28 +439,23 @@ main {
   justify-content: center;
   gap: 0.5rem;
   padding: 0.875rem 0.25rem;
-  border-radius: var(--radius-md);
+  border-radius: 8px;
   font-weight: 700;
   font-size: 0.875rem;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: opacity 0.2s ease;
   cursor: pointer;
   border: none;
-  text-transform: uppercase;
 }
 
 .call-btn-sticky {
   background: #1e293b;
-  color: var(--white);
+  color: #ffffff;
 }
 
 .whatsapp-btn-sticky {
   background: #22c55e;
-  color: var(--white);
-}
-
-.m-cta-btn:active {
-  transform: scale(0.97);
+  color: #ffffff;
 }
 
 @media (max-width: 768px) {
@@ -476,14 +463,7 @@ main {
     display: flex;
   }
   
-  body {
-    padding-bottom: calc(var(--sticky-height) + env(safe-area-inset-bottom, 0px)) !important;
-  }
-
   body.menu-open {
     overflow: hidden !important;
-    height: 100vh !important;
-    position: fixed;
-    width: 100%;
   }
 }

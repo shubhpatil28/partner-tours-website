@@ -125,16 +125,16 @@
     top: 0;
     right: 0;
     width: 100%;
-    height: calc(100vh - var(--sticky-height)); 
+    height: 100vh;
     background: #0f172a; 
     flex-direction: column;
-    justify-content: flex-start; /* Requirement: Top padding with focus */
+    justify-content: center;
     align-items: center;
-    padding: 20vh 1.5rem calc(100px + env(safe-area-inset-bottom)); 
+    padding: 2rem 1.5rem; 
     overflow-y: auto; 
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.3s ease;
     transform: translateX(100%);
-    z-index: var(--z-menu); 
+    z-index: 999; 
     box-shadow: none;
     -webkit-overflow-scrolling: touch;
   }
@@ -198,7 +198,7 @@
 
   .menu-toggle {
     display: block;
-    z-index: var(--z-navbar); 
+    z-index: 1001; 
     position: relative;
   }
 }
