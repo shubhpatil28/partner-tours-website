@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, MessageSquare } from 'lucide-react';
 import './Navbar.css';
 import { CONTACT_CONFIG } from '../config';
-import { getWhatsAppLink, getCallLink } from '../utils/contactHelpers';
+import { getWhatsAppLink, getCallLink, sendWhatsApp } from '../utils/contactHelpers';
 import { trackEvent, ANALYTICS_EVENTS } from '../utils/analytics';
 
 const Navbar = () => {
@@ -24,6 +24,15 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add('no-scroll');
+    } else {
+      document.body.classList.remove('no-scroll');
+    }
+    return () => document.body.classList.remove('no-scroll');
+  }, [isOpen]);
+
+  useEffect(() => {
     setIsOpen(false);
     window.scrollTo(0, 0);
   }, [location]);
@@ -39,6 +48,7 @@ const Navbar = () => {
           <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link>
           <Link to="/packages" className={location.pathname.includes('/package') ? 'active' : ''}>Tour Packages</Link>
           <Link to="/rental" className={location.pathname === '/rental' ? 'active' : ''}>Bus Service</Link>
+          <Link to="/blog" className={location.pathname.includes('/blog') ? 'active' : ''}>Blog</Link>
           <Link to="/gallery" className={location.pathname === '/gallery' ? 'active' : ''}>Gallery</Link>
           <Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>Contact</Link>
           
@@ -50,13 +60,15 @@ const Navbar = () => {
              >
                <Phone size={18}/> Call Now
              </a>
-             <a 
-               href={getWhatsAppLink()} 
+             <button 
                className="btn btn-whatsapp ripple"
-               onClick={() => trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { location: 'navbar_mobile' })}
+               onClick={() => {
+                 trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { location: 'navbar_mobile' });
+                 sendWhatsApp('general', 'Navbar Mobile');
+               }}
              >
                <MessageSquare size={18}/> Book on WhatsApp
-             </a>
+             </button>
           </div>
         </div>
 
@@ -68,13 +80,15 @@ const Navbar = () => {
           >
             <Phone size={20}/> {CONTACT_CONFIG.DISPLAY_PHONE}
           </a>
-          <a 
-            href={getWhatsAppLink()} 
+          <button 
             className="btn btn-whatsapp ripple"
-            onClick={() => trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { location: 'navbar_desktop' })}
+            onClick={() => {
+              trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { location: 'navbar_desktop' });
+              sendWhatsApp('general', 'Navbar Desktop');
+            }}
           >
             <MessageSquare size={18}/> Book on WhatsApp
-          </a>
+          </button>
         </div>
 
         <button className="menu-toggle" onClick={() => setIsOpen(!isOpen)}>

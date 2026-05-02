@@ -28,3 +28,26 @@ export const getMailLink = () => {
   if (!CONTACT_CONFIG.EMAIL) return '#';
   return `mailto:${CONTACT_CONFIG.EMAIL}`;
 };
+
+/**
+ * Dynamic WhatsApp message generator for high conversion
+ * @param {string} type - 'bus', 'tour', or 'general'
+ * @param {string} item - The specific name of the package or vehicle
+ */
+export const sendWhatsApp = (type, item) => {
+  const phone = CONTACT_CONFIG.WHATSAPP || "918421514348";
+  let message = "";
+
+  if (type === "bus") {
+    message = `Hi, I want to book ${item} from Partner's Tours & Travels. Please share full details.`;
+  } 
+  else if (type === "tour") {
+    message = `Hi, I am interested in your tour package (${item}). Please share itinerary and pricing.`;
+  } 
+  else {
+    message = `Hi, I want to enquire about your travel services.`;
+  }
+
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+  window.open(url, "_blank");
+};

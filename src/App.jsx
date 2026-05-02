@@ -7,7 +7,7 @@ import EnquiryBar from './components/EnquiryBar';
 import ErrorBoundary from './components/ErrorBoundary';
 import { Phone, MessageSquare } from 'lucide-react';
 import { CONTACT_CONFIG } from './config';
-import { getWhatsAppLink, getCallLink } from './utils/contactHelpers';
+import { getWhatsAppLink, getCallLink, sendWhatsApp } from './utils/contactHelpers';
 import { trackEvent, ANALYTICS_EVENTS } from './utils/analytics';
 
 // Lazy loading components for performance
@@ -18,6 +18,8 @@ const PackageDetail = lazy(() => import('./pages/PackageDetail.jsx'));
 const Rental = lazy(() => import('./pages/Rental.jsx'));
 const Gallery = lazy(() => import('./pages/Gallery.jsx'));
 const Contact = lazy(() => import('./pages/Contact.jsx'));
+const Blog = lazy(() => import('./pages/Blog.jsx'));
+const BlogDetail = lazy(() => import('./pages/BlogDetail.jsx'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy.jsx'));
 const Terms = lazy(() => import('./pages/Terms.jsx'));
 const Disclaimer = lazy(() => import('./pages/Disclaimer.jsx'));
@@ -52,6 +54,8 @@ function App() {
                 <Route path="/rental" element={<Rental />} />
                 <Route path="/gallery" element={<Gallery />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/:id" element={<BlogDetail />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/terms" element={<Terms />} />
                 <Route path="/disclaimer" element={<Disclaimer />} />
@@ -68,7 +72,6 @@ function App() {
             />
           )}
           
-          {/* Mobile Sticky Bar */}
           <div className="mobile-cta-shell">
             <div className="mobile-sticky-bar">
               <a 
@@ -78,13 +81,15 @@ function App() {
               >
                 <Phone size={20} /> Call Now
               </a>
-              <a 
-                href={getWhatsAppLink("Hi, I want to book a travel service. Please share details.")} 
+              <button 
                 className="m-cta-btn m-whatsapp ripple"
-                onClick={() => trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { location: 'sticky_bar' })}
+                onClick={() => {
+                  trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { location: 'sticky_bar' });
+                  sendWhatsApp('general', 'Sticky Bar');
+                }}
               >
                 <MessageSquare size={20} /> WhatsApp
-              </a>
+              </button>
             </div>
           </div>
         </div>

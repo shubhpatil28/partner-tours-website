@@ -1,50 +1,54 @@
 import React from 'react';
-import { Users, Briefcase, Settings, MessageSquare, Wind, Fuel, Map, CheckCircle, ShieldCheck } from 'lucide-react';
+import { Users, Briefcase, Settings, MessageSquare, Wind, Fuel, Map, CheckCircle, ShieldCheck, Zap } from 'lucide-react';
 import './Rental.css';
 import kashmirImg from '../assets/kashmir.png';
 import manaliImg from '../assets/manali.png';
 import heroImg from '../assets/hero.png';
 import { CONTACT_CONFIG } from '../config';
-import { getWhatsAppLink } from '../utils/contactHelpers';
+import { getWhatsAppLink, getCallLink, sendWhatsApp } from '../utils/contactHelpers';
 import { trackEvent, ANALYTICS_EVENTS } from '../utils/analytics';
+import { Phone, ExternalLink } from 'lucide-react';
 import updateMetaTags from '../utils/updateMetaTags';
 
 const vehicles = [
   {
     id: 1,
-    name: "Swift Dzire",
-    type: "Sedan (AC)",
-    seats: "4 + 1",
-    bags: 2,
-    transmission: "Manual/Auto",
-    priceKm: "₹12",
-    priceDay: "₹2,500",
-    features: ["Clean Interiors", "USB Charger", "Bluetooth", "Experienced Driver"],
-    image: kashmirImg
-  },
-  {
-    id: 2,
-    name: "Innova Crysta",
-    type: "Premium SUV",
-    seats: "7 + 1",
-    bags: 4,
-    transmission: "Automatic",
-    priceKm: "₹18",
-    priceDay: "₹4,500",
-    features: ["Spacious Legroom", "Rear AC Vents", "Carrier included", "Luxury Seats"],
-    image: manaliImg
-  },
-  {
-    id: 3,
     name: "Tempo Traveller",
-    type: "Mini Bus (AC)",
-    seats: "12 - 17",
-    bags: 10,
+    type: "12 Seater - AC",
+    seats: "12 + 1",
+    bags: 8,
     transmission: "Manual",
     priceKm: "₹25",
     priceDay: "₹6,000",
-    features: ["High Roof", "Reclining Seats", "Music System", "Perfect for Groups"],
-    image: heroImg
+    features: ["Push-back Seats", "Music System", "Ample Luggage Space", "Experienced Driver"],
+    image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=800',
+    urgency: "Only 2 slots left this weekend"
+  },
+  {
+    id: 2,
+    name: "Mini Bus",
+    type: "17 Seater - AC",
+    seats: "17 + 1",
+    bags: 12,
+    transmission: "Manual",
+    priceKm: "₹30",
+    priceDay: "₹8,500",
+    features: ["Air Conditioned", "High Roof", "Reading Lights", "Perfect for Groups"],
+    image: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&q=80&w=800',
+    urgency: "12 people viewed today"
+  },
+  {
+    id: 3,
+    name: "Luxury Bus",
+    type: "35 Seater - Pushback",
+    seats: "35 + 1",
+    bags: 25,
+    transmission: "Manual",
+    priceKm: "₹45",
+    priceDay: "₹15,000",
+    features: ["Premium Push-back", "Luxury Interior", "LCD Entertainment", "Tour Specialist Driver"],
+    image: 'https://images.unsplash.com/photo-1494515843206-f3117d3f51b7?auto=format&fit=crop&q=80&w=800',
+    urgency: "Last slot available for May 15"
   }
 ];
 
@@ -99,6 +103,9 @@ const Rental = () => {
                   <div className="vehicle-pricing-overlay">
                     <span>From {vehicle.priceKm}/km</span>
                   </div>
+                  <div className="v-urgency-badge">
+                     <Zap size={10} /> {vehicle.urgency}
+                  </div>
                 </div>
                 <div className="vehicle-info">
                   <div className="vehicle-header">
@@ -124,17 +131,47 @@ const Rental = () => {
                        <small>Local Day Rate</small>
                        <strong>{vehicle.priceDay}</strong>
                     </div>
-                    <a 
-                      href={getWhatsAppLink(`Hi, I'm interested in renting the ${vehicle.name} (${vehicle.type}). Please share availability and final quote.`)} 
-                      className="btn btn-whatsapp"
-                      onClick={() => trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { vehicle: vehicle.name })}
-                    >
-                      <MessageSquare size={18}/> Book on WhatsApp
-                    </a>
+                    <div className="card-btn-stack">
+                      <button 
+                        className="btn btn-whatsapp ripple"
+                        onClick={() => {
+                          trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { vehicle: vehicle.name, source: 'rental_card' });
+                          sendWhatsApp('bus', vehicle.name);
+                        }}
+                      >
+                        <MessageSquare size={18}/> WhatsApp
+                      </button>
+                      <a 
+                        href={getCallLink()} 
+                        className="btn btn-primary ripple"
+                        onClick={() => trackEvent(ANALYTICS_EVENTS.CALL_CLICK)}
+                      >
+                        <Phone size={18}/> Call Now
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* RedBus Integration Section */}
+          <div className="redbus-integration-card mt-32 mb-32 glass-effect ripple">
+             <div className="redbus-content">
+                <div className="redbus-text">
+                   <h3>Book Bus Tickets Online</h3>
+                   <p>Looking for interstate bus tickets? Book instantly via RedBus for all major routes.</p>
+                </div>
+                <a 
+                  href="https://www.redbus.in" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="btn btn-secondary ripple"
+                  onClick={() => trackEvent('redbus_redirect')}
+                >
+                  Book on RedBus <ExternalLink size={18} />
+                </a>
+             </div>
           </div>
 
           {/* AdSense Rental Placeholder */}

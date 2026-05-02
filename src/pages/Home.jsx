@@ -9,7 +9,7 @@ import kashmirImg from '../assets/kashmir.png';
 import dubaiImg from '../assets/dubai.png';
 import thailandImg from '../assets/thailand.png';
 import { CONTACT_CONFIG } from '../config';
-import { getWhatsAppLink, getCallLink } from '../utils/contactHelpers';
+import { getWhatsAppLink, getCallLink, sendWhatsApp } from '../utils/contactHelpers';
 import { trackEvent, ANALYTICS_EVENTS } from '../utils/analytics';
 import updateMetaTags from '../utils/updateMetaTags';
 import { injectStructuredData, getTravelAgencySchema } from '../utils/seo';
@@ -49,13 +49,15 @@ const Home = ({ onEnquiry }) => {
             >
               <Phone size={20}/> Call Now
             </a>
-            <a 
-              href={getWhatsAppLink()} 
+            <button 
               className="btn btn-whatsapp btn-lg ripple"
-              onClick={() => trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { location: 'hero' })}
+              onClick={() => {
+                trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { location: 'hero' });
+                sendWhatsApp('general', 'Home Hero');
+              }}
             >
               <MessageSquare size={20}/> Book on WhatsApp
-            </a>
+            </button>
           </div>
           
           <div className="trust-badges mt-40">
@@ -114,13 +116,15 @@ const Home = ({ onEnquiry }) => {
                 <li><CheckCircle size={16}/> Group Booking Discounts</li>
                 <li><CheckCircle size={14}/> 24/7 Cancellation Support</li>
               </ul>
-              <a 
-                href={getWhatsAppLink("Hi, I want to check flight fares.")} 
+              <button 
                 className="s-link"
-                onClick={() => trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { type: 'flights' })}
+                onClick={() => {
+                  trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { type: 'flights' });
+                  sendWhatsApp('general', 'Flight Booking');
+                }}
               >
                 Get Best Fare <ArrowRight size={16}/>
-              </a>
+              </button>
             </div>
             
             <div className="service-card ripple">
@@ -133,6 +137,28 @@ const Home = ({ onEnquiry }) => {
               </ul>
               <Link to="/packages" className="s-link">Explore Tours <ArrowRight size={16}/></Link>
             </div>
+          </div>
+        </div>
+      </section>      {/* RedBus Integration CTA */}
+      <section className="redbus-cta bg-white">
+        <div className="container">
+          <div className="redbus-banner ripple">
+            <div className="redbus-icon-wrap">
+              <Bus size={32} />
+            </div>
+            <div className="redbus-text">
+              <h3>Book Bus Tickets Online</h3>
+              <p>Looking for daily bus tickets to Pune, Mumbai or Nasik? Book instantly via RedBus.</p>
+            </div>
+            <a 
+              href="https://www.redbus.in" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="btn btn-outline btn-lg ripple"
+              onClick={() => trackEvent('redbus_redirect_home')}
+            >
+              Book on RedBus
+            </a>
           </div>
         </div>
       </section>

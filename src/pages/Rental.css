@@ -98,6 +98,29 @@
   border: 1px solid rgba(59, 130, 246, 0.15);
 }
 
+.v-urgency-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(8px);
+  color: var(--white);
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  z-index: 2;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.v-urgency-badge svg {
+  color: var(--accent);
+  animation: pulse 2s infinite;
+}
+
 .vehicle-main-features {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -143,11 +166,33 @@
 
 .rental-action-box {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  gap: 1.5rem;
   padding-top: 1.5rem;
   border-top: 1px solid var(--slate-100);
   margin-top: auto;
+}
+
+.card-btn-stack {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.card-btn-stack .btn {
+  padding: 0.75rem 0.5rem;
+  font-size: 0.8125rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+}
+
+.action-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
 .action-price small {
@@ -164,6 +209,39 @@
   font-weight: 800;
   color: var(--primary);
   font-family: 'Outfit', sans-serif;
+}
+
+/* RedBus Card */
+.redbus-integration-card {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-lg);
+  border-left: 6px solid #d84e55; /* RedBus red */
+}
+
+.redbus-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.redbus-text h3 {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+  color: var(--slate-900);
+}
+
+.redbus-text p {
+  color: var(--slate-600);
+}
+
+@media (max-width: 768px) {
+  .redbus-content {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 
 /* Pricing Table */

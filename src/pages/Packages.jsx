@@ -8,7 +8,7 @@ import kashmirImg from '../assets/kashmir.png';
 import dubaiImg from '../assets/dubai.png';
 import thailandImg from '../assets/thailand.png';
 import { CONTACT_CONFIG } from '../config';
-import { getWhatsAppLink } from '../utils/contactHelpers';
+import { getWhatsAppLink, sendWhatsApp } from '../utils/contactHelpers';
 import { trackEvent, ANALYTICS_EVENTS } from '../utils/analytics';
 import { injectStructuredData, getTourSchema } from '../utils/seo';
 import updateMetaTags from '../utils/updateMetaTags';
@@ -62,7 +62,8 @@ const packagesData = [
     price: "₹38,500", 
     category: "International",
     badge: "Best Value",
-    badgeType: "bestseller"
+    badgeType: "bestseller",
+    slots: "Only 4 slots left"
   },
   { 
     id: 'kerala-trip', 
@@ -71,8 +72,9 @@ const packagesData = [
     duration: "4 Days / 3 Nights", 
     price: "₹15,500", 
     category: "Nature",
-    badge: "Romantic",
-    badgeType: "luxury"
+    badge: "Limited Offer",
+    badgeType: "luxury",
+    slots: "Only 2 slots left"
   }
 ];
 
@@ -358,7 +360,7 @@ const PackageCard = ({ pkg, onEnquiry, handlePackageClick, handleImageError, han
         </span>
       </div>
       <div className="urgency-badge">
-         <Zap size={10} /> 12 people viewed this today
+         <Zap size={10} /> {pkg.slots || '12 people viewed this today'}
       </div>
     </div>
     <div className="package-info">
@@ -379,18 +381,17 @@ const PackageCard = ({ pkg, onEnquiry, handlePackageClick, handleImageError, han
         >
           Details
         </Link>
-        <a 
-          href={getWhatsAppLink(`Hi, I'm interested in the ${pkg.title} (${pkg.duration}) package.`)}
+        <button 
           className="btn btn-whatsapp ripple"
-          target="_blank"
-          rel="noopener noreferrer"
           onClick={(e) => {
             e.stopPropagation();
             handleLeadCapture(pkg);
+            trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { package_name: pkg.title, source: 'package_card' });
+            sendWhatsApp('tour', pkg.title);
           }}
         >
           Book Now
-        </a>
+        </button>
       </div>
     </div>
   </div>

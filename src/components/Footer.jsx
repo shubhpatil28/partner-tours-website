@@ -17,9 +17,9 @@ const Footer = () => {
             </Link>
             <p>Your trusted travel partner in Chalisgaon. We simplify travel with luxury bus bookings, instant flight tickets, and curated holiday packages across India.</p>
             <div className="social-links">
-              <a href="https://instagram.com/partners_tours" target="_blank" rel="noreferrer"><Camera size={20}/></a>
-              <a href="#"><Globe size={20}/></a>
-              <a href="#"><Globe2 size={20}/></a>
+              <a href="https://instagram.com/partners_tours" target="_blank" rel="noreferrer" title="Instagram"><Camera size={20}/></a>
+              <a href="https://facebook.com/partnerstours" target="_blank" rel="noreferrer" title="Facebook"><Globe size={20}/></a>
+              <a href="https://youtube.com/@partnerstours" target="_blank" rel="noreferrer" title="YouTube"><Globe2 size={20}/></a>
             </div>
           </div>
           
@@ -56,7 +56,11 @@ const Footer = () => {
                   <Globe2 size={18}/> <span>Book on WhatsApp</span>
                 </a>
               </li>
-              <li><MapPin size={18}/> <span>{CONTACT_CONFIG.ADDRESS}</span></li>
+              <li>
+                <a href="https://g.page/r/YOUR_BUSINESS_ID" target="_blank" rel="noreferrer" className="footer-contact-link">
+                  <MapPin size={18}/> <span>{CONTACT_CONFIG.ADDRESS}</span>
+                </a>
+              </li>
             </ul>
           </div>
         </div>

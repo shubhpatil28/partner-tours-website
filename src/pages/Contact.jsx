@@ -155,7 +155,7 @@ const Contact = () => {
     // Background API Sync
     saveLeadToAPI(formData);
 
-    const formattedMessage = `Hi, I am ${formData.name}\nPhone: ${formData.phone}\nService: ${formData.service}\nDetails: ${formData.message}`;
+    const formattedMessage = `Hi, I am ${formData.name}\nPhone: ${formData.phone}\nService: ${formData.service}\nTravel Date: ${formData.travelDate}\nDetails: ${formData.message}`;
     const whatsappUrl = getWhatsAppLink(formattedMessage);
     
     setTimeout(() => {
@@ -289,14 +289,23 @@ const Contact = () => {
                       </div>
                     </div>
 
-                    <div className="p-input-group">
-                      <label>Service</label>
-                      <select name="service" value={formData.service} onChange={handleChange} required>
-                         <option value="">Select Category</option>
-                         <option value="Bus Booking">Luxury Bus</option>
-                         <option value="Flight Booking">Flights</option>
-                         <option value="Tour Package">Tour Packages</option>
-                      </select>
+                    <div className="form-double-row">
+                      <div className="p-input-group">
+                        <label>Service</label>
+                        <select name="service" value={formData.service} onChange={handleChange} required>
+                           <option value="">Select Category</option>
+                           <option value="Bus Booking">Luxury Bus</option>
+                           <option value="Flight Booking">Flights</option>
+                           <option value="Tour Package">Tour Packages</option>
+                        </select>
+                      </div>
+                      <div className="p-input-group">
+                        <label>Travel Date</label>
+                        <div className="p-input-wrapper">
+                          <Clock size={18} className="p-icon" />
+                          <input type="date" name="travelDate" value={formData.travelDate || ''} onChange={handleChange} required />
+                        </div>
+                      </div>
                     </div>
 
                     <div className="p-input-group">
