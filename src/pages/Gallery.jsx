@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { MapPin, ExternalLink } from 'lucide-react';
 import './Gallery.css';
+import Image from '../components/common/Image';
 import updateMetaTags from '../utils/updateMetaTags';
-import { handleImageError } from '../utils/imageUtils';
 import goaImg from '../assets/goa.png';
 import manaliImg from '../assets/manali.png';
 import kashmirImg from '../assets/kashmir.png';
@@ -64,7 +64,7 @@ const Gallery = () => {
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
                 <div className="gallery-card">
-                  <img src={img.src} alt={`${img.title} at ${img.location}`} loading="lazy" onError={handleImageError} />
+                  <Image src={img.src} alt={`${img.title} at ${img.location}`} />
                   <div className="gallery-overlay">
                     <div className="overlay-content">
                       <div className="loc-info">

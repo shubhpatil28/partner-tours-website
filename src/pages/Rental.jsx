@@ -1,14 +1,10 @@
 import React from 'react';
-import { Users, Briefcase, Settings, MessageSquare, Wind, Fuel, Map, CheckCircle, ShieldCheck, Zap, Phone, ExternalLink } from 'lucide-react';
+import { Users, Briefcase, MessageSquare, Wind, Fuel, Map, CheckCircle, ShieldCheck, Zap, Phone, ExternalLink } from 'lucide-react';
 import './Rental.css';
-import kashmirImg from '../assets/kashmir.png';
-import manaliImg from '../assets/manali.png';
-import heroImg from '../assets/hero.png';
-import { CONTACT_CONFIG } from '../config';
-import { getWhatsAppLink, getCallLink, sendWhatsApp } from '../utils/contactHelpers';
+import Image from '../components/common/Image';
+import { getCallLink, sendWhatsApp } from '../utils/contactHelpers';
 import { trackEvent, ANALYTICS_EVENTS } from '../utils/analytics';
 import updateMetaTags from '../utils/updateMetaTags';
-import { handleImageError } from '../utils/imageUtils';
 
 const vehicles = [
   {
@@ -94,7 +90,7 @@ const Rental = () => {
             {vehicles.map(vehicle => (
               <div key={vehicle.id} className="vehicle-card fade-in">
                 <div className="vehicle-img">
-                  <img src={vehicle.image} alt={vehicle.name} loading="lazy" onError={handleImageError} />
+                  <Image src={vehicle.image} alt={vehicle.name} />
                   <div className="vehicle-pricing-overlay">
                     <span>From {vehicle.priceKm}/km</span>
                   </div>

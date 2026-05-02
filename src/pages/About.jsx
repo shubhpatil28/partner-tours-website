@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import './About.css';
 import { Shield, Award, MapPin, Phone, Clock } from 'lucide-react';
 import { CONTACT_CONFIG } from '../config';
+import Image from '../components/common/Image';
 import updateMetaTags from '../utils/updateMetaTags';
-import { handleImageError } from '../utils/imageUtils';
 
 const About = () => {
   useEffect(() => {
@@ -52,12 +52,10 @@ const About = () => {
               </div>
             </div>
             <div className="about-image">
-              <img 
+              <Image 
                 src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&q=80&w=1000" 
                 alt="About Partner's Tours Chalisgaon" 
                 className="rounded-img shadow-lg" 
-                loading="lazy"
-                onError={handleImageError}
               />
             </div>
           </div>

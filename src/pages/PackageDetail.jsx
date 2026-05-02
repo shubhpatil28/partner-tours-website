@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Clock, CheckCircle, MessageSquare, Hotel, Coffee, Car, Zap, ShieldCheck } from 'lucide-react';
 import './PackageDetail.css';
+import Image from '../components/common/Image';
 import goaImg from '../assets/goa.png';
 import manaliImg from '../assets/manali.png';
 import kashmirImg from '../assets/kashmir.png';
@@ -12,7 +13,6 @@ import { getWhatsAppLink, getCallLink } from '../utils/contactHelpers';
 import { trackEvent, ANALYTICS_EVENTS } from '../utils/analytics';
 import updateMetaTags from '../utils/updateMetaTags';
 import { injectStructuredData, getTourSchema } from '../utils/seo';
-import { handleImageError } from '../utils/imageUtils';
 
 const packagesData = {
   'kashmir-trip': {
@@ -138,7 +138,7 @@ const PackageDetail = () => {
   return (
     <div className="package-detail-page">
       <div className="detail-hero">
-        <img src={pkg.image} alt={pkg.title} className="detail-hero-img" loading="lazy" onError={handleImageError} />
+        <Image src={pkg.image} alt={pkg.title} className="detail-hero-img" />
         <div className="container">
           <div className="detail-header-content fade-in">
             <span className="duration-pill"><Clock size={16}/> {pkg.duration}</span>

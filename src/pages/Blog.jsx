@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, ArrowRight, Search, Clock } from 'lucide-react';
 import './Blog.css';
+import Image from '../components/common/Image';
 import updateMetaTags from '../utils/updateMetaTags';
-import { handleImageError } from '../utils/imageUtils';
 
 const blogPosts = [
   {
@@ -96,11 +96,9 @@ const Blog = () => {
             {blogPosts.map((post) => (
               <article key={post.id} className="blog-card ripple">
                 <div className="blog-card-img">
-                  <img 
+                  <Image 
                     src={post.image} 
                     alt={post.title} 
-                    loading="lazy" 
-                    onError={handleImageError}
                   />
                   <span className="blog-category-tag">{post.category}</span>
                 </div>

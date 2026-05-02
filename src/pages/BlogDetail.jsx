@@ -2,9 +2,9 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Calendar, User, Clock, ArrowLeft } from 'lucide-react';
 import './BlogDetail.css';
+import Image from '../components/common/Image';
 import { getWhatsAppLink } from '../utils/contactHelpers';
 import updateMetaTags from '../utils/updateMetaTags';
-import { handleImageError } from '../utils/imageUtils';
 
 const blogContent = {
   'best-places-near-chalisgaon': {
@@ -153,7 +153,7 @@ const BlogDetail = () => {
         </header>
 
         <div className="post-featured-img">
-          <img src={post.image} alt={post.title} loading="lazy" onError={handleImageError} />
+          <Image src={post.image} alt={post.title} />
         </div>
 
         <div className="post-content-layout">
@@ -182,7 +182,7 @@ const BlogDetail = () => {
                 <div className="related-list">
                    {Object.keys(blogContent).filter(k => k !== id).slice(0, 3).map(key => (
                       <Link key={key} to={`/blog/${key}`} className="related-item">
-                         <img src={blogContent[key].image} alt={blogContent[key].title} loading="lazy" onError={handleImageError} />
+                         <Image src={blogContent[key].image} alt={blogContent[key].title} />
                          <h6>{blogContent[key].title}</h6>
                       </Link>
                    ))}

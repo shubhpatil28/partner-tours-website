@@ -2,17 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Clock, MapPin, Search, Zap, Shield, Award, Star } from 'lucide-react';
 import './Packages.css';
+import Image from '../components/common/Image';
 import goaImg from '../assets/goa.png';
 import manaliImg from '../assets/manali.png';
 import kashmirImg from '../assets/kashmir.png';
 import dubaiImg from '../assets/dubai.png';
 import thailandImg from '../assets/thailand.png';
 import { CONTACT_CONFIG } from '../config';
-import { getWhatsAppLink, sendWhatsApp } from '../utils/contactHelpers';
+import { sendWhatsApp } from '../utils/contactHelpers';
 import { trackEvent, ANALYTICS_EVENTS } from '../utils/analytics';
 import { injectStructuredData, getTourSchema } from '../utils/seo';
 import updateMetaTags from '../utils/updateMetaTags';
-import { handleImageError } from '../utils/imageUtils';
 
 const packagesData = [
   { 
@@ -92,7 +92,6 @@ const Packages = ({ onEnquiry }) => {
       image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=800',
     });
 
-    // Recently Viewed logic
     const saved = JSON.parse(localStorage.getItem('recently_viewed') || '[]');
     setRecentlyViewed(saved);
 
@@ -101,7 +100,6 @@ const Packages = ({ onEnquiry }) => {
   }, []);
 
   const handlePackageClick = (pkg) => {
-    // Save to recently viewed
     const updated = [pkg, ...recentlyViewed.filter(p => p.id !== pkg.id)].slice(0, 4);
     setRecentlyViewed(updated);
     localStorage.setItem('recently_viewed', JSON.stringify(updated));
@@ -215,7 +213,7 @@ const Packages = ({ onEnquiry }) => {
                <div className="grid grid-4">
                   {recentlyViewed.map(pkg => (
                      <div key={`rv-${pkg.id}`} className="rv-card ripple" onClick={() => handlePackageClick(pkg)}>
-                        <img src={pkg.image} alt={`${pkg.title} - Best Tour Package from Chalisgaon`} onError={handleImageError} />
+                        <Image src={pkg.image} alt={`${pkg.title} - Best Tour Package from Chalisgaon`} />
                         <div className="rv-info">
                            <h5>{pkg.title}</h5>
                            <span>{pkg.price}</span>
@@ -340,10 +338,10 @@ const Packages = ({ onEnquiry }) => {
   );
 };
 
-const PackageCard = ({ pkg, onEnquiry, handlePackageClick, handleLeadCapture }) => (
+const PackageCard = ({ pkg, handlePackageClick, handleLeadCapture }) => (
   <div className="package-card fade-in-up" onClick={() => handlePackageClick(pkg)}>
     <div className="package-img">
-      <img src={pkg.image} alt={`${pkg.title} Tour Package from Best Travel Agency in Chalisgaon`} loading="lazy" onError={handleImageError} />
+      <Image src={pkg.image} alt={`${pkg.title} Tour Package from Best Travel Agency in Chalisgaon`} />
       <div className="card-overlay"></div>
       <span className="price-tag">
         <small>Starting from</small>

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, MessageSquare, MapPin, Bus, Plane, Globe, Star, Shield, Award, CheckCircle, ArrowRight } from 'lucide-react';
+import { Phone, MessageSquare, Bus, Plane, Globe, Star, Shield, Award, CheckCircle, ArrowRight } from 'lucide-react';
 import './Home.css';
+import Image from '../components/common/Image';
 import heroImg from '../assets/hero.png';
 import goaImg from '../assets/goa.png';
 import manaliImg from '../assets/manali.png';
@@ -13,7 +14,6 @@ import { getWhatsAppLink, getCallLink, sendWhatsApp } from '../utils/contactHelp
 import { trackEvent, ANALYTICS_EVENTS } from '../utils/analytics';
 import updateMetaTags from '../utils/updateMetaTags';
 import { injectStructuredData, getTravelAgencySchema } from '../utils/seo';
-import { handleImageError } from '../utils/imageUtils';
 
 const Home = ({ onEnquiry }) => {
   React.useEffect(() => {
@@ -30,7 +30,7 @@ const Home = ({ onEnquiry }) => {
     <div className="home-page">
       {/* Hero Section with Parallax Effect */}
       <section className="hero parallax-hero">
-        <img src={heroImg} alt="Partner's Tours & Travels - Leading Travel Agency in Chalisgaon" className="hero-bg" loading="lazy" onError={handleImageError} />
+        <Image src={heroImg} alt="Partner's Tours & Travels - Leading Travel Agency in Chalisgaon" className="hero-bg" />
         <div className="hero-overlay"></div>
         <div className="container hero-content fade-in-up">
           <div className="badge badge-orange ripple mb-16">1000+ Happy Customers • Best Price • 24/7 Support</div>
@@ -189,7 +189,7 @@ const Home = ({ onEnquiry }) => {
               </div>
             </div>
             <div className="city-img-container">
-               <img src={dubaiImg} alt="Partner's Tours & Travels - Best Tour Operator in Jalgaon District" className="rounded-img shadow-lg" loading="lazy" onError={handleImageError} />
+               <Image src={dubaiImg} alt="Partner's Tours & Travels - Best Tour Operator in Jalgaon District" className="rounded-img shadow-lg" />
             </div>
           </div>
         </div>
@@ -210,7 +210,6 @@ const Home = ({ onEnquiry }) => {
                 dur="6D/5N" 
                 price="₹18,999" 
                 onEnquiry={onEnquiry}
-                handleImageError={handleImageError}
              />
              <PackageSummaryCard 
                 id="manali-trip" 
@@ -219,7 +218,6 @@ const Home = ({ onEnquiry }) => {
                 dur="5D/4N" 
                 price="₹12,499" 
                 onEnquiry={onEnquiry}
-                handleImageError={handleImageError}
              />
              <PackageSummaryCard 
                 id="goa-trip" 
@@ -228,7 +226,6 @@ const Home = ({ onEnquiry }) => {
                 dur="3D/2N" 
                 price="₹7,999" 
                 onEnquiry={onEnquiry}
-                handleImageError={handleImageError}
              />
           </div>
           <div className="text-center mt-50">
@@ -287,9 +284,9 @@ const Home = ({ onEnquiry }) => {
   );
 };
 
-const PackageSummaryCard = ({ id, image, title, dur, price, onEnquiry, handleImageError }) => (
+const PackageSummaryCard = ({ id, image, title, dur, price, onEnquiry }) => (
   <div className="p-sum-card ripple" onClick={() => onEnquiry(title)}>
-    <div className="p-img"><img src={image} alt={`${title} Tour Package from Chalisgaon Travel Agency`} loading="lazy" onError={handleImageError} /></div>
+    <div className="p-img"><Image src={image} alt={`${title} Tour Package from Chalisgaon Travel Agency`} /></div>
     <div className="p-content">
       <div className="p-meta"><span>{dur}</span> <span>Starts from {price}</span></div>
       <h3 className="mb-16">{title}</h3>
