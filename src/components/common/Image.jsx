@@ -1,21 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FALLBACK_IMAGE } from "../../utils/imageUtils";
 
 /**
- * Clean & Production-Safe Image component for Partner's Tours & Travels.
+ * FINAL Production-Grade Image Component for Partner's Tours & Travels.
  * 
- * Optimized for:
- * - UI Stability: Block-level rendering and zero CLS.
- * - Loading Strategy: Conditional priority for above-the-fold content.
- * - Resilience: Smart 1-step retry with duplicate prevention.
- * - Accessibility: Guaranteed fallback and alt text protection.
+ * This component is the centralized solution for all image rendering across the platform,
+ * providing enterprise-level performance, SEO resilience, and layout stability.
+ * 
+ * Features:
+ * 1. CLS Protection: Forced block-level display and explicit width/height support.
+ * 2. LCP Optimization: High-priority loading for above-the-fold hero assets.
+ * 3. Network Resilience: Smart 1-step retry with cache-busting and loop prevention.
+ * 4. Dynamic Stability: Automatic state reset on source changes to handle interactive UI.
+ * 5. SEO & Accessibility: Guaranteed alt-text presence for better indexing.
  */
 const Image = React.memo(({
   src,
-  alt = "Tour Image",
+  alt,
   width,
   height,
-  priority = false,
+  priority = false, // Set to true for Hero/Header images
   srcSet,
   sizes = "(max-width: 768px) 100vw, 50vw",
   className = "",
@@ -24,14 +28,20 @@ const Image = React.memo(({
 }) => {
   const [errorCount, setErrorCount] = useState(0);
 
+  // 1. State Reset: Ensure new images get a fresh retry attempt when dynamic content updates
+  useEffect(() => {
+    setErrorCount(0);
+  }, [src]);
+
   const handleError = (e) => {
-    // Immediate stop for empty sources or failed fallbacks
+    // 2. Rendering Safety: Prevent infinite loops if the fallback image itself fails
     if (!src || e.target.src === FALLBACK_IMAGE) return;
 
     if (errorCount < 1) {
       setErrorCount(1);
       
-      // Prevent duplicate retry parameters in URL
+      // 3. Smart Retry: Attempt recovery with cache-busting (?retry=1) 
+      // only if not already attempted (prevents duplicate params)
       const retrySrc = src.includes("retry=")
         ? src
         : src.includes("?")
@@ -40,6 +50,7 @@ const Image = React.memo(({
 
       e.target.src = retrySrc;
     } else {
+      // 4. Final Fallback: Switch to production-safe placeholder after retry failure
       setErrorCount(2);
       e.target.src = FALLBACK_IMAGE;
     }
@@ -47,22 +58,27 @@ const Image = React.memo(({
 
   return (
     <img
+      // 5. Safe Source Handling: Immediate fallback if src is null or undefined
       src={src || FALLBACK_IMAGE}
       srcSet={srcSet}
       sizes={sizes}
-      alt={alt}
+      // 6. Accessibility & SEO: Enforce fallback alt text
+      alt={alt || "Travel destination image"}
       width={width}
       height={height}
+      // 7. Performance: Conditional loading strategy for LCP vs Lazy
       loading={priority ? "eager" : "lazy"}
-      // @ts-ignore - modern browser and React support
+      // @ts-ignore - fetchPriority is supported in modern Chrome/Edge and React 18.2+
       fetchpriority={priority ? "high" : "auto"}
+      // 8. Non-blocking UI: Async decoding for all images to prevent CPU stalls
       decoding="async"
       referrerPolicy="no-referrer"
       onError={handleError}
       className={`image-component ${className}`}
       style={{
+        // 9. Layout Stability: Forced block display to eliminate baseline gaps
         display: "block",
-        backgroundColor: "#0f172a",
+        backgroundColor: "#0f172a", // Dark placeholder background
         objectFit: "cover",
         transition: "opacity 0.4s ease-in-out",
         ...style
