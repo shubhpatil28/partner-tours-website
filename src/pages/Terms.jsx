@@ -1,5 +1,6 @@
 import React from 'react';
 import './Legal.css';
+import { CONTACT_CONFIG } from '../config';
 
 const Terms = () => {
   return (
@@ -59,7 +60,7 @@ const Terms = () => {
             </p>
 
             <h2>9. Contact Us</h2>
-            <p>If you have any questions about these Terms, please contact us at our Chalisgaon office or via email at {CONTACT_CONFIG.EMAIL}.</p>
+            <p>If you have any questions about these Terms, please contact us at our Chalisgaon office or via email at {CONTACT_CONFIG?.EMAIL}.</p>
           </div>
         </div>
       </section>

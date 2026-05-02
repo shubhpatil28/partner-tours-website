@@ -71,14 +71,14 @@ function App() {
           <div className="mobile-cta-shell">
             <div className="mobile-sticky-bar">
               <a 
-                href={`tel:${CONTACT_CONFIG.WHATSAPP_NUMBER}`} 
+                href={`tel:${CONTACT_CONFIG?.WHATSAPP_NUMBER}`} 
                 className="m-cta-btn m-call ripple"
                 onClick={() => trackEvent(ANALYTICS_EVENTS.CALL_CLICK, { location: 'sticky_bar' })}
               >
                 <Phone size={20} /> Call Now
               </a>
               <a 
-                href={`https://wa.me/${CONTACT_CONFIG.WHATSAPP_NUMBER}?text=Hi, I want to book a travel service. Please share details.`} 
+                href={`https://wa.me/${CONTACT_CONFIG?.WHATSAPP_NUMBER}?text=Hi, I want to book a travel service. Please share details.`} 
                 className="m-cta-btn m-whatsapp ripple"
                 onClick={() => trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { location: 'sticky_bar' })}
               >

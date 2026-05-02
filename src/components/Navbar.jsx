@@ -43,14 +43,14 @@ const Navbar = () => {
           
           <div className="nav-cta-mobile">
              <a 
-               href={`tel:${CONTACT_CONFIG.PHONE_NUMBER}`} 
+               href={`tel:${CONTACT_CONFIG?.PHONE_NUMBER}`} 
                className="btn btn-primary ripple"
                onClick={() => trackEvent(ANALYTICS_EVENTS.CALL_CLICK, { location: 'navbar_mobile' })}
              >
                <Phone size={18}/> Call Now
              </a>
              <a 
-               href={`https://wa.me/${CONTACT_CONFIG.WHATSAPP_NUMBER}?text=${CONTACT_CONFIG.DEFAULT_WA_MESSAGE}`} 
+               href={`https://wa.me/${CONTACT_CONFIG?.WHATSAPP_NUMBER}?text=${CONTACT_CONFIG?.DEFAULT_WA_MESSAGE}`} 
                className="btn btn-whatsapp ripple"
                onClick={() => trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { location: 'navbar_mobile' })}
              >
@@ -61,14 +61,14 @@ const Navbar = () => {
 
         <div className="nav-cta-desktop">
           <a 
-            href={`tel:${CONTACT_CONFIG.PHONE_NUMBER}`} 
+            href={`tel:${CONTACT_CONFIG?.PHONE_NUMBER}`} 
             className="phone-link ripple"
             onClick={() => trackEvent(ANALYTICS_EVENTS.CALL_CLICK, { location: 'navbar_desktop' })}
           >
-            <Phone size={20}/> {CONTACT_CONFIG.PHONE_NUMBER}
+            <Phone size={20}/> {CONTACT_CONFIG?.PHONE_NUMBER}
           </a>
           <a 
-            href={`https://wa.me/${CONTACT_CONFIG.WHATSAPP_NUMBER}?text=${CONTACT_CONFIG.DEFAULT_WA_MESSAGE}`} 
+            href={`https://wa.me/${CONTACT_CONFIG?.WHATSAPP_NUMBER}?text=${CONTACT_CONFIG?.DEFAULT_WA_MESSAGE}`} 
             className="btn btn-whatsapp ripple"
             onClick={() => trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { location: 'navbar_desktop' })}
           >

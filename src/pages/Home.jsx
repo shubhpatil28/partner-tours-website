@@ -30,7 +30,7 @@ const Home = ({ onEnquiry }) => {
           </p>
           <div className="hero-btns">
             <a 
-              href={`tel:${CONTACT_CONFIG.PHONE_NUMBER}`} 
+              href={`tel:${CONTACT_CONFIG?.PHONE_NUMBER}`} 
               className="btn btn-primary btn-lg ripple"
               onClick={() => trackEvent(ANALYTICS_EVENTS.CALL_CLICK)}
             >
@@ -102,7 +102,7 @@ const Home = ({ onEnquiry }) => {
                 <li><CheckCircle size={14}/> 24/7 Cancellation Support</li>
               </ul>
               <a 
-                href={`https://wa.me/${CONTACT_CONFIG.WHATSAPP_NUMBER}?text=Hi, I want to check flight fares.`} 
+                href={`https://wa.me/${CONTACT_CONFIG?.WHATSAPP_NUMBER}?text=Hi, I want to check flight fares.`} 
                 className="s-link"
                 onClick={() => trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { type: 'flights' })}
               >
@@ -233,7 +233,7 @@ const Home = ({ onEnquiry }) => {
                 <p>Join our WhatsApp channel for exclusive deals & destination updates.</p>
               </div>
               <a
-                href={`https://wa.me/${CONTACT_CONFIG.WHATSAPP_NUMBER}?text=Hi, I want to receive latest tour offers on WhatsApp.`}
+                href={`https://wa.me/${CONTACT_CONFIG?.WHATSAPP_NUMBER}?text=Hi, I want to receive latest tour offers on WhatsApp.`}
                 className="btn btn-whatsapp btn-lg ripple"
                 target="_blank"
                 rel="noreferrer"

@@ -107,8 +107,8 @@ const About = () => {
           <h2>Visit Our Chalisgaon Office</h2>
           <div className="location-info mt-32">
             <p><MapPin className="inline-icon" /> Bhadgaon Road, Near Station, Chalisgaon, Jalgaon, Maharashtra - 424101</p>
-            <p><Phone className="inline-icon" /> {CONTACT_CONFIG.PHONE_NUMBER}</p>
-            <p>Email: {CONTACT_CONFIG.EMAIL}</p>
+            <p><Phone className="inline-icon" /> {CONTACT_CONFIG?.PHONE_NUMBER}</p>
+            <p>Email: {CONTACT_CONFIG?.EMAIL}</p>
           </div>
         </div>
       </section>

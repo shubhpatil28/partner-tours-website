@@ -216,11 +216,11 @@ const PackageDetail = () => {
               <div className="sidebar-support">
                  <p>Have Questions? Talk to our expert.</p>
                  <a 
-                   href={`tel:${CONTACT_CONFIG.PHONE_NUMBER}`} 
+                   href={`tel:${CONTACT_CONFIG?.PHONE_NUMBER}`} 
                    className="phone-cta"
                    onClick={() => trackEvent(ANALYTICS_EVENTS.CALL_CLICK)}
                  >
-                   {CONTACT_CONFIG.PHONE_NUMBER}
+                   {CONTACT_CONFIG?.PHONE_NUMBER}
                  </a>
               </div>
             </div>

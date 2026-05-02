@@ -1,5 +1,6 @@
 import React from 'react';
 import './Legal.css';
+import { CONTACT_CONFIG } from '../config';
 
 const PrivacyPolicy = () => {
   return (
@@ -86,11 +87,11 @@ const PrivacyPolicy = () => {
               <br />
               <strong>Partner's Tours & Travels</strong>
               <br />
-              {CONTACT_CONFIG.ADDRESS}
+              {CONTACT_CONFIG?.ADDRESS}
               <br />
-              Email: {CONTACT_CONFIG.EMAIL}
+              Email: {CONTACT_CONFIG?.EMAIL}
               <br />
-              Phone: {CONTACT_CONFIG.PHONE_NUMBER}
+              Phone: {CONTACT_CONFIG?.PHONE_NUMBER}
             </p>
           </div>
         </div>

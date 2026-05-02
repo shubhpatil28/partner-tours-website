@@ -148,7 +148,7 @@ const Contact = () => {
     // Background API Sync
     saveLeadToAPI(formData);
 
-    const whatsappNumber = CONTACT_CONFIG.WHATSAPP_NUMBER; 
+    const whatsappNumber = CONTACT_CONFIG?.WHATSAPP_NUMBER; 
     const formattedMessage = `Hi, I am ${formData.name}\nPhone: ${formData.phone}\nService: ${formData.service}\nDetails: ${formData.message}`;
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(formattedMessage)}`;
     
@@ -173,7 +173,7 @@ const Contact = () => {
 
   const handleCallClick = () => {
     trackEvent(ANALYTICS_EVENTS.CALL_CLICK, {
-      phone_number: CONTACT_CONFIG.PHONE_NUMBER
+      phone_number: CONTACT_CONFIG?.PHONE_NUMBER
     });
   };
 
@@ -204,17 +204,17 @@ const Contact = () => {
 
               <div className="c-info-card-premium">
                 <div className="c-icon-circle"><MapPin size={22}/></div>
-                <div className="c-text-stack"><label>Visit Our Office</label><p>{CONTACT_CONFIG.ADDRESS}</p></div>
+                <div className="c-text-stack"><label>Visit Our Office</label><p>{CONTACT_CONFIG?.ADDRESS}</p></div>
               </div>
               
               <div className="c-info-card-premium">
                 <div className="c-icon-circle"><Phone size={22}/></div>
-                <div className="c-text-stack"><label>Direct Call</label><p>{CONTACT_CONFIG.PHONE_NUMBER}</p></div>
+                <div className="c-text-stack"><label>Direct Call</label><p>{CONTACT_CONFIG?.PHONE_NUMBER}</p></div>
               </div>
 
               <div className="c-info-card-premium">
                 <div className="c-icon-circle"><Mail size={22}/></div>
-                <div className="c-text-stack"><label>Email Us</label><p>{CONTACT_CONFIG.EMAIL}</p></div>
+                <div className="c-text-stack"><label>Email Us</label><p>{CONTACT_CONFIG?.EMAIL}</p></div>
               </div>
 
               {/* Google Maps Embed */}
@@ -298,11 +298,11 @@ const Contact = () => {
                         </button>
                         <div className="fallback-divider"><span>OR CALL</span></div>
                         <a 
-                          href={`tel:${CONTACT_CONFIG.PHONE_NUMBER}`} 
+                          href={`tel:${CONTACT_CONFIG?.PHONE_NUMBER}`} 
                           className="btn-call-fallback"
                           onClick={handleCallClick}
                         >
-                          {CONTACT_CONFIG.PHONE_NUMBER}
+                          {CONTACT_CONFIG?.PHONE_NUMBER}
                         </a>
                     </div>
                     <p className="privacy-note">🔒 Local data is encrypted with AES-GCM before storage.</p>

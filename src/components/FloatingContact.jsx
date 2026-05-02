@@ -8,7 +8,7 @@ const FloatingContact = () => {
   return (
     <div className="floating-contact">
       <a 
-        href={`https://wa.me/${CONTACT_CONFIG.WHATSAPP_NUMBER}?text=Hi, I want to book a travel service. Please share details.`} 
+        href={`https://wa.me/${CONTACT_CONFIG?.WHATSAPP_NUMBER}?text=Hi, I want to book a travel service. Please share details.`} 
         className="floating-btn whatsapp-btn pulse" 
         title="Chat with us"
         onClick={() => trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { location: 'floating_widget' })}
