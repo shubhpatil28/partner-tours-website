@@ -153,7 +153,13 @@ const BlogDetail = () => {
         </header>
 
         <div className="post-featured-img">
-          <Image src={post.image} alt={post.title} />
+          <Image 
+            src={post.image} 
+            alt={post.title} 
+            priority={true} 
+            width={1200}
+            height={600}
+          />
         </div>
 
         <div className="post-content-layout">
@@ -182,7 +188,12 @@ const BlogDetail = () => {
                 <div className="related-list">
                    {Object.keys(blogContent).filter(k => k !== id).slice(0, 3).map(key => (
                       <Link key={key} to={`/blog/${key}`} className="related-item">
-                         <Image src={blogContent[key].image} alt={blogContent[key].title} />
+                         <Image 
+                          src={blogContent[key].image} 
+                          alt={blogContent[key].title} 
+                          width={120}
+                          height={80}
+                         />
                          <h6>{blogContent[key].title}</h6>
                       </Link>
                    ))}

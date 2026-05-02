@@ -90,7 +90,12 @@ const Rental = () => {
             {vehicles.map(vehicle => (
               <div key={vehicle.id} className="vehicle-card fade-in">
                 <div className="vehicle-img">
-                  <Image src={vehicle.image} alt={vehicle.name} />
+                  <Image 
+                    src={vehicle.image} 
+                    alt={vehicle.name} 
+                    width={500}
+                    height={350}
+                  />
                   <div className="vehicle-pricing-overlay">
                     <span>From {vehicle.priceKm}/km</span>
                   </div>

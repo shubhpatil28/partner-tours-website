@@ -99,6 +99,8 @@ const Blog = () => {
                   <Image 
                     src={post.image} 
                     alt={post.title} 
+                    width={500}
+                    height={300}
                   />
                   <span className="blog-category-tag">{post.category}</span>
                 </div>

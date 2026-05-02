@@ -213,7 +213,12 @@ const Packages = ({ onEnquiry }) => {
                <div className="grid grid-4">
                   {recentlyViewed.map(pkg => (
                      <div key={`rv-${pkg.id}`} className="rv-card ripple" onClick={() => handlePackageClick(pkg)}>
-                        <Image src={pkg.image} alt={`${pkg.title} - Best Tour Package from Chalisgaon`} />
+                        <Image 
+                          src={pkg.image} 
+                          alt={`${pkg.title} - Best Tour Package from Chalisgaon`} 
+                          width={300}
+                          height={200}
+                        />
                         <div className="rv-info">
                            <h5>{pkg.title}</h5>
                            <span>{pkg.price}</span>
@@ -341,7 +346,12 @@ const Packages = ({ onEnquiry }) => {
 const PackageCard = ({ pkg, handlePackageClick, handleLeadCapture }) => (
   <div className="package-card fade-in-up" onClick={() => handlePackageClick(pkg)}>
     <div className="package-img">
-      <Image src={pkg.image} alt={`${pkg.title} Tour Package from Best Travel Agency in Chalisgaon`} />
+      <Image 
+        src={pkg.image} 
+        alt={`${pkg.title} Tour Package from Best Travel Agency in Chalisgaon`} 
+        width={500}
+        height={350}
+      />
       <div className="card-overlay"></div>
       <span className="price-tag">
         <small>Starting from</small>

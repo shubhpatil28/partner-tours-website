@@ -1,43 +1,52 @@
-import React, { useState } from 'react';
-import { handleImageError } from '../../utils/imageUtils';
+import React, { useState } from "react";
+import { handleImageError } from "../../utils/imageUtils";
 
 /**
- * Reusable Image component for Partner's Tours & Travels.
- * Features:
- * - Automatic fallback to high-quality placeholder on error
- * - Native lazy loading for performance
- * - Dark background placeholder to prevent layout shift and visual "pop"
- * - Responsive object-fit support
+ * Production-optimized Image component for Partner's Tours & Travels.
+ * 
+ * Performance & SEO Features:
+ * - Decoding="async" for non-blocking rendering.
+ * - Width/Height support to prevent Cumulative Layout Shift (CLS).
+ * - Priority prop for LCP optimization (loading="eager").
+ * - React.memo to prevent unnecessary re-renders.
+ * - UX blur-to-clear transition effect.
  */
-const Image = ({ 
+const Image = React.memo(({ 
   src, 
   alt = "Tour Image", 
   className = "", 
-  style = {}, 
+  width,
+  height,
+  priority = false, // Set to true for hero/above-the-fold images
+  style,
   ...props 
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const baseStyle = {
-    backgroundColor: "#0f172a", // Dark slate background for "blur/skeleton" feel
-    objectFit: "cover",
-    transition: "opacity 0.4s ease-in-out",
-    opacity: isLoaded ? 1 : 0.6,
-    ...style
-  };
+  const defaultAlt = alt || "Tour Package Image - Partner's Tours Chalisgaon";
 
   return (
     <img
       src={src}
-      alt={alt}
-      loading="lazy"
-      onError={handleImageError}
+      alt={defaultAlt}
+      width={width}
+      height={height}
+      loading={priority ? "eager" : "lazy"}
+      decoding="async"
       onLoad={() => setIsLoaded(true)}
-      className={className}
-      style={baseStyle}
+      onError={handleImageError}
+      className={`image-component ${className}`}
+      style={{
+        backgroundColor: "#0f172a",
+        objectFit: "cover",
+        transition: "all 0.4s ease-in-out",
+        opacity: isLoaded ? 1 : 0.6,
+        filter: isLoaded ? "blur(0px)" : "blur(6px)",
+        ...style
+      }}
       {...props}
     />
   );
-};
+});
 
 export default Image;

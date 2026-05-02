@@ -30,7 +30,14 @@ const Home = ({ onEnquiry }) => {
     <div className="home-page">
       {/* Hero Section with Parallax Effect */}
       <section className="hero parallax-hero">
-        <Image src={heroImg} alt="Partner's Tours & Travels - Leading Travel Agency in Chalisgaon" className="hero-bg" />
+        <Image 
+          src={heroImg} 
+          alt="Partner's Tours & Travels - Leading Travel Agency in Chalisgaon" 
+          className="hero-bg" 
+          priority={true} 
+          width={1920}
+          height={1080}
+        />
         <div className="hero-overlay"></div>
         <div className="container hero-content fade-in-up">
           <div className="badge badge-orange ripple mb-16">1000+ Happy Customers • Best Price • 24/7 Support</div>
@@ -189,7 +196,13 @@ const Home = ({ onEnquiry }) => {
               </div>
             </div>
             <div className="city-img-container">
-               <Image src={dubaiImg} alt="Partner's Tours & Travels - Best Tour Operator in Jalgaon District" className="rounded-img shadow-lg" />
+               <Image 
+                src={dubaiImg} 
+                alt="Partner's Tours & Travels - Best Tour Operator in Jalgaon District" 
+                className="rounded-img shadow-lg" 
+                width={600}
+                height={400}
+               />
             </div>
           </div>
         </div>
@@ -286,7 +299,14 @@ const Home = ({ onEnquiry }) => {
 
 const PackageSummaryCard = ({ id, image, title, dur, price, onEnquiry }) => (
   <div className="p-sum-card ripple" onClick={() => onEnquiry(title)}>
-    <div className="p-img"><Image src={image} alt={`${title} Tour Package from Chalisgaon Travel Agency`} /></div>
+    <div className="p-img">
+      <Image 
+        src={image} 
+        alt={`${title} Tour Package from Chalisgaon Travel Agency`} 
+        width={400}
+        height={250}
+      />
+    </div>
     <div className="p-content">
       <div className="p-meta"><span>{dur}</span> <span>Starts from {price}</span></div>
       <h3 className="mb-16">{title}</h3>

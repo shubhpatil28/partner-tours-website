@@ -56,6 +56,8 @@ const About = () => {
                 src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&q=80&w=1000" 
                 alt="About Partner's Tours Chalisgaon" 
                 className="rounded-img shadow-lg" 
+                width={800}
+                height={600}
               />
             </div>
           </div>

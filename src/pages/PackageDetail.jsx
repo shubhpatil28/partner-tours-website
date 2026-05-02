@@ -138,7 +138,14 @@ const PackageDetail = () => {
   return (
     <div className="package-detail-page">
       <div className="detail-hero">
-        <Image src={pkg.image} alt={pkg.title} className="detail-hero-img" />
+        <Image 
+          src={pkg.image} 
+          alt={pkg.title} 
+          className="detail-hero-img" 
+          priority={true} 
+          width={1920}
+          height={600}
+        />
         <div className="container">
           <div className="detail-header-content fade-in">
             <span className="duration-pill"><Clock size={16}/> {pkg.duration}</span>

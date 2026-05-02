@@ -64,7 +64,12 @@ const Gallery = () => {
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
                 <div className="gallery-card">
-                  <Image src={img.src} alt={`${img.title} at ${img.location}`} />
+                  <Image 
+                    src={img.src} 
+                    alt={`${img.title} at ${img.location}`} 
+                    width={400}
+                    height={300}
+                  />
                   <div className="gallery-overlay">
                     <div className="overlay-content">
                       <div className="loc-info">
