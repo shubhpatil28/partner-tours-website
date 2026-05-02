@@ -4,6 +4,7 @@ import './Rental.css';
 import Image from '../components/common/Image';
 import { getCallLink, sendWhatsApp } from '../utils/contactHelpers';
 import { trackEvent, ANALYTICS_EVENTS } from '../utils/analytics';
+import { getUnsplashSrcSet } from '../utils/imageUtils';
 import updateMetaTags from '../utils/updateMetaTags';
 
 const vehicles = [
@@ -17,7 +18,7 @@ const vehicles = [
     priceKm: "₹25",
     priceDay: "₹6,000",
     features: ["Push-back Seats", "Music System", "Ample Luggage Space", "Experienced Driver"],
-    image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957',
     urgency: "Only 2 slots left this weekend"
   },
   {
@@ -30,7 +31,7 @@ const vehicles = [
     priceKm: "₹30",
     priceDay: "₹8,500",
     features: ["Air Conditioned", "High Roof", "Reading Lights", "Perfect for Groups"],
-    image: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e',
     urgency: "12 people viewed today"
   },
   {
@@ -43,7 +44,7 @@ const vehicles = [
     priceKm: "₹45",
     priceDay: "₹15,000",
     features: ["Premium Push-back", "Luxury Interior", "LCD Entertainment", "Tour Specialist Driver"],
-    image: 'https://images.unsplash.com/photo-1494515843206-f3117d3f51b7?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1494515843206-f3117d3f51b7',
     urgency: "Last slot available for May 15"
   }
 ];
@@ -91,7 +92,9 @@ const Rental = () => {
               <div key={vehicle.id} className="vehicle-card fade-in">
                 <div className="vehicle-img">
                   <Image 
-                    src={vehicle.image} 
+                    src={`${vehicle.image}?auto=format&fit=crop&q=80&w=800`} 
+                    srcSet={getUnsplashSrcSet(vehicle.image)}
+                    sizes="(max-width: 768px) 100vw, 33vw"
                     alt={vehicle.name} 
                     width={500}
                     height={350}

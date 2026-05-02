@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Calendar, ArrowRight, Search, Clock } from 'lucide-react';
 import './Blog.css';
 import Image from '../components/common/Image';
+import { getUnsplashSrcSet } from '../utils/imageUtils';
 import updateMetaTags from '../utils/updateMetaTags';
 
 const blogPosts = [
@@ -13,7 +14,7 @@ const blogPosts = [
     date: 'May 02, 2026',
     author: 'Partner Tours Team',
     category: 'Local Guide',
-    image: 'https://images.unsplash.com/photo-1590050752117-23a9d7f28a3a?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1590050752117-23a9d7f28a3a',
     readTime: '8 min read'
   },
   {
@@ -23,7 +24,7 @@ const blogPosts = [
     date: 'April 28, 2026',
     author: 'Admin',
     category: 'Religious',
-    image: 'https://images.unsplash.com/photo-1544735038-179ad6bc0148?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1544735038-179ad6bc0148',
     readTime: '10 min read'
   },
   {
@@ -33,7 +34,7 @@ const blogPosts = [
     date: 'April 25, 2026',
     author: 'Travel Expert',
     category: 'Heritage',
-    image: 'https://images.unsplash.com/photo-1599341624443-4171059f143a?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1599341624443-4171059f143a',
     readTime: '12 min read'
   },
   {
@@ -43,7 +44,7 @@ const blogPosts = [
     date: 'April 20, 2026',
     author: 'Partner Tours Team',
     category: 'Budget Travel',
-    image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2',
     readTime: '15 min read'
   },
   {
@@ -53,7 +54,7 @@ const blogPosts = [
     date: 'April 15, 2026',
     author: 'Admin',
     category: 'Family Travel',
-    image: 'https://images.unsplash.com/photo-1596402184320-417d7178b2cd?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1596402184320-417d7178b2cd',
     readTime: '9 min read'
   }
 ];
@@ -97,7 +98,9 @@ const Blog = () => {
               <article key={post.id} className="blog-card ripple">
                 <div className="blog-card-img">
                   <Image 
-                    src={post.image} 
+                    src={`${post.image}?auto=format&fit=crop&q=80&w=800`} 
+                    srcSet={getUnsplashSrcSet(post.image)}
+                    sizes="(max-width: 768px) 100vw, 33vw"
                     alt={post.title} 
                     width={500}
                     height={300}

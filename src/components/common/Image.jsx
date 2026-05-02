@@ -1,40 +1,61 @@
 import React, { useState } from "react";
-import { handleImageError } from "../../utils/imageUtils";
+import { FALLBACK_IMAGE } from "../../utils/imageUtils";
 
 /**
- * Production-optimized Image component for Partner's Tours & Travels.
+ * Enterprise-hardened Image component for Partner's Tours & Travels.
  * 
- * Performance & SEO Features:
- * - Decoding="async" for non-blocking rendering.
- * - Width/Height support to prevent Cumulative Layout Shift (CLS).
- * - Priority prop for LCP optimization (loading="eager").
- * - React.memo to prevent unnecessary re-renders.
- * - UX blur-to-clear transition effect.
+ * Performance & SEO Hardening:
+ * - srcSet & sizes for responsive delivery.
+ * - fetchpriority="high" for hero LCP optimization.
+ * - 1-step error retry logic before fallback.
+ * - WebP/CDN-ready structure.
+ * - Async decoding + CLS stability.
  */
-const Image = React.memo(({ 
-  src, 
-  alt = "Tour Image", 
-  className = "", 
+const Image = React.memo(({
+  src,
+  alt = "Tour Image",
   width,
   height,
-  priority = false, // Set to true for hero/above-the-fold images
+  priority = false,
+  className = "",
   style,
-  ...props 
+  srcSet,
+  sizes,
+  ...props
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [errorCount, setErrorCount] = useState(0);
+
+  const handleError = (e) => {
+    // Prevent infinite loops if fallback also fails
+    if (e.target.src === FALLBACK_IMAGE) return;
+
+    if (errorCount < 1) {
+      setErrorCount(1);
+      // Simple retry logic by re-setting the same src
+      e.target.src = src; 
+    } else {
+      setErrorCount(2);
+      e.target.src = FALLBACK_IMAGE;
+    }
+  };
 
   const defaultAlt = alt || "Tour Package Image - Partner's Tours Chalisgaon";
 
   return (
     <img
       src={src}
+      srcSet={srcSet}
+      sizes={sizes}
       alt={defaultAlt}
       width={width}
       height={height}
       loading={priority ? "eager" : "lazy"}
+      // @ts-ignore - fetchPriority is supported in modern browsers and recent React
+      fetchpriority={priority ? "high" : "auto"}
       decoding="async"
       onLoad={() => setIsLoaded(true)}
-      onError={handleImageError}
+      onError={handleError}
       className={`image-component ${className}`}
       style={{
         backgroundColor: "#0f172a",
