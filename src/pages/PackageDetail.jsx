@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { Clock, MapPin, CheckCircle, MessageSquare, Hotel, Coffee, Car, Zap, ShieldCheck } from 'lucide-react';
+import { useParams } from 'react-router-dom';
+import { Clock, CheckCircle, MessageSquare, Hotel, Coffee, Car, Zap, ShieldCheck } from 'lucide-react';
 import './PackageDetail.css';
 import goaImg from '../assets/goa.png';
 import manaliImg from '../assets/manali.png';
@@ -12,6 +12,7 @@ import { getWhatsAppLink, getCallLink } from '../utils/contactHelpers';
 import { trackEvent, ANALYTICS_EVENTS } from '../utils/analytics';
 import updateMetaTags from '../utils/updateMetaTags';
 import { injectStructuredData, getTourSchema } from '../utils/seo';
+import { handleImageError } from '../utils/imageUtils';
 
 const packagesData = {
   'kashmir-trip': {
@@ -132,10 +133,6 @@ const PackageDetail = () => {
     trackEvent(ANALYTICS_EVENTS.PACKAGE_VIEW, { package_id: id, title: pkg.title });
   }, [id, pkg.title, pkg.image, pkg.duration, pkg.inclusions]);
 
-  const handleImageError = (e) => {
-    e.target.src = 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=800';
-  };
-
   const whatsappLink = getWhatsAppLink(`Hi, I'm interested in the ${pkg.title} package. Please share details.`);
 
   return (
@@ -251,4 +248,3 @@ const PackageDetail = () => {
 };
 
 export default PackageDetail;
-

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, MessageSquare, MapPin, Bus, Plane, Globe, Star, Users, Clock, ArrowRight, CheckCircle, Shield, Award, Headphones } from 'lucide-react';
+import { Phone, MessageSquare, MapPin, Bus, Plane, Globe, Star, Shield, Award, CheckCircle, ArrowRight } from 'lucide-react';
 import './Home.css';
 import heroImg from '../assets/hero.png';
 import goaImg from '../assets/goa.png';
@@ -13,12 +13,9 @@ import { getWhatsAppLink, getCallLink, sendWhatsApp } from '../utils/contactHelp
 import { trackEvent, ANALYTICS_EVENTS } from '../utils/analytics';
 import updateMetaTags from '../utils/updateMetaTags';
 import { injectStructuredData, getTravelAgencySchema } from '../utils/seo';
+import { handleImageError } from '../utils/imageUtils';
 
 const Home = ({ onEnquiry }) => {
-  const handleImageError = (e) => {
-    e.target.src = 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=800'; 
-  };
-
   React.useEffect(() => {
     updateMetaTags({
       title: 'Partner\'s Tours & Travels | Best Travel Agency in Chalisgaon',
@@ -139,7 +136,9 @@ const Home = ({ onEnquiry }) => {
             </div>
           </div>
         </div>
-      </section>      {/* RedBus Integration CTA */}
+      </section>
+
+      {/* RedBus Integration CTA */}
       <section className="redbus-cta bg-white">
         <div className="container">
           <div className="redbus-banner ripple">
@@ -318,4 +317,3 @@ const TestimonialCard = ({ name, location, text }) => (
 );
 
 export default Home;
-

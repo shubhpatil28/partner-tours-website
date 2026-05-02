@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import { Camera, MapPin, ExternalLink } from 'lucide-react';
+import { MapPin, ExternalLink } from 'lucide-react';
 import './Gallery.css';
 import updateMetaTags from '../utils/updateMetaTags';
+import { handleImageError } from '../utils/imageUtils';
 import goaImg from '../assets/goa.png';
 import manaliImg from '../assets/manali.png';
 import kashmirImg from '../assets/kashmir.png';
@@ -42,10 +43,6 @@ const Gallery = () => {
 
     return () => observer.disconnect();
   }, []);
-
-  const handleImageError = (e) => {
-    e.target.src = 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&q=80&w=800'; // Nature fallback
-  };
 
   return (
     <div className="gallery-page">
@@ -91,4 +88,3 @@ const Gallery = () => {
 };
 
 export default Gallery;
-

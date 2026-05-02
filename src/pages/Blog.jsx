@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, User, ArrowRight, Search, Clock, Tag } from 'lucide-react';
+import { Calendar, ArrowRight, Search, Clock } from 'lucide-react';
 import './Blog.css';
 import updateMetaTags from '../utils/updateMetaTags';
+import { handleImageError } from '../utils/imageUtils';
 
 const blogPosts = [
   {
@@ -95,7 +96,12 @@ const Blog = () => {
             {blogPosts.map((post) => (
               <article key={post.id} className="blog-card ripple">
                 <div className="blog-card-img">
-                  <img src={post.image} alt={post.title} loading="lazy" />
+                  <img 
+                    src={post.image} 
+                    alt={post.title} 
+                    loading="lazy" 
+                    onError={handleImageError}
+                  />
                   <span className="blog-category-tag">{post.category}</span>
                 </div>
                 <div className="blog-card-content">
@@ -115,7 +121,6 @@ const Blog = () => {
         </div>
       </section>
 
-      {/* Newsletter Section for Leads */}
       <section className="blog-newsletter section-padding">
          <div className="container">
             <div className="newsletter-card glass-effect ripple">

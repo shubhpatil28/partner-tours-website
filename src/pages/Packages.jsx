@@ -12,6 +12,7 @@ import { getWhatsAppLink, sendWhatsApp } from '../utils/contactHelpers';
 import { trackEvent, ANALYTICS_EVENTS } from '../utils/analytics';
 import { injectStructuredData, getTourSchema } from '../utils/seo';
 import updateMetaTags from '../utils/updateMetaTags';
+import { handleImageError } from '../utils/imageUtils';
 
 const packagesData = [
   { 
@@ -78,7 +79,6 @@ const packagesData = [
   }
 ];
 
-
 const Packages = ({ onEnquiry }) => {
   const [activeCategory, setActiveCategory] = React.useState('All Deals');
   const [searchQuery, setSearchQuery] = React.useState('');
@@ -99,10 +99,6 @@ const Packages = ({ onEnquiry }) => {
     const timer = setTimeout(() => setIsLoading(false), 800);
     return () => clearTimeout(timer);
   }, []);
-
-  const handleImageError = (e) => {
-    e.target.src = 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=800';
-  };
 
   const handlePackageClick = (pkg) => {
     // Save to recently viewed
@@ -219,7 +215,7 @@ const Packages = ({ onEnquiry }) => {
                <div className="grid grid-4">
                   {recentlyViewed.map(pkg => (
                      <div key={`rv-${pkg.id}`} className="rv-card ripple" onClick={() => handlePackageClick(pkg)}>
-                        <img src={pkg.image} alt={`${pkg.title} - Best Tour Package from Chalisgaon`} />
+                        <img src={pkg.image} alt={`${pkg.title} - Best Tour Package from Chalisgaon`} onError={handleImageError} />
                         <div className="rv-info">
                            <h5>{pkg.title}</h5>
                            <span>{pkg.price}</span>
@@ -236,7 +232,7 @@ const Packages = ({ onEnquiry }) => {
             ) : (
               <>
                 {filteredPackages.slice(0, 2).map(pkg => (
-                  <PackageCard key={pkg.id} pkg={pkg} onEnquiry={onEnquiry} handlePackageClick={handlePackageClick} handleImageError={handleImageError} handleLeadCapture={handleLeadCapture} />
+                  <PackageCard key={pkg.id} pkg={pkg} onEnquiry={onEnquiry} handlePackageClick={handlePackageClick} handleLeadCapture={handleLeadCapture} />
                 ))}
 
                 <div className="ads-container grid-full mt-32 mb-32">
@@ -249,7 +245,7 @@ const Packages = ({ onEnquiry }) => {
                 </div>
 
                 {filteredPackages.slice(2, 4).map(pkg => (
-                  <PackageCard key={pkg.id} pkg={pkg} onEnquiry={onEnquiry} handlePackageClick={handlePackageClick} handleImageError={handleImageError} handleLeadCapture={handleLeadCapture} />
+                  <PackageCard key={pkg.id} pkg={pkg} onEnquiry={onEnquiry} handlePackageClick={handlePackageClick} handleLeadCapture={handleLeadCapture} />
                 ))}
 
                 <div className="ads-container grid-full mt-32 mb-32">
@@ -262,7 +258,7 @@ const Packages = ({ onEnquiry }) => {
                 </div>
 
                 {filteredPackages.slice(4).map(pkg => (
-                  <PackageCard key={pkg.id} pkg={pkg} onEnquiry={onEnquiry} handlePackageClick={handlePackageClick} handleImageError={handleImageError} handleLeadCapture={handleLeadCapture} />
+                  <PackageCard key={pkg.id} pkg={pkg} onEnquiry={onEnquiry} handlePackageClick={handlePackageClick} handleLeadCapture={handleLeadCapture} />
                 ))}
               </>
             )}
@@ -344,7 +340,7 @@ const Packages = ({ onEnquiry }) => {
   );
 };
 
-const PackageCard = ({ pkg, onEnquiry, handlePackageClick, handleImageError, handleLeadCapture }) => (
+const PackageCard = ({ pkg, onEnquiry, handlePackageClick, handleLeadCapture }) => (
   <div className="package-card fade-in-up" onClick={() => handlePackageClick(pkg)}>
     <div className="package-img">
       <img src={pkg.image} alt={`${pkg.title} Tour Package from Best Travel Agency in Chalisgaon`} loading="lazy" onError={handleImageError} />
@@ -398,4 +394,3 @@ const PackageCard = ({ pkg, onEnquiry, handlePackageClick, handleImageError, han
 );
 
 export default Packages;
-

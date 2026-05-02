@@ -1,5 +1,5 @@
 import React from 'react';
-import { Users, Briefcase, Settings, MessageSquare, Wind, Fuel, Map, CheckCircle, ShieldCheck, Zap } from 'lucide-react';
+import { Users, Briefcase, Settings, MessageSquare, Wind, Fuel, Map, CheckCircle, ShieldCheck, Zap, Phone, ExternalLink } from 'lucide-react';
 import './Rental.css';
 import kashmirImg from '../assets/kashmir.png';
 import manaliImg from '../assets/manali.png';
@@ -7,8 +7,8 @@ import heroImg from '../assets/hero.png';
 import { CONTACT_CONFIG } from '../config';
 import { getWhatsAppLink, getCallLink, sendWhatsApp } from '../utils/contactHelpers';
 import { trackEvent, ANALYTICS_EVENTS } from '../utils/analytics';
-import { Phone, ExternalLink } from 'lucide-react';
 import updateMetaTags from '../utils/updateMetaTags';
+import { handleImageError } from '../utils/imageUtils';
 
 const vehicles = [
   {
@@ -52,7 +52,6 @@ const vehicles = [
   }
 ];
 
-
 const Rental = () => {
   React.useEffect(() => {
     updateMetaTags({
@@ -61,10 +60,6 @@ const Rental = () => {
       keywords: 'Bus Rental Chalisgaon, Luxury Bus Jalgaon, Car Hire Chalisgaon, Innova Rental Chalisgaon',
     });
   }, []);
-
-  const handleImageError = (e) => {
-    e.target.src = 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=800'; // Car fallback
-  };
 
   return (
     <div className="rental-page">
@@ -155,7 +150,6 @@ const Rental = () => {
             ))}
           </div>
 
-          {/* RedBus Integration Section */}
           <div className="redbus-integration-card mt-32 mb-32 glass-effect ripple">
              <div className="redbus-content">
                 <div className="redbus-text">
@@ -174,7 +168,6 @@ const Rental = () => {
              </div>
           </div>
 
-          {/* AdSense Rental Placeholder */}
           <div className="ads-container mt-32 mb-32">
             <ins className="adsbygoogle"
                  style={{display:'block'}}
@@ -229,50 +222,10 @@ const Rental = () => {
                 </table>
              </div>
           </div>
-
-          <div className="rental-process section-padding mt-50">
-             <div className="section-title text-center">
-                <h2>Our <span>Rental Process</span></h2>
-                <p>Booking a vehicle in Chalisgaon has never been easier.</p>
-             </div>
-             <div className="process-steps mt-32">
-                <p>
-                  At <strong>Partner's Tours & Travels</strong>, we strive to make the rental experience as smooth as possible for the residents of Chalisgaon and nearby villages. To book a vehicle, simply select your desired car or bus from our fleet and contact us via WhatsApp or phone. We provide instant quotes based on your specific itinerary, whether it's a one-way drop to Aurangabad airport or a multi-day tour of Rajasthan.
-                </p>
-                <p>
-                  Once the booking is confirmed, you will receive the vehicle and driver details 12 hours prior to your journey. Our drivers are trained to reach your pick-up location at least 15 minutes before the scheduled time. We pride ourselves on punctuality and have a 99% on-time record for all departures from Chalisgaon.
-                </p>
-                <p>
-                  Payment is simple and transparent. You pay a small booking amount upfront to secure your dates, and the remaining balance can be settled directly with the driver or at our office during the trip. We accept cash, UPI, and bank transfers for your convenience.
-                </p>
-             </div>
-          </div>
-
-          <div className="rental-notes mt-50">
-            <div className="notes-grid">
-               <div className="note-card">
-                  <Map size={32}/>
-                  <h4>Outstation Trips</h4>
-                  <p>Minimum running of 250km per day is applicable for outstation duties from Chalisgaon.</p>
-               </div>
-               <div className="note-card">
-                  <Users size={32}/>
-                  <h4>Professional Drivers</h4>
-                  <p>All our drivers are background verified, polite, and have extensive experience on Maharashtra highways.</p>
-               </div>
-               <div className="note-card">
-                  <ShieldCheck size={32}/>
-                  <h4>Safety First</h4>
-                  <p>Our vehicles are equipped with first-aid kits and carry All-India Tourist permits for hassle-free travel.</p>
-               </div>
-            </div>
-          </div>
         </div>
       </section>
     </div>
   );
 };
 
-
 export default Rental;
-
