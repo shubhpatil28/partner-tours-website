@@ -399,6 +399,13 @@ main {
   grid-column: 1 / -1;
 }
 
+:root {
+  --sticky-height: 85px;
+  --z-sticky: 99999;
+  --z-menu: 99998;
+  --z-navbar: 100000;
+}
+
 /* --- MINIMALIST MOBILE STICKY CONTACT BAR --- */
 .sticky-contact-bar {
   display: none;
@@ -406,15 +413,17 @@ main {
   bottom: 0;
   left: 0;
   width: 100%;
-  z-index: 99999;
+  z-index: var(--z-sticky);
   background: rgba(15, 23, 42, 0.95);
   backdrop-filter: blur(8px);
-  padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom, 0px));
+  /* Modern Safe-Area & Compact Padding */
+  padding: 0.5rem 1rem calc(0.5rem + env(safe-area-inset-bottom, 0px));
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.3);
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.25rem;
+  height: auto;
 }
 
 .sticky-trust-text {
@@ -468,6 +477,13 @@ main {
   }
   
   body {
-    padding-bottom: 90px !important;
+    padding-bottom: calc(var(--sticky-height) + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  body.menu-open {
+    overflow: hidden !important;
+    height: 100vh !important;
+    position: fixed;
+    width: 100%;
   }
 }
