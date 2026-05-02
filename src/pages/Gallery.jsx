@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Camera, MapPin, ExternalLink } from 'lucide-react';
 import './Gallery.css';
+import { updateMetaTags } from '../utils/seo';
 import goaImg from '../assets/goa.png';
 import manaliImg from '../assets/manali.png';
 import kashmirImg from '../assets/kashmir.png';
@@ -22,10 +23,13 @@ const galleryImages = [
 
 const Gallery = () => {
   useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1
-    };
+    updateMetaTags({
+      title: 'Travel Gallery | Captured Moments in Chalisgaon',
+      description: 'Glimpses of beautiful destinations like Kashmir, Goa, and Dubai through the eyes of Partner\'s Tours & Travels travelers.',
+      image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&q=80&w=1000',
+    });
 
+    const observerOptions = { threshold: 0.1 };
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {

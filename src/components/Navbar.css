@@ -5,8 +5,9 @@
   z-index: 1000;
   transition: all 0.3s ease;
   padding: 1.5rem 0;
-  background: rgba(10, 20, 40, 0.95); /* ALWAYS DARK */
-  backdrop-filter: blur(10px);
+  background: rgba(15, 23, 42, 0.98); /* DEEPER DARK */
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .navbar.scrolled {
@@ -22,15 +23,17 @@
 
 .logo {
   color: #ffffff;
-  font-weight: 700;
-  font-size: 1.5rem;
+  font-weight: 800;
+  font-size: 1.75rem;
   margin: 0;
   font-family: 'Outfit', sans-serif;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  text-shadow: 0 4px 12px rgba(0,0,0,0.8);
+  letter-spacing: -0.02em;
 }
 
 .navbar.scrolled .logo {
   color: #ffffff;
+  font-size: 1.5rem;
 }
 
 .logo span {

@@ -50,6 +50,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 100px;
 }
 
 body {
@@ -59,7 +60,9 @@ body {
   overflow-x: hidden;
   background-color: var(--white);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   letter-spacing: -0.01em;
+  text-rendering: optimizeLegibility;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -260,6 +263,25 @@ img {
   border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
+.gst-badge {
+  background: linear-gradient(135deg, #0052cc 0%, #002266 100%) !important;
+  color: white !important;
+  border: none !important;
+}
+
+.badge-inline {
+  display: inline-block;
+  padding: 2px 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  font-size: 0.7rem;
+  margin-right: 8px;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
 /* Animations */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(20px); }
@@ -342,6 +364,34 @@ img {
 
 main {
   padding-top: 80px; /* Global space for fixed navbar */
+}
+
+/* AdSense Global Styles */
+.ads-container {
+  min-height: 100px;
+  background: var(--slate-50);
+  border: 1px dashed var(--slate-200);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.ads-container::before {
+  content: 'ADVERTISEMENT';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.6rem;
+  color: var(--slate-300);
+  letter-spacing: 0.2em;
+  font-weight: 700;
+}
+
+.grid-full {
+  grid-column: 1 / -1;
 }
 
 @media (max-width: 768px) {

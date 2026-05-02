@@ -4,7 +4,7 @@ export const CONTACT_CONFIG = {
   EMAIL: "partners.tours@gmail.com",
   ADDRESS: "Bhadgaon Road, Chalisgaon, Jalgaon, MH",
   SITE_URL: "https://partnertours.in",
-  DEFAULT_WA_MESSAGE: encodeURIComponent("Hi, I am interested in your travel services. Please share details.")
+  DEFAULT_WA_MESSAGE: "Hi I want tour details"
 };
 
 export const SITE_METADATA = {

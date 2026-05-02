@@ -197,24 +197,38 @@ const Contact = () => {
               <div className="benefit-card">
                  <div className="b-icon"><Zap size={20} /></div>
                  <div className="b-content">
-                    <h4>Direct Assistance</h4>
-                    <p>Priority support for all online bookings.</p>
+                    <h4>Priority Support</h4>
+                    <p>Chalisgaon's first 24/7 dedicated travel helpdesk.</p>
                  </div>
               </div>
 
               <div className="c-info-card-premium">
                 <div className="c-icon-circle"><MapPin size={22}/></div>
-                <div className="c-text-stack"><label>Office</label><p>{CONTACT_CONFIG.ADDRESS}</p></div>
+                <div className="c-text-stack"><label>Visit Our Office</label><p>{CONTACT_CONFIG.ADDRESS}</p></div>
               </div>
               
               <div className="c-info-card-premium">
                 <div className="c-icon-circle"><Phone size={22}/></div>
-                <div className="c-text-stack"><label>Call</label><p>{CONTACT_CONFIG.PHONE_NUMBER}</p></div>
+                <div className="c-text-stack"><label>Direct Call</label><p>{CONTACT_CONFIG.PHONE_NUMBER}</p></div>
               </div>
 
-               <div className="c-info-card-premium">
-                <div className="c-icon-circle"><MessageSquare size={22}/></div>
-                <div className="c-text-stack"><label>Status</label><p className="status-online"><span className="dot"></span> Agent Online</p></div>
+              <div className="c-info-card-premium">
+                <div className="c-icon-circle"><Mail size={22}/></div>
+                <div className="c-text-stack"><label>Email Us</label><p>{CONTACT_CONFIG.EMAIL}</p></div>
+              </div>
+
+              {/* Google Maps Embed */}
+              <div className="map-container-premium mt-24">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14944.372138927877!2d75.0000!3d20.4611!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd9595800000001%3A0x0!2sChalisgaon%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1714650000000!5m2!1sen!2sin" 
+                  width="100%" 
+                  height="250" 
+                  style={{ border: 0, borderRadius: 'var(--radius-lg)' }} 
+                  allowFullScreen="" 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Partner's Tours Chalisgaon Office Location"
+                ></iframe>
               </div>
             </div>
 
@@ -227,7 +241,7 @@ const Contact = () => {
                    {errorFallback && (
                       <div className="redirect-fallback-notice mt-20">
                          <a 
-                           href={`https://wa.me/${CONTACT_CONFIG.WHATSAPP_NUMBER}?text=Hi`} 
+                           href="https://wa.me/918421514348?text=Hi I want tour details" 
                            className="btn-whatsapp"
                            onClick={() => trackEvent('whatsapp_manual_click')}
                          >
@@ -284,7 +298,7 @@ const Contact = () => {
                         </button>
                         <div className="fallback-divider"><span>OR CALL</span></div>
                         <a 
-                          href={`tel:${CONTACT_CONFIG.WHATSAPP_NUMBER}`} 
+                          href={`tel:${CONTACT_CONFIG.PHONE_NUMBER}`} 
                           className="btn-call-fallback"
                           onClick={handleCallClick}
                         >

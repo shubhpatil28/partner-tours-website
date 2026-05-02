@@ -48,18 +48,44 @@ const vehicles = [
 
 
 const Rental = () => {
+  React.useEffect(() => {
+    updateMetaTags({
+      title: 'Luxury Bus & Car Rental Chalisgaon | Partner\'s Travels',
+      description: 'Rent premium AC luxury buses, Swift Dzire, and Innova Crysta in Chalisgaon. Best rates for outstation trips and local rentals. Verified drivers and 24/7 support.',
+      image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=800',
+    });
+  }, []);
+
   const handleImageError = (e) => {
     e.target.src = 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=800'; // Car fallback
   };
 
   return (
     <div className="rental-page">
-      <div className="page-header section-padding">
+      <div className="page-header section-padding parallax-hero">
         <div className="container">
-          <h1>Vehicle Rental Fleet</h1>
-          <p>Hire the best cars with professional drivers for local and outstation trips.</p>
+          <div className="badge badge-orange mb-16">Premium Fleet</div>
+          <h1>Chalisgaon Vehicle Rental</h1>
+          <p>Hire the most reliable cars and luxury buses with professional drivers for safe journeys.</p>
         </div>
       </div>
+
+      <section className="rental-intro section-padding">
+        <div className="container">
+          <div className="section-title">
+            <h2>Luxury Transport for <span>Every Occasion</span></h2>
+            <p>Providing top-tier rental services across the Jalgaon district for over a decade.</p>
+          </div>
+          <div className="intro-text">
+            <p>
+              Whether you are planning a family wedding in Chalisgaon, a corporate outing to Mumbai, or a group pilgrimage to Shirdi or Saputara, <strong>Partner's Tours & Travels</strong> offers the most diverse and well-maintained fleet of vehicles in the region. We understand that comfort and safety are paramount when traveling with loved ones, which is why every vehicle in our fleet undergoes regular mechanical checks and deep cleaning.
+            </p>
+            <p>
+              Our fleet includes fuel-efficient sedans like the <strong>Swift Dzire</strong> for small families, premium SUVs like the <strong>Innova Crysta</strong> for luxury travel, and spacious <strong>Tempo Travellers</strong> for larger groups. For even larger gatherings, we offer 32 to 50-seater luxury AC buses with modern amenities like push-back seats and high-quality sound systems.
+            </p>
+          </div>
+        </div>
+      </section>
 
       <section className="section-padding">
         <div className="container">
@@ -97,7 +123,7 @@ const Rental = () => {
                        <strong>{vehicle.priceDay}</strong>
                     </div>
                     <a 
-                      href={`https://wa.me/${CONTACT_CONFIG.WHATSAPP_NUMBER}?text=Hi, I want to book a ${vehicle.name} for rental. Please share availability.`} 
+                      href="https://wa.me/918421514348?text=Hi I want tour details" 
                       className="btn btn-whatsapp"
                       onClick={() => trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { vehicle: vehicle.name })}
                     >
@@ -107,6 +133,16 @@ const Rental = () => {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* AdSense Rental Placeholder */}
+          <div className="ads-container mt-32 mb-32">
+            <ins className="adsbygoogle"
+                 style={{display:'block'}}
+                 data-ad-client="ca-pub-4843301407118801"
+                 data-ad-slot="rental_bottom_slot"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
           </div>
 
           <div className="pricing-table-container mt-50">
@@ -155,22 +191,40 @@ const Rental = () => {
              </div>
           </div>
 
+          <div className="rental-process section-padding mt-50">
+             <div className="section-title text-center">
+                <h2>Our <span>Rental Process</span></h2>
+                <p>Booking a vehicle in Chalisgaon has never been easier.</p>
+             </div>
+             <div className="process-steps mt-32">
+                <p>
+                  At <strong>Partner's Tours & Travels</strong>, we strive to make the rental experience as smooth as possible for the residents of Chalisgaon and nearby villages. To book a vehicle, simply select your desired car or bus from our fleet and contact us via WhatsApp or phone. We provide instant quotes based on your specific itinerary, whether it's a one-way drop to Aurangabad airport or a multi-day tour of Rajasthan.
+                </p>
+                <p>
+                  Once the booking is confirmed, you will receive the vehicle and driver details 12 hours prior to your journey. Our drivers are trained to reach your pick-up location at least 15 minutes before the scheduled time. We pride ourselves on punctuality and have a 99% on-time record for all departures from Chalisgaon.
+                </p>
+                <p>
+                  Payment is simple and transparent. You pay a small booking amount upfront to secure your dates, and the remaining balance can be settled directly with the driver or at our office during the trip. We accept cash, UPI, and bank transfers for your convenience.
+                </p>
+             </div>
+          </div>
+
           <div className="rental-notes mt-50">
             <div className="notes-grid">
                <div className="note-card">
                   <Map size={32}/>
                   <h4>Outstation Trips</h4>
-                  <p>Minimum running of 250km per day is applicable for outstation duties.</p>
+                  <p>Minimum running of 250km per day is applicable for outstation duties from Chalisgaon.</p>
                </div>
                <div className="note-card">
                   <Users size={32}/>
                   <h4>Professional Drivers</h4>
-                  <p>All our drivers are background verified, polite, and know the routes well.</p>
+                  <p>All our drivers are background verified, polite, and have extensive experience on Maharashtra highways.</p>
                </div>
                <div className="note-card">
                   <ShieldCheck size={32}/>
-                  <h4>All-India Permit</h4>
-                  <p>Our vehicles carry All-India Tourist permits for hassle-free travel across states.</p>
+                  <h4>Safety First</h4>
+                  <p>Our vehicles are equipped with first-aid kits and carry All-India Tourist permits for hassle-free travel.</p>
                </div>
             </div>
           </div>

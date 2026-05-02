@@ -20,8 +20,7 @@ const packagesData = [
     price: "₹18,999", 
     category: "Paradise",
     badge: "Limited Offer",
-    badgeType: "offer",
-    urgency: "Only 3 slots left!"
+    badgeType: "offer"
   },
   { 
     id: 'manali-trip', 
@@ -31,8 +30,7 @@ const packagesData = [
     price: "₹12,499", 
     category: "Mountains",
     badge: "Best Seller",
-    badgeType: "bestseller",
-    urgency: "Selling Out Fast"
+    badgeType: "bestseller"
   },
   { 
     id: 'goa-trip', 
@@ -73,26 +71,6 @@ const packagesData = [
     category: "Nature",
     badge: "Romantic",
     badgeType: "luxury"
-  },
-  { 
-    id: 'rajasthan-trip', 
-    image: manaliImg, 
-    title: "Royal Rajasthan Heritage", 
-    duration: "7 Days / 6 Nights", 
-    price: "₹22,000", 
-    category: "Heritage",
-    badge: "Cultural",
-    badgeType: "budget"
-  },
-  { 
-    id: 'shimla-trip', 
-    image: kashmirImg, 
-    title: "Shimla Kullu Manali Combo", 
-    duration: "6 Days / 5 Nights", 
-    price: "₹14,999", 
-    category: "Mountains",
-    badge: "Family Pack",
-    badgeType: "budget"
   }
 ];
 
@@ -105,8 +83,8 @@ const Packages = ({ onEnquiry }) => {
 
   React.useEffect(() => {
     updateMetaTags({
-      title: 'Tour Packages',
-      description: 'Explore our premium tour packages. Best prices guaranteed.',
+      title: 'Cheap Tour Packages | Best Travel Agency in Chalisgaon',
+      description: 'Explore verified domestic and international tour packages from Chalisgaon. Kashmir, Goa, Dubai, and Thailand tours at guaranteed lowest prices. Book your dream vacation today.',
       image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=800',
     });
 
@@ -252,63 +230,25 @@ const Packages = ({ onEnquiry }) => {
             {isLoading ? (
               Array(6).fill(0).map((_, i) => <SkeletonCard key={i} />)
             ) : (
-              filteredPackages.map(pkg => (
-                <div key={pkg.id} className="package-card fade-in-up" onClick={() => handlePackageClick(pkg)}>
-                  <div className="package-img">
-                    <img src={pkg.image} alt={`${pkg.title} Tour Package`} loading="lazy" onError={handleImageError} />
-                    <div className="card-overlay"></div>
-                    <span className="price-tag">
-                      <small>Starting from</small>
-                      {pkg.price}
-                    </span>
-                    <div className="card-badges">
-                      {pkg.badge && <span className={`badge badge-${pkg.badgeType} floating-badge`}>{pkg.badge}</span>}
-                      {Math.random() > 0.6 && <span className="badge badge-bestseller floating-badge">Best Seller</span>}
-                      <span className="rating-badge">
-                         <Star size={12} fill="currentColor" /> 4.8
-                      </span>
-                    </div>
-                    <div className="urgency-badge">
-                       <Zap size={10} /> 12 people viewed this today
-                    </div>
-                  </div>
-                  <div className="package-info">
-                    <div className="category-label">{pkg.category}</div>
-                    <h3>{pkg.title}</h3>
-                    <div className="package-meta">
-                      <span><Clock size={16}/> {pkg.duration}</span>
-                      <span><MapPin size={16}/> {pkg.category === 'International' ? 'Abroad' : 'India'}</span>
-                    </div>
-                    <div className="urgency-microcopy">
-                       Only 3 slots left for next week!
-                    </div>
-                    <div className="card-actions">
-                      <Link 
-                        to={`/package/${pkg.id}`} 
-                        className="btn btn-outline ripple"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handlePackageClick(pkg);
-                        }}
-                      >
-                        Details
-                      </Link>
-                      <a 
-                        href={`https://wa.me/${CONTACT_CONFIG.WHATSAPP_NUMBER}?text=${CONTACT_CONFIG.DEFAULT_WA_MESSAGE}`}
-                        className="btn btn-whatsapp ripple"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleLeadCapture(pkg);
-                        }}
-                      >
-                        Book on WhatsApp
-                      </a>
-                    </div>
-                  </div>
+              <>
+                {filteredPackages.slice(0, 3).map(pkg => (
+                  <PackageCard key={pkg.id} pkg={pkg} onEnquiry={onEnquiry} handlePackageClick={handlePackageClick} handleImageError={handleImageError} handleLeadCapture={handleLeadCapture} />
+                ))}
+
+                {/* AdSense Mid-Section Placeholder */}
+                <div className="ads-container grid-full mt-32 mb-32">
+                  <ins className="adsbygoogle"
+                       style={{display:'block'}}
+                       data-ad-client="ca-pub-4843301407118801"
+                       data-ad-slot="packages_mid_slot"
+                       data-ad-format="auto"
+                       data-full-width-responsive="true"></ins>
                 </div>
-              ))
+
+                {filteredPackages.slice(3).map(pkg => (
+                  <PackageCard key={pkg.id} pkg={pkg} onEnquiry={onEnquiry} handlePackageClick={handlePackageClick} handleImageError={handleImageError} handleLeadCapture={handleLeadCapture} />
+                ))}
+              </>
             )}
           </div>
           {!isLoading && filteredPackages.length === 0 && (
@@ -331,40 +271,40 @@ const Packages = ({ onEnquiry }) => {
         <div className="container">
           <div className="section-title">
             <h2>What Our <span>Travelers</span> Say</h2>
-            <p>1000+ happy explorers across India.</p>
+            <p>1000+ happy explorers from Chalisgaon & beyond.</p>
           </div>
           <div className="testimonial-slider-container">
              <div className="testimonial-track">
                 <div className="testimonial-card premium-card">
                   <div className="stars">⭐⭐⭐⭐⭐</div>
-                  <p>"The Kashmir trip was flawlessly organized. Everything from houseboats to transport was premium."</p>
+                  <p>"The Kashmir trip was flawlessly organized. Everything from houseboats to transport was premium. Best travel agency in Jalgaon district!"</p>
                   <div className="user">
                     <div className="user-avatar">R</div>
                     <div className="user-info">
                       <strong>Rahul Sharma</strong>
-                      <span>Mumbai, India</span>
+                      <span>Chalisgaon, India</span>
                     </div>
                   </div>
                 </div>
                 <div className="testimonial-card premium-card">
                   <div className="stars">⭐⭐⭐⭐⭐</div>
-                  <p>"Best prices I found online. The team was available 24/7 for my Dubai trip. Truly high-end."</p>
+                  <p>"Best prices I found online. The team at Partner's Tours was available 24/7 for my Dubai trip. Truly professional service."</p>
                   <div className="user">
                     <div className="user-avatar">A</div>
                     <div className="user-info">
                       <strong>Anjali Gupta</strong>
-                      <span>Delhi, India</span>
+                      <span>Jalgaon, India</span>
                     </div>
                   </div>
                 </div>
                 <div className="testimonial-card premium-card">
                   <div className="stars">⭐⭐⭐⭐⭐</div>
-                  <p>"Seamless booking through WhatsApp. Loved the itinerary for Manali. Professional service."</p>
+                  <p>"Seamless booking through WhatsApp. Loved the itinerary for Manali. Very helpful staff at the Bhadgaon Road office."</p>
                   <div className="user">
                     <div className="user-avatar">V</div>
                     <div className="user-info">
                       <strong>Vikram Singh</strong>
-                      <span>Bangalore, India</span>
+                      <span>Pachora, India</span>
                     </div>
                   </div>
                 </div>
@@ -387,6 +327,60 @@ const Packages = ({ onEnquiry }) => {
     </div>
   );
 };
+
+const PackageCard = ({ pkg, onEnquiry, handlePackageClick, handleImageError, handleLeadCapture }) => (
+  <div className="package-card fade-in-up" onClick={() => handlePackageClick(pkg)}>
+    <div className="package-img">
+      <img src={pkg.image} alt={`${pkg.title} Tour Package`} loading="lazy" onError={handleImageError} />
+      <div className="card-overlay"></div>
+      <span className="price-tag">
+        <small>Starting from</small>
+        {pkg.price}
+      </span>
+      <div className="card-badges">
+        {pkg.badge && <span className={`badge badge-${pkg.badgeType} floating-badge`}>{pkg.badge}</span>}
+        <span className="rating-badge">
+           <Star size={12} fill="currentColor" /> 4.8
+        </span>
+      </div>
+      <div className="urgency-badge">
+         <Zap size={10} /> 12 people viewed this today
+      </div>
+    </div>
+    <div className="package-info">
+      <div className="category-label">{pkg.category}</div>
+      <h3>{pkg.title}</h3>
+      <div className="package-meta">
+        <span><Clock size={16}/> {pkg.duration}</span>
+        <span><MapPin size={16}/> {pkg.category === 'International' ? 'Abroad' : 'India'}</span>
+      </div>
+      <div className="card-actions">
+        <Link 
+          to={`/package/${pkg.id}`} 
+          className="btn btn-outline ripple"
+          onClick={(e) => {
+            e.stopPropagation();
+            handlePackageClick(pkg);
+          }}
+        >
+          Details
+        </Link>
+        <a 
+          href="https://wa.me/918421514348?text=Hi I want tour details"
+          className="btn btn-whatsapp ripple"
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => {
+            e.stopPropagation();
+            handleLeadCapture(pkg);
+          }}
+        >
+          Book Now
+        </a>
+      </div>
+    </div>
+  </div>
+);
 
 export default Packages;
 
