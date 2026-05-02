@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Camera, Globe, Globe2, Send, Clock } from 'lucide-react';
 import './Footer.css';
 import { CONTACT_CONFIG } from '../config';
+import { getWhatsAppLink, getCallLink } from '../utils/contactHelpers';
 import { trackEvent, ANALYTICS_EVENTS } from '../utils/analytics';
 
 const Footer = () => {
@@ -46,16 +47,16 @@ const Footer = () => {
             <h4>Contact Info</h4>
             <ul>
               <li>
-                <a href={`tel:${CONTACT_CONFIG?.WHATSAPP_NUMBER}`} className="footer-contact-link">
-                  <Phone size={18}/> <span>{CONTACT_CONFIG?.PHONE_NUMBER}</span>
+                <a href={getCallLink()} className="footer-contact-link">
+                  <Phone size={18}/> <span>{CONTACT_CONFIG.DISPLAY_PHONE}</span>
                 </a>
               </li>
               <li>
-                <a href={`https://wa.me/${CONTACT_CONFIG?.WHATSAPP_NUMBER}?text=${CONTACT_CONFIG?.DEFAULT_WA_MESSAGE}`} className="footer-contact-link" style={{color: 'var(--accent)'}}>
+                <a href={getWhatsAppLink()} className="footer-contact-link" style={{color: 'var(--accent)'}}>
                   <Globe2 size={18}/> <span>Book on WhatsApp</span>
                 </a>
               </li>
-              <li><MapPin size={18}/> <span>{CONTACT_CONFIG?.ADDRESS}</span></li>
+              <li><MapPin size={18}/> <span>{CONTACT_CONFIG.ADDRESS}</span></li>
             </ul>
           </div>
         </div>

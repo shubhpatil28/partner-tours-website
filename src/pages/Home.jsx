@@ -9,18 +9,31 @@ import kashmirImg from '../assets/kashmir.png';
 import dubaiImg from '../assets/dubai.png';
 import thailandImg from '../assets/thailand.png';
 import { CONTACT_CONFIG } from '../config';
+import { getWhatsAppLink, getCallLink } from '../utils/contactHelpers';
 import { trackEvent, ANALYTICS_EVENTS } from '../utils/analytics';
+import updateMetaTags from '../utils/updateMetaTags';
+import { injectStructuredData, getTravelAgencySchema } from '../utils/seo';
 
 const Home = ({ onEnquiry }) => {
   const handleImageError = (e) => {
     e.target.src = 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=800'; 
   };
 
+  React.useEffect(() => {
+    updateMetaTags({
+      title: 'Partner\'s Tours & Travels | Best Travel Agency in Chalisgaon',
+      description: 'Partner\'s Tours & Travels is the most trusted travel agency in Chalisgaon. We offer premium holiday packages, luxury bus rentals, and flight bookings across Jalgaon district.',
+      keywords: 'Travel Agency Chalisgaon, Best Tour Operator Jalgaon, Bus Rental Chalisgaon, Flight Booking Chalisgaon, Partner Tours',
+    });
+
+    injectStructuredData(getTravelAgencySchema(CONTACT_CONFIG));
+  }, []);
+
   return (
     <div className="home-page">
       {/* Hero Section with Parallax Effect */}
       <section className="hero parallax-hero">
-        <img src={heroImg} alt="Partner's Tours & Travels Chalisgaon" className="hero-bg" loading="lazy" onError={handleImageError} />
+        <img src={heroImg} alt="Partner's Tours & Travels - Leading Travel Agency in Chalisgaon" className="hero-bg" loading="lazy" onError={handleImageError} />
         <div className="hero-overlay"></div>
         <div className="container hero-content fade-in-up">
           <div className="badge badge-orange ripple mb-16">1000+ Happy Customers • Best Price • 24/7 Support</div>
@@ -30,14 +43,14 @@ const Home = ({ onEnquiry }) => {
           </p>
           <div className="hero-btns">
             <a 
-              href={`tel:${CONTACT_CONFIG?.PHONE_NUMBER}`} 
+              href={getCallLink()} 
               className="btn btn-primary btn-lg ripple"
               onClick={() => trackEvent(ANALYTICS_EVENTS.CALL_CLICK)}
             >
               <Phone size={20}/> Call Now
             </a>
             <a 
-              href="https://wa.me/918421514348?text=Hi I want tour details" 
+              href={getWhatsAppLink()} 
               className="btn btn-whatsapp btn-lg ripple"
               onClick={() => trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { location: 'hero' })}
             >
@@ -102,7 +115,7 @@ const Home = ({ onEnquiry }) => {
                 <li><CheckCircle size={14}/> 24/7 Cancellation Support</li>
               </ul>
               <a 
-                href={`https://wa.me/${CONTACT_CONFIG?.WHATSAPP_NUMBER}?text=Hi, I want to check flight fares.`} 
+                href={getWhatsAppLink("Hi, I want to check flight fares.")} 
                 className="s-link"
                 onClick={() => trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { type: 'flights' })}
               >
@@ -151,7 +164,7 @@ const Home = ({ onEnquiry }) => {
               </div>
             </div>
             <div className="city-img-container">
-               <img src={dubaiImg} alt="Partner's Tours & Travels Office Location Chalisgaon" className="rounded-img shadow-lg" loading="lazy" onError={handleImageError} />
+               <img src={dubaiImg} alt="Partner's Tours & Travels - Best Tour Operator in Jalgaon District" className="rounded-img shadow-lg" loading="lazy" onError={handleImageError} />
             </div>
           </div>
         </div>
@@ -233,7 +246,7 @@ const Home = ({ onEnquiry }) => {
                 <p>Join our WhatsApp channel for exclusive deals & destination updates.</p>
               </div>
               <a
-                href={`https://wa.me/${CONTACT_CONFIG?.WHATSAPP_NUMBER}?text=Hi, I want to receive latest tour offers on WhatsApp.`}
+                href={getWhatsAppLink("Hi, I want to receive latest tour offers on WhatsApp.")}
                 className="btn btn-whatsapp btn-lg ripple"
                 target="_blank"
                 rel="noreferrer"
@@ -251,7 +264,7 @@ const Home = ({ onEnquiry }) => {
 
 const PackageSummaryCard = ({ id, image, title, dur, price, onEnquiry, handleImageError }) => (
   <div className="p-sum-card ripple" onClick={() => onEnquiry(title)}>
-    <div className="p-img"><img src={image} alt={`${title} Tour Package`} loading="lazy" onError={handleImageError} /></div>
+    <div className="p-img"><img src={image} alt={`${title} Tour Package from Chalisgaon Travel Agency`} loading="lazy" onError={handleImageError} /></div>
     <div className="p-content">
       <div className="p-meta"><span>{dur}</span> <span>Starts from {price}</span></div>
       <h3 className="mb-16">{title}</h3>

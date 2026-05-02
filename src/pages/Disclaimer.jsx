@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Legal.css';
+import updateMetaTags from '../utils/updateMetaTags';
 
 const Disclaimer = () => {
+  useEffect(() => {
+    updateMetaTags({
+      title: 'Disclaimer | Partner\'s Tours & Travels',
+      description: 'Travel disclaimer and information for partnertours.in users.',
+    });
+  }, []);
   return (
     <div className="legal-page">
       <section className="legal-hero">
@@ -16,7 +23,7 @@ const Disclaimer = () => {
           <div className="legal-text-wrapper">
             <h2>General Information</h2>
             <p>
-              The information contained in this website (partnertours.in) is for general information purposes only. The information is provided by <strong>Partner's Tours & Travels</strong>, and while we endeavour to keep the information up to date and correct, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability or availability with respect to the website or the information, products, services, or related graphics contained on the website for any purpose. Any reliance you place on such information is therefore strictly at your own risk.
+              The information contained in this website (partner-tour.site) is for general information purposes only. The information is provided by <strong>Partner's Tours & Travels</strong>, and while we endeavour to keep the information up to date and correct, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability or availability with respect to the website or the information, products, services, or related graphics contained on the website for any purpose. Any reliance you place on such information is therefore strictly at your own risk.
             </p>
 
             <h2>Professional Travel Advice</h2>

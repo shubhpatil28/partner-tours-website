@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Camera, MapPin, ExternalLink } from 'lucide-react';
 import './Gallery.css';
-import { updateMetaTags } from '../utils/seo';
+import updateMetaTags from '../utils/updateMetaTags';
 import goaImg from '../assets/goa.png';
 import manaliImg from '../assets/manali.png';
 import kashmirImg from '../assets/kashmir.png';
@@ -24,9 +24,9 @@ const galleryImages = [
 const Gallery = () => {
   useEffect(() => {
     updateMetaTags({
-      title: 'Travel Gallery | Captured Moments in Chalisgaon',
-      description: 'Glimpses of beautiful destinations like Kashmir, Goa, and Dubai through the eyes of Partner\'s Tours & Travels travelers.',
-      image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&q=80&w=1000',
+      title: 'Travel Gallery | Best Travel Agency in Chalisgaon',
+      description: 'Explore the travel moments captured by Partner\'s Tours & Travels. Real photos of our tours from Chalisgaon to Kashmir, Goa, Dubai, and more.',
+      keywords: 'Chalisgaon Travel Photos, Partner Tours Gallery, Jalgaon Tour Agency Images',
     });
 
     const observerOptions = { threshold: 0.1 };

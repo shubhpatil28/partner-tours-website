@@ -5,7 +5,9 @@ import kashmirImg from '../assets/kashmir.png';
 import manaliImg from '../assets/manali.png';
 import heroImg from '../assets/hero.png';
 import { CONTACT_CONFIG } from '../config';
+import { getWhatsAppLink } from '../utils/contactHelpers';
 import { trackEvent, ANALYTICS_EVENTS } from '../utils/analytics';
+import updateMetaTags from '../utils/updateMetaTags';
 
 const vehicles = [
   {
@@ -51,8 +53,8 @@ const Rental = () => {
   React.useEffect(() => {
     updateMetaTags({
       title: 'Luxury Bus & Car Rental Chalisgaon | Partner\'s Travels',
-      description: 'Rent premium AC luxury buses, Swift Dzire, and Innova Crysta in Chalisgaon. Best rates for outstation trips and local rentals. Verified drivers and 24/7 support.',
-      image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=800',
+      description: 'Rent premium AC luxury buses, Swift Dzire, and Innova Crysta in Chalisgaon. Best rates for outstation trips from Jalgaon district. Verified drivers and 24/7 support.',
+      keywords: 'Bus Rental Chalisgaon, Luxury Bus Jalgaon, Car Hire Chalisgaon, Innova Rental Chalisgaon',
     });
   }, []);
 
@@ -123,7 +125,7 @@ const Rental = () => {
                        <strong>{vehicle.priceDay}</strong>
                     </div>
                     <a 
-                      href="https://wa.me/918421514348?text=Hi I want tour details" 
+                      href={getWhatsAppLink(`Hi, I'm interested in renting the ${vehicle.name} (${vehicle.type}). Please share availability and final quote.`)} 
                       className="btn btn-whatsapp"
                       onClick={() => trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { vehicle: vehicle.name })}
                     >

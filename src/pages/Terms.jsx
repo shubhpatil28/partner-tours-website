@@ -1,8 +1,15 @@
 import React from 'react';
 import './Legal.css';
 import { CONTACT_CONFIG } from '../config';
+import updateMetaTags from '../utils/updateMetaTags';
 
 const Terms = () => {
+  React.useEffect(() => {
+    updateMetaTags({
+      title: 'Terms & Conditions | Partner\'s Tours & Travels',
+      description: 'Read the terms and conditions for booking tours and rentals with Partner\'s Tours & Travels.',
+    });
+  }, []);
   return (
     <div className="legal-page">
       <section className="legal-hero">
@@ -17,7 +24,7 @@ const Terms = () => {
           <div className="legal-text-wrapper">
             <h2>1. Acceptance of Terms</h2>
             <p>
-              By accessing and using the website of <strong>Partner's Tours & Travels</strong> (partnertours.in), you accept and agree to be bound by the terms and provisions of this agreement. In addition, when using this website's particular services, you shall be subject to any posted guidelines or rules applicable to such services. Any participation in this service will constitute acceptance of this agreement.
+              By accessing and using the website of <strong>Partner's Tours & Travels</strong> (partner-tour.site), you accept and agree to be bound by the terms and provisions of this agreement. In addition, when using this website's particular services, you shall be subject to any posted guidelines or rules applicable to such services. Any participation in this service will constitute acceptance of this agreement.
             </p>
 
             <h2>2. Provision of Services</h2>
@@ -60,7 +67,7 @@ const Terms = () => {
             </p>
 
             <h2>9. Contact Us</h2>
-            <p>If you have any questions about these Terms, please contact us at our Chalisgaon office or via email at {CONTACT_CONFIG?.EMAIL}.</p>
+            <p>If you have any questions about these Terms, please contact us at our Chalisgaon office or via email at {CONTACT_CONFIG.EMAIL}.</p>
           </div>
         </div>
       </section>

@@ -2,14 +2,14 @@ import React, { useEffect } from 'react';
 import './About.css';
 import { Shield, Award, Users, MapPin, Clock, Phone, Mail } from 'lucide-react';
 import { CONTACT_CONFIG } from '../config';
-import { updateMetaTags } from '../utils/seo';
+import updateMetaTags from '../utils/updateMetaTags';
 
 const About = () => {
   useEffect(() => {
     updateMetaTags({
-      title: 'About Us | Best Travel Agency in Jalgaon District',
-      description: 'Partner\'s Tours & Travels - A trusted travel agency in Chalisgaon since 2015. We specialize in luxury bus rentals, flight bookings, and tour packages.',
-      image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&q=80&w=1000',
+      title: 'About Us | Best Travel Agency in Chalisgaon & Jalgaon',
+      description: 'Partner\'s Tours & Travels is a premier travel agency in Chalisgaon since 2015. We specialize in luxury bus rentals, international holiday packages, and instant flight bookings with 100% customer satisfaction.',
+      keywords: 'Chalisgaon Travel Agency, Best Tour Operator Maharashtra, Partner Tours History',
     });
   }, []);
   return (
@@ -70,7 +70,16 @@ const About = () => {
             <div className="full-text-section mt-50">
               <h3>Comprehensive Travel Management</h3>
               <p>From the moment you walk into our office on Bhadgaon Road to the moment you return from your trip, we handle everything. Our services include luxury bus rentals for weddings and events, domestic and international flight bookings with instant E-ticket generation, and highly customized tour packages for destinations like Goa, Kashmir, Dubai, and Thailand.</p>
-              <p>We take pride in our "Best Price Guarantee." If you find a verified lower price for the same service in the Jalgaon district, we will match it. Our 24/7 support means that even if you are thousands of miles away in a different time zone, a friendly voice from Partner's Tours & Travels is just a call or WhatsApp message away.</p>
+              
+              <h3>Expertise in Local & International Logistics</h3>
+              <p>Our specialization lies in managing complex travel logistics with ease. For domestic travelers from Chalisgaon, we provide seamless connectivity to major transit hubs like Pune, Mumbai, and Indore through our verified network of luxury transport providers. Whether it is a pilgrimage to the holy sites of Shirdi and Jyotirlingas or a corporate retreat to the hill stations of Lonavala and Mahabaleshwar, our planning ensures zero downtime.</p>
+              
+              <p>On the international front, Partner's Tours & Travels has established strong tie-ups with leading Destination Management Companies (DMCs) across the globe. This allows us to provide "On-Ground Support" in countries like the UAE, Thailand, Singapore, and Bali. We assist with visa documentation, currency exchange guidance, and international roaming setups so that your focus remains solely on creating memories.</p>
+
+              <h3>A Culture of Continuous Improvement</h3>
+              <p>We take pride in our "Best Price Guarantee." If you find a verified lower price for the same service in the Jalgaon district, we will match it. But more than the price, we compete on quality. We constantly collect feedback from our travelers to refine our itineraries, upgrade our transport fleet, and vet our hotel partners. Our 24/7 support means that even if you are thousands of miles away in a different time zone, a friendly voice from Partner's Tours & Travels is just a call or WhatsApp message away.</p>
+              
+              <p>By choosing us, you are supporting a local Chalisgaon business that values your trust above all else. We invite you to experience the difference of traveling with a partner who truly cares about your journey.</p>
             </div>
           </div>
         </div>
@@ -107,8 +116,8 @@ const About = () => {
           <h2>Visit Our Chalisgaon Office</h2>
           <div className="location-info mt-32">
             <p><MapPin className="inline-icon" /> Bhadgaon Road, Near Station, Chalisgaon, Jalgaon, Maharashtra - 424101</p>
-            <p><Phone className="inline-icon" /> {CONTACT_CONFIG?.PHONE_NUMBER}</p>
-            <p>Email: {CONTACT_CONFIG?.EMAIL}</p>
+            <p><Phone className="inline-icon" /> {CONTACT_CONFIG.DISPLAY_PHONE}</p>
+            <p>Email: {CONTACT_CONFIG.EMAIL}</p>
           </div>
         </div>
       </section>

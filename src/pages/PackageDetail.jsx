@@ -8,7 +8,10 @@ import kashmirImg from '../assets/kashmir.png';
 import dubaiImg from '../assets/dubai.png';
 import thailandImg from '../assets/thailand.png';
 import { CONTACT_CONFIG } from '../config';
+import { getWhatsAppLink, getCallLink } from '../utils/contactHelpers';
 import { trackEvent, ANALYTICS_EVENTS } from '../utils/analytics';
+import updateMetaTags from '../utils/updateMetaTags';
+import { injectStructuredData, getTourSchema } from '../utils/seo';
 
 const packagesData = {
   'kashmir-trip': {
@@ -122,9 +125,10 @@ const PackageDetail = () => {
     window.scrollTo(0, 0);
     updateMetaTags({
       title: `${pkg.title} | ${pkg.duration} Tour Package`,
-      description: `Book the ${pkg.title} from Chalisgaon. ${pkg.duration} includes ${pkg.inclusions.slice(0, 2).join(', ')}. Best rates guaranteed.`,
+      description: `Book the ${pkg.title} from Chalisgaon. ${pkg.duration} includes ${pkg.inclusions.slice(0, 2).join(', ')}. Best rates guaranteed in Jalgaon district.`,
       image: pkg.image,
     });
+    injectStructuredData(getTourSchema(pkg));
     trackEvent(ANALYTICS_EVENTS.PACKAGE_VIEW, { package_id: id, title: pkg.title });
   }, [id, pkg.title, pkg.image, pkg.duration, pkg.inclusions]);
 
@@ -132,7 +136,7 @@ const PackageDetail = () => {
     e.target.src = 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=800';
   };
 
-  const whatsappLink = "https://wa.me/918421514348?text=Hi I want tour details";
+  const whatsappLink = getWhatsAppLink(`Hi, I'm interested in the ${pkg.title} package. Please share details.`);
 
   return (
     <div className="package-detail-page">
@@ -215,13 +219,13 @@ const PackageDetail = () => {
               </a>
               <div className="sidebar-support">
                  <p>Have Questions? Talk to our expert.</p>
-                 <a 
-                   href={`tel:${CONTACT_CONFIG?.PHONE_NUMBER}`} 
-                   className="phone-cta"
-                   onClick={() => trackEvent(ANALYTICS_EVENTS.CALL_CLICK)}
-                 >
-                   {CONTACT_CONFIG?.PHONE_NUMBER}
-                 </a>
+                  <a 
+                    href={getCallLink()} 
+                    className="phone-cta"
+                    onClick={() => trackEvent(ANALYTICS_EVENTS.CALL_CLICK)}
+                  >
+                    {CONTACT_CONFIG.DISPLAY_PHONE}
+                  </a>
               </div>
             </div>
 

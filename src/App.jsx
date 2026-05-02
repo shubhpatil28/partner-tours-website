@@ -7,6 +7,7 @@ import EnquiryBar from './components/EnquiryBar';
 import ErrorBoundary from './components/ErrorBoundary';
 import { Phone, MessageSquare } from 'lucide-react';
 import { CONTACT_CONFIG } from './config';
+import { getWhatsAppLink, getCallLink } from './utils/contactHelpers';
 import { trackEvent, ANALYTICS_EVENTS } from './utils/analytics';
 
 // Lazy loading components for performance
@@ -71,14 +72,14 @@ function App() {
           <div className="mobile-cta-shell">
             <div className="mobile-sticky-bar">
               <a 
-                href={`tel:${CONTACT_CONFIG?.WHATSAPP_NUMBER}`} 
+                href={getCallLink()} 
                 className="m-cta-btn m-call ripple"
                 onClick={() => trackEvent(ANALYTICS_EVENTS.CALL_CLICK, { location: 'sticky_bar' })}
               >
                 <Phone size={20} /> Call Now
               </a>
               <a 
-                href={`https://wa.me/${CONTACT_CONFIG?.WHATSAPP_NUMBER}?text=Hi, I want to book a travel service. Please share details.`} 
+                href={getWhatsAppLink("Hi, I want to book a travel service. Please share details.")} 
                 className="m-cta-btn m-whatsapp ripple"
                 onClick={() => trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { location: 'sticky_bar' })}
               >

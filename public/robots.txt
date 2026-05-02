@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://partnertours.in/sitemap.xml
+Sitemap: https://partner-tour.site/sitemap.xml

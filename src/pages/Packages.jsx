@@ -8,8 +8,10 @@ import kashmirImg from '../assets/kashmir.png';
 import dubaiImg from '../assets/dubai.png';
 import thailandImg from '../assets/thailand.png';
 import { CONTACT_CONFIG } from '../config';
+import { getWhatsAppLink } from '../utils/contactHelpers';
 import { trackEvent, ANALYTICS_EVENTS } from '../utils/analytics';
-import { updateMetaTags, injectStructuredData, getTourSchema } from '../utils/seo';
+import { injectStructuredData, getTourSchema } from '../utils/seo';
+import updateMetaTags from '../utils/updateMetaTags';
 
 const packagesData = [
   { 
@@ -214,13 +216,13 @@ const Packages = ({ onEnquiry }) => {
                <h4 className="section-subtitle">Pick up where you left off</h4>
                <div className="grid grid-4">
                   {recentlyViewed.map(pkg => (
-                    <div key={`rv-${pkg.id}`} className="rv-card ripple" onClick={() => handlePackageClick(pkg)}>
-                       <img src={pkg.image} alt={pkg.title} />
-                       <div className="rv-info">
-                          <h5>{pkg.title}</h5>
-                          <span>{pkg.price}</span>
-                       </div>
-                    </div>
+                     <div key={`rv-${pkg.id}`} className="rv-card ripple" onClick={() => handlePackageClick(pkg)}>
+                        <img src={pkg.image} alt={`${pkg.title} - Best Tour Package from Chalisgaon`} />
+                        <div className="rv-info">
+                           <h5>{pkg.title}</h5>
+                           <span>{pkg.price}</span>
+                        </div>
+                     </div>
                   ))}
                </div>
             </div>
@@ -231,21 +233,33 @@ const Packages = ({ onEnquiry }) => {
               Array(6).fill(0).map((_, i) => <SkeletonCard key={i} />)
             ) : (
               <>
-                {filteredPackages.slice(0, 3).map(pkg => (
+                {filteredPackages.slice(0, 2).map(pkg => (
                   <PackageCard key={pkg.id} pkg={pkg} onEnquiry={onEnquiry} handlePackageClick={handlePackageClick} handleImageError={handleImageError} handleLeadCapture={handleLeadCapture} />
                 ))}
 
-                {/* AdSense Mid-Section Placeholder */}
                 <div className="ads-container grid-full mt-32 mb-32">
                   <ins className="adsbygoogle"
                        style={{display:'block'}}
                        data-ad-client="ca-pub-4843301407118801"
-                       data-ad-slot="packages_mid_slot"
+                       data-ad-slot="packages_slot_1"
                        data-ad-format="auto"
                        data-full-width-responsive="true"></ins>
                 </div>
 
-                {filteredPackages.slice(3).map(pkg => (
+                {filteredPackages.slice(2, 4).map(pkg => (
+                  <PackageCard key={pkg.id} pkg={pkg} onEnquiry={onEnquiry} handlePackageClick={handlePackageClick} handleImageError={handleImageError} handleLeadCapture={handleLeadCapture} />
+                ))}
+
+                <div className="ads-container grid-full mt-32 mb-32">
+                  <ins className="adsbygoogle"
+                       style={{display:'block'}}
+                       data-ad-client="ca-pub-4843301407118801"
+                       data-ad-slot="packages_slot_2"
+                       data-ad-format="auto"
+                       data-full-width-responsive="true"></ins>
+                </div>
+
+                {filteredPackages.slice(4).map(pkg => (
                   <PackageCard key={pkg.id} pkg={pkg} onEnquiry={onEnquiry} handlePackageClick={handlePackageClick} handleImageError={handleImageError} handleLeadCapture={handleLeadCapture} />
                 ))}
               </>
@@ -331,7 +345,7 @@ const Packages = ({ onEnquiry }) => {
 const PackageCard = ({ pkg, onEnquiry, handlePackageClick, handleImageError, handleLeadCapture }) => (
   <div className="package-card fade-in-up" onClick={() => handlePackageClick(pkg)}>
     <div className="package-img">
-      <img src={pkg.image} alt={`${pkg.title} Tour Package`} loading="lazy" onError={handleImageError} />
+      <img src={pkg.image} alt={`${pkg.title} Tour Package from Best Travel Agency in Chalisgaon`} loading="lazy" onError={handleImageError} />
       <div className="card-overlay"></div>
       <span className="price-tag">
         <small>Starting from</small>
@@ -366,7 +380,7 @@ const PackageCard = ({ pkg, onEnquiry, handlePackageClick, handleImageError, han
           Details
         </Link>
         <a 
-          href="https://wa.me/918421514348?text=Hi I want tour details"
+          href={getWhatsAppLink(`Hi, I'm interested in the ${pkg.title} (${pkg.duration}) package.`)}
           className="btn btn-whatsapp ripple"
           target="_blank"
           rel="noopener noreferrer"

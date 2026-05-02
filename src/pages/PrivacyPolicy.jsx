@@ -1,8 +1,15 @@
 import React from 'react';
 import './Legal.css';
 import { CONTACT_CONFIG } from '../config';
+import updateMetaTags from '../utils/updateMetaTags';
 
 const PrivacyPolicy = () => {
+  React.useEffect(() => {
+    updateMetaTags({
+      title: 'Privacy Policy | Partner\'s Tours & Travels',
+      description: 'Our privacy policy explains how we collect and protect your data at Partner\'s Tours & Travels.',
+    });
+  }, []);
   return (
     <div className="legal-page">
       <section className="legal-hero">
@@ -18,7 +25,7 @@ const PrivacyPolicy = () => {
             <h2>1. Introduction</h2>
             <p>
               At Partner's Tours & Travels ("we", "our", or "us"), we respect your privacy and are committed to protecting it through our compliance with this policy. 
-              This policy describes the types of information we may collect from you or that you may provide when you visit our website partnertours.in.
+              This policy describes the types of information we may collect from you or that you may provide when you visit our website partner-tour.site.
             </p>
 
             <h2>2. Information We Collect</h2>
@@ -38,12 +45,12 @@ const PrivacyPolicy = () => {
 
             <h2>4. Cookies and Web Beacons</h2>
             <p>
-              Like any other website, partnertours.in uses 'cookies'. These cookies are used to store information including visitors' preferences, and the pages on the website that the visitor accessed or visited. The information is used to optimize the users' experience by customizing our web page content based on visitors' browser type and/or other information.
+              Like any other website, partner-tour.site uses 'cookies'. These cookies are used to store information including visitors' preferences, and the pages on the website that the visitor accessed or visited. The information is used to optimize the users' experience by customizing our web page content based on visitors' browser type and/or other information.
             </p>
 
             <h2>5. Google DoubleClick DART Cookie</h2>
             <p>
-              Google is one of a third-party vendor on our site. It also uses cookies, known as DART cookies, to serve ads to our site visitors based upon their visit to partnertours.in and other sites on the internet. However, visitors may choose to decline the use of DART cookies by visiting the Google ad and content network Privacy Policy at the following URL – <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noreferrer">https://policies.google.com/technologies/ads</a>
+              Google is one of a third-party vendor on our site. It also uses cookies, known as DART cookies, to serve ads to our site visitors based upon their visit to partner-tour.site and other sites on the internet. However, visitors may choose to decline the use of DART cookies by visiting the Google ad and content network Privacy Policy at the following URL – <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noreferrer">https://policies.google.com/technologies/ads</a>
             </p>
 
             <h2>6. Our Advertising Partners</h2>
@@ -54,7 +61,7 @@ const PrivacyPolicy = () => {
               <li><strong>Google AdSense</strong></li>
             </ul>
             <p>
-              These third-party ad servers or ad networks use technology in their respective advertisements and links that appear on partnertours.in, which are sent directly to users' browser. They automatically receive your IP address when this occurs. These technologies are used to measure the effectiveness of their advertising campaigns and/or to personalize the advertising content that you see on websites that you visit.
+              These third-party ad servers or ad networks use technology in their respective advertisements and links that appear on partner-tour.site, which are sent directly to users' browser. They automatically receive your IP address when this occurs. These technologies are used to measure the effectiveness of their advertising campaigns and/or to personalize the advertising content that you see on websites that you visit.
             </p>
 
             <h2>7. Third Party Privacy Policies</h2>
@@ -87,11 +94,11 @@ const PrivacyPolicy = () => {
               <br />
               <strong>Partner's Tours & Travels</strong>
               <br />
-              {CONTACT_CONFIG?.ADDRESS}
+              {CONTACT_CONFIG.ADDRESS}
               <br />
-              Email: {CONTACT_CONFIG?.EMAIL}
+              Email: {CONTACT_CONFIG.EMAIL}
               <br />
-              Phone: {CONTACT_CONFIG?.PHONE_NUMBER}
+              Phone: {CONTACT_CONFIG.DISPLAY_PHONE}
             </p>
           </div>
         </div>

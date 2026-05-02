@@ -2,9 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Phone, MessageSquare, MapPin, User, Send, CheckCircle, Star, Zap, Loader2, Camera, Mail, Clock, ShieldCheck, RefreshCw } from 'lucide-react';
 import './Contact.css';
 import { CONTACT_CONFIG } from '../config';
+import { getWhatsAppLink, getCallLink, getMailLink } from '../utils/contactHelpers';
 import { trackEvent, ANALYTICS_EVENTS } from '../utils/analytics';
+import updateMetaTags from '../utils/updateMetaTags';
 
-const BACKEND_API_URL = "https://api.partnertours.in/v3/leads";
+const BACKEND_API_URL = "https://api.partner-tour.site/v3/leads";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -17,6 +19,11 @@ const Contact = () => {
   const nameInputRef = useRef(null);
 
   useEffect(() => {
+    updateMetaTags({
+      title: 'Contact Us | Partner\'s Tours & Travels Chalisgaon',
+      description: 'Get in touch with Partner\'s Tours & Travels for luxury bus rentals, flight bookings, and customized tour packages from Chalisgaon.',
+      keywords: 'Contact Partner Tours, Chalisgaon Travel Agency Phone, Book Bus Chalisgaon',
+    });
     if (nameInputRef.current) nameInputRef.current.focus();
     cleanupAndSyncLeads();
     
@@ -148,9 +155,8 @@ const Contact = () => {
     // Background API Sync
     saveLeadToAPI(formData);
 
-    const whatsappNumber = CONTACT_CONFIG?.WHATSAPP_NUMBER; 
     const formattedMessage = `Hi, I am ${formData.name}\nPhone: ${formData.phone}\nService: ${formData.service}\nDetails: ${formData.message}`;
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(formattedMessage)}`;
+    const whatsappUrl = getWhatsAppLink(formattedMessage);
     
     setTimeout(() => {
       setShowSuccess(true);
@@ -204,17 +210,23 @@ const Contact = () => {
 
               <div className="c-info-card-premium">
                 <div className="c-icon-circle"><MapPin size={22}/></div>
-                <div className="c-text-stack"><label>Visit Our Office</label><p>{CONTACT_CONFIG?.ADDRESS}</p></div>
+                <div className="c-text-stack"><label>Visit Our Office</label><p>{CONTACT_CONFIG.ADDRESS}</p></div>
               </div>
               
               <div className="c-info-card-premium">
                 <div className="c-icon-circle"><Phone size={22}/></div>
-                <div className="c-text-stack"><label>Direct Call</label><p>{CONTACT_CONFIG?.PHONE_NUMBER}</p></div>
+                <div className="c-text-stack">
+                  <label>Direct Call</label>
+                  <p><a href={getCallLink()}>{CONTACT_CONFIG.DISPLAY_PHONE}</a></p>
+                </div>
               </div>
 
               <div className="c-info-card-premium">
                 <div className="c-icon-circle"><Mail size={22}/></div>
-                <div className="c-text-stack"><label>Email Us</label><p>{CONTACT_CONFIG?.EMAIL}</p></div>
+                <div className="c-text-stack">
+                  <label>Email Us</label>
+                  <p><a href={getMailLink()}>{CONTACT_CONFIG.EMAIL}</a></p>
+                </div>
               </div>
 
               {/* Google Maps Embed */}
@@ -241,7 +253,7 @@ const Contact = () => {
                    {errorFallback && (
                       <div className="redirect-fallback-notice mt-20">
                          <a 
-                           href="https://wa.me/918421514348?text=Hi I want tour details" 
+                           href={getWhatsAppLink()} 
                            className="btn-whatsapp"
                            onClick={() => trackEvent('whatsapp_manual_click')}
                          >
@@ -298,11 +310,11 @@ const Contact = () => {
                         </button>
                         <div className="fallback-divider"><span>OR CALL</span></div>
                         <a 
-                          href={`tel:${CONTACT_CONFIG?.PHONE_NUMBER}`} 
+                          href={getCallLink()} 
                           className="btn-call-fallback"
                           onClick={handleCallClick}
                         >
-                          {CONTACT_CONFIG?.PHONE_NUMBER}
+                          {CONTACT_CONFIG.DISPLAY_PHONE}
                         </a>
                     </div>
                     <p className="privacy-note">🔒 Local data is encrypted with AES-GCM before storage.</p>

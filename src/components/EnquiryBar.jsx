@@ -1,5 +1,6 @@
 import { MessageSquare, X } from 'lucide-react';
 import { CONTACT_CONFIG } from '../config';
+import { getWhatsAppLink } from '../utils/contactHelpers';
 import './EnquiryBar.css';
 
 const EnquiryBar = ({ packageName, onClear }) => {
@@ -14,7 +15,7 @@ const EnquiryBar = ({ packageName, onClear }) => {
         </div>
         <div className="enquiry-actions">
           <a 
-            href={`https://wa.me/${CONTACT_CONFIG?.WHATSAPP_NUMBER}?text=Hi, I'm interested in ${packageName}. Please share details.`}
+            href={getWhatsAppLink(`Hi, I'm interested in ${packageName}. Please share details.`)}
             className="btn btn-whatsapp btn-sm ripple"
             target="_blank"
             rel="noopener noreferrer"
