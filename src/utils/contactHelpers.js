@@ -44,6 +44,13 @@ export const sendWhatsApp = (type, item) => {
   else if (type === "tour") {
     message = `Hi, I am interested in your tour package (${item}). Please share itinerary and pricing.`;
   } 
+  else if (type === "conversion_optimized") {
+    message = `Hi Partner Tours, I'm interested in booking a trip from Chalisgaon.\n\n` +
+              `📍 Pickup Location: \n` +
+              `📅 Travel Date: \n` +
+              `👥 Passengers: \n\n` +
+              `Please share the best price and availability.`;
+  }
   else {
     message = `Hi, I want to enquire about your travel services.`;
   }

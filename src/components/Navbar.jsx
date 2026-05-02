@@ -6,16 +6,17 @@ import { CONTACT_CONFIG } from '../config';
 import { getWhatsAppLink, getCallLink, sendWhatsApp } from '../utils/contactHelpers';
 import { trackEvent, ANALYTICS_EVENTS } from '../utils/analytics';
 
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const Navbar = ({ isOpen, setIsOpen }) => {
   const location = useLocation();
   useEffect(() => {
     const handleScroll = () => {
       const navbar = document.querySelector(".navbar");
-      if (window.scrollY > 20) {
-        navbar.classList.add("scrolled");
-      } else {
-        navbar.classList.remove("scrolled");
+      if (navbar) {
+        if (window.scrollY > 20) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
       }
     };
 
@@ -24,18 +25,9 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.classList.add('no-scroll');
-    } else {
-      document.body.classList.remove('no-scroll');
-    }
-    return () => document.body.classList.remove('no-scroll');
-  }, [isOpen]);
-
-  useEffect(() => {
     setIsOpen(false);
     window.scrollTo(0, 0);
-  }, [location]);
+  }, [location, setIsOpen]);
 
   return (
     <nav className="navbar">

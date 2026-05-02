@@ -33,6 +33,15 @@ const PageLoader = () => (
 
 function App() {
   const [activeEnquiry, setActiveEnquiry] = useState(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  React.useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add('no-scroll');
+    } else {
+      document.body.classList.remove('no-scroll');
+    }
+  }, [isMenuOpen]);
 
   const handleEnquiry = (packageName) => {
     setActiveEnquiry(packageName);
@@ -43,7 +52,7 @@ function App() {
     <ErrorBoundary>
       <Router>
         <div className="app-wrapper">
-          <Navbar />
+          <Navbar isOpen={isMenuOpen} setIsOpen={setIsMenuOpen} />
           <main style={{ minHeight: '80vh' }}>
             <Suspense fallback={<PageLoader />}>
               <Routes>
@@ -72,26 +81,33 @@ function App() {
             />
           )}
           
-          <div className="mobile-cta-shell">
-            <div className="mobile-sticky-bar">
-              <a 
-                href={getCallLink()} 
-                className="m-cta-btn m-call ripple"
-                onClick={() => trackEvent(ANALYTICS_EVENTS.CALL_CLICK, { location: 'sticky_bar' })}
-              >
-                <Phone size={20} /> Call Now
-              </a>
-              <button 
-                className="m-cta-btn m-whatsapp ripple"
-                onClick={() => {
-                  trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { location: 'sticky_bar' });
-                  sendWhatsApp('general', 'Sticky Bar');
-                }}
-              >
-                <MessageSquare size={20} /> WhatsApp
-              </button>
+          {/* Conversion-Optimized Mobile Sticky Bar */}
+          {!isMenuOpen && (
+            <div className="mobile-cta-shell slide-up-anim">
+              <div className="cta-micro-header">
+                <span className="urgency-tag">🔥 Limited Availability</span>
+                <span className="reply-tag">⚡ Instant WhatsApp Reply</span>
+              </div>
+              <div className="mobile-sticky-bar">
+                <a 
+                  href={getCallLink()} 
+                  className="m-cta-btn m-call ripple"
+                  onClick={() => trackEvent(ANALYTICS_EVENTS.CALL_CLICK, { location: 'sticky_bar_v2' })}
+                >
+                  <Phone size={18} /> Call Expert
+                </a>
+                <button 
+                  className="m-cta-btn m-whatsapp ripple"
+                  onClick={() => {
+                    trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { location: 'sticky_bar_v2' });
+                    sendWhatsApp('conversion_optimized', 'Sticky Bar');
+                  }}
+                >
+                  <MessageSquare size={18} /> Get Best Price
+                </button>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </Router>
     </ErrorBoundary>
