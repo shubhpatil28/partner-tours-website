@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { FALLBACK_IMAGE } from "../../utils/imageUtils";
 
 /**
- * Enterprise-hardened Image component for Partner's Tours & Travels.
+ * Enterprise-grade Image component for Partner's Tours & Travels.
  * 
- * Performance & SEO Hardening:
- * - srcSet & sizes for responsive delivery.
- * - fetchpriority="high" for hero LCP optimization.
- * - 1-step error retry logic before fallback.
- * - WebP/CDN-ready structure.
- * - Async decoding + CLS stability.
+ * Features:
+ * - Smart Retry: Cache-busting (?retry=1) on first error.
+ * - Responsive: Mandatory sizes with smart mobile-first defaults.
+ * - Stability: Forced display: block and CLS protection.
+ * - Compliance: ReferrerPolicy for secure CDN loads.
+ * - Performance: fetchPriority, decoding="async", and lazy loading.
  */
 const Image = React.memo(({
   src,
@@ -17,23 +17,26 @@ const Image = React.memo(({
   width,
   height,
   priority = false,
+  srcSet,
+  sizes = "(max-width: 768px) 100vw, 50vw", // Optimized for grid-based tour layouts
   className = "",
   style,
-  srcSet,
-  sizes,
   ...props
 }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
   const [errorCount, setErrorCount] = useState(0);
 
   const handleError = (e) => {
-    // Prevent infinite loops if fallback also fails
+    // Prevent recursive loops
     if (e.target.src === FALLBACK_IMAGE) return;
 
     if (errorCount < 1) {
       setErrorCount(1);
-      // Simple retry logic by re-setting the same src
-      e.target.src = src; 
+      // Cache-busting retry logic
+      const retrySrc = src.includes("?")
+        ? `${src}&retry=1`
+        : `${src}?retry=1`;
+      
+      e.target.src = retrySrc;
     } else {
       setErrorCount(2);
       e.target.src = FALLBACK_IMAGE;
@@ -51,18 +54,17 @@ const Image = React.memo(({
       width={width}
       height={height}
       loading={priority ? "eager" : "lazy"}
-      // @ts-ignore - fetchPriority is supported in modern browsers and recent React
+      // @ts-ignore
       fetchpriority={priority ? "high" : "auto"}
       decoding="async"
-      onLoad={() => setIsLoaded(true)}
+      referrerPolicy="no-referrer"
       onError={handleError}
       className={`image-component ${className}`}
       style={{
+        display: "block",
         backgroundColor: "#0f172a",
         objectFit: "cover",
         transition: "all 0.4s ease-in-out",
-        opacity: isLoaded ? 1 : 0.6,
-        filter: isLoaded ? "blur(0px)" : "blur(6px)",
         ...style
       }}
       {...props}
