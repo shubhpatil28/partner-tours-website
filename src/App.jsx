@@ -34,7 +34,14 @@ const PageLoader = () => (
 function App() {
   const [activeEnquiry, setActiveEnquiry] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showSticky, setShowSticky] = useState(false);
   const scrollPos = React.useRef(0);
+
+  React.useEffect(() => {
+    // Quick entry to avoid perceived lag
+    const timer = setTimeout(() => setShowSticky(true), 120);
+    return () => clearTimeout(timer);
+  }, []);
 
   React.useEffect(() => {
     if (isMenuOpen) {
@@ -42,7 +49,6 @@ function App() {
       document.body.classList.add('menu-open');
     } else {
       document.body.classList.remove('menu-open');
-      // Restore scroll position after a short delay to avoid layout jumps
       if (scrollPos.current !== 0) {
         window.scrollTo(0, scrollPos.current);
       }
@@ -60,7 +66,7 @@ function App() {
       <Router>
         <div className="app-wrapper">
           <Navbar isOpen={isMenuOpen} setIsOpen={setIsMenuOpen} />
-          <main style={{ minHeight: '80vh' }}>
+          <main className="main-content">
             <Suspense fallback={<PageLoader />}>
               <Routes>
                 <Route path="/" element={<Home onEnquiry={handleEnquiry} />} />
@@ -88,26 +94,32 @@ function App() {
             />
           )}
           
-          {/* Mobile Sticky Contact Bar (Option A: Hide when menu open) */}
-          {!isMenuOpen && (
+          {/* Mobile Sticky Contact Bar - Production Finalized */}
+          {showSticky && !isMenuOpen && (
             <div className="sticky-contact-bar">
-              <div className="sticky-trust-text">Trusted by 1000+ travelers</div>
+              <div className="sticky-trust-text">🔥 Limited Seats | ⚡ Instant Reply</div>
               <div className="sticky-bar-btns">
                 <a 
                   href={getCallLink()} 
                   className="call-btn-sticky"
-                  onClick={() => trackEvent(ANALYTICS_EVENTS.CALL_CLICK, { location: 'sticky_bar_v3' })}
+                  onClick={() => trackEvent(ANALYTICS_EVENTS.CALL_CLICK, { 
+                    event_category: 'engagement',
+                    event_label: 'sticky_bar_call'
+                  })}
                 >
-                  <Phone size={18} /> Call Expert
+                  <Phone size={18} /> Call Now
                 </a>
                 <button 
                   className="whatsapp-btn-sticky"
                   onClick={() => {
-                    trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { location: 'sticky_bar_v3' });
+                    trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { 
+                      event_category: 'engagement',
+                      event_label: 'sticky_bar_whatsapp'
+                    });
                     sendWhatsApp('simple_tour');
                   }}
                 >
-                  <MessageSquare size={18} /> Get Best Price
+                  <MessageSquare size={18} /> Get Price
                 </button>
               </div>
             </div>

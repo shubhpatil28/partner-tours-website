@@ -44,24 +44,6 @@ const Navbar = ({ isOpen, setIsOpen }) => {
           <Link to="/gallery" className={location.pathname === '/gallery' ? 'active' : ''}>Gallery</Link>
           <Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>Contact</Link>
           
-          <div className="nav-cta-mobile">
-             <a 
-               href={getCallLink()} 
-               className="btn btn-primary ripple"
-               onClick={() => trackEvent(ANALYTICS_EVENTS.CALL_CLICK, { location: 'navbar_mobile' })}
-             >
-               <Phone size={18}/> Call Now
-             </a>
-             <button 
-               className="btn btn-whatsapp ripple"
-               onClick={() => {
-                 trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { location: 'navbar_mobile' });
-                 sendWhatsApp('general', 'Navbar Mobile');
-               }}
-             >
-               <MessageSquare size={18}/> Book on WhatsApp
-             </button>
-          </div>
         </div>
 
         <div className="nav-cta-desktop">
