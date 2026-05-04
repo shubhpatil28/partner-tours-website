@@ -102,7 +102,7 @@ const packagesData = {
   },
   'kerala-trip': {
     title: "Kerala Backwater Serenity",
-    image: goaImg,
+    image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944',
     duration: "4 Days / 3 Nights",
     price: "₹15,500",
     urgency: "Romantic getaway special!",
