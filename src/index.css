@@ -489,3 +489,51 @@ img {
     overflow: hidden !important;
   }
 }
+
+/* Image Component Styles */
+.image-wrapper {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--slate-100);
+  transition: var(--transition);
+}
+
+.image-wrapper.loading {
+  cursor: wait;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: filter 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.image-wrapper.loading img {
+  filter: blur(10px);
+  opacity: 0;
+  transform: scale(1.05);
+}
+
+.image-wrapper.loaded img {
+  filter: blur(0);
+  opacity: 1;
+  transform: scale(1);
+}
+
+.skeleton-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, var(--slate-100) 25%, var(--slate-200) 50%, var(--slate-100) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+  z-index: 1;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}

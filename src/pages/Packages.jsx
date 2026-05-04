@@ -77,7 +77,7 @@ const packagesData = [
     badgeType: "luxury",
     slots: "Only 2 slots left"
   }
-];
+].filter(pkg => pkg.image && pkg.title); // Safety filter
 
 const Packages = ({ onEnquiry }) => {
   const [activeCategory, setActiveCategory] = React.useState('All Deals');

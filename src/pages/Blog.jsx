@@ -57,7 +57,7 @@ const blogPosts = [
     image: 'https://images.unsplash.com/photo-1596402184320-417d7178b2cd',
     readTime: '9 min read'
   }
-];
+].filter(post => post.image && post.title); // Safety filter
 
 const Blog = () => {
   React.useEffect(() => {

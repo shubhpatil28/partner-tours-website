@@ -20,7 +20,7 @@ const galleryImages = [
   { id: 7, src: goaImg, title: "Goa Nightlife", location: "North Goa" },
   { id: 8, src: manaliImg, title: "Snow Adventure", location: "Rohtang Pass" },
   { id: 9, src: kashmirImg, title: "Gulmarg", location: "Kashmir Meadows" }
-];
+].filter(img => img.src && img.title); // Safety filter
 
 const Gallery = () => {
   useEffect(() => {

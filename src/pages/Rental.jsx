@@ -47,7 +47,7 @@ const vehicles = [
     image: 'https://images.unsplash.com/photo-1494515843206-f3117d3f51b7',
     urgency: "Last slot available for May 15"
   }
-];
+].filter(v => v.image && v.name); // Safety filter
 
 const Rental = () => {
   React.useEffect(() => {
