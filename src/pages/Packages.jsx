@@ -16,33 +16,33 @@ import updateMetaTags from '../utils/updateMetaTags';
 
 const packagesData = [
   { 
-    id: 'shirdi-yatra', 
-    image: 'https://images.unsplash.com/photo-1626014303757-636611689443', 
-    title: "Shirdi Group Bus Tour", 
-    duration: "Full Day / Overnight", 
-    price: "₹1,200/seat", 
-    category: "Pilgrimage",
+    id: 'chalisgaon-surat', 
+    image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957', 
+    title: "Chalisgaon → Surat", 
+    duration: "Daily 9:00 PM", 
+    price: "₹700/seat", 
+    category: "Daily",
     badge: "Daily Service",
     badgeType: "bestseller"
   },
   { 
-    id: 'mahabaleshwar-group', 
+    id: 'chalisgaon-pune', 
     image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb', 
-    title: "Mahabaleshwar Corporate Excursion", 
-    duration: "2 Days / 1 Night", 
-    price: "₹35,000/bus", 
-    category: "Corporate",
-    badge: "Most Popular",
+    title: "Chalisgaon → Pune", 
+    duration: "Daily 10:30 PM", 
+    price: "₹650/seat", 
+    category: "Daily",
+    badge: "Night Sleeper",
     badgeType: "offer"
   },
   { 
-    id: 'school-trip-ajanta', 
+    id: 'chalisgaon-mumbai', 
     image: 'https://images.unsplash.com/photo-1566552881560-0be862a7c445', 
-    title: "Ajanta Ellora School Trip", 
-    duration: "Full Day", 
-    price: "₹18,000/bus", 
-    category: "Educational",
-    badge: "Safety First",
+    title: "Chalisgaon → Mumbai", 
+    duration: "Daily 10:00 PM", 
+    price: "₹800/seat", 
+    category: "Daily",
+    badge: "Limited Seats",
     badgeType: "luxury"
   }
 ]; // Safety filter
@@ -55,9 +55,9 @@ const Packages = ({ onEnquiry }) => {
 
   React.useEffect(() => {
     updateMetaTags({
-      title: 'Bus Tours & Group Excursions Chalisgaon | Partner\'s Travels',
-      description: 'Book group bus tours from Chalisgaon to Shirdi, Mahabaleshwar, Mumbai, and Konkan. Specialized in group transport for schools, colleges, and families. Guaranteed best rates.',
-      image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=800',
+      title: 'Daily Intercity Bus Routes | Partner\'s Bus Service',
+      description: 'Check daily bus timings and book seats for Chalisgaon to Surat, Pune, Mumbai, and Nashik. Premium AC Sleeper and Luxury Coach services.',
+      keywords: 'Daily Bus Routes, Chalisgaon Bus Timings, Surat Bus Booking, Pune Sleeper Coach',
     });
 
     const saved = JSON.parse(localStorage.getItem('recently_viewed') || '[]');
@@ -115,8 +115,8 @@ const Packages = ({ onEnquiry }) => {
     <div className="packages-page">
       <div className="page-header section-padding parallax-hero">
         <div className="container">
-          <h1 className="fade-in-up">Group Bus Excursions</h1>
-          <p className="fade-in-up">Fixed-rate group travel packages for schools, offices, and pilgrimages.</p>
+          <h1 className="fade-in-up">Daily Intercity Routes</h1>
+          <p className="fade-in-up">Fixed daily departures to major cities. Book your seat instantly.</p>
         </div>
       </div>
 

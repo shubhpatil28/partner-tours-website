@@ -549,22 +549,174 @@
   margin-bottom: 1rem;
 }
 
+/* Fleet Card Updates */
+.f-content {
+  padding: 1.5rem;
+}
+
 .f-features {
-  list-style: none;
-  padding: 0;
-  margin: 0;
   display: flex;
   flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.f-feat {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.8125rem;
+  color: var(--slate-400);
+}
+
+.btn-fleet-book {
+  width: 100%;
+  padding: 12px;
+  background: var(--accent);
+  color: white;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-fleet-book:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+}
+
+/* Route Card Styles */
+.route-card {
+  background: white;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--slate-100);
+  transition: var(--transition);
+}
+
+.route-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+}
+
+.r-img {
+  position: relative;
+  height: 200px;
+}
+
+.r-tag {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: var(--accent);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  z-index: 2;
+}
+
+.r-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(15, 23, 42, 0.8);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  backdrop-filter: blur(4px);
+  z-index: 2;
+}
+
+.r-content {
+  padding: 1.5rem;
+}
+
+.r-header h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+}
+
+.r-time {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--slate-500);
+  font-size: 0.875rem;
+  margin-bottom: 1.5rem;
+}
+
+.r-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn-book-seat {
+  flex: 1;
+  background: var(--primary);
+  color: white;
+  padding: 10px;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-book-seat:hover {
+  background: var(--accent);
+}
+
+.r-btns-group {
+  display: flex;
   gap: 0.5rem;
 }
 
-.f-features li {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--slate-400);
-  padding: 0.25rem 0.75rem;
-  border-radius: var(--radius-sm);
-  font-size: 0.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+.r-btn-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--slate-100);
+  color: var(--primary);
+  transition: var(--transition);
+}
+
+.r-btn-icon.whatsapp {
+  background: #25D366;
+  color: white;
+}
+
+.r-btn-icon:hover {
+  transform: scale(1.1);
+}
+
+/* Trust Bar Styles */
+.trust-bar {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
 }
 
 @media (max-width: 768px) {

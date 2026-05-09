@@ -6,7 +6,9 @@ import Image from '../components/common/Image';
 import heroImg from '../assets/hero_bus.png';
 import tempoImg from '../assets/tempo_traveller.png';
 import miniBusImg from '../assets/mini_bus.png';
-import luxuryBusImg from '../assets/hero_bus.png'; // Reusing or could use another
+import luxuryBusImg from '../assets/hero_bus.png';
+import sleeperNightImg from '../assets/sleeper_night.png';
+import shivSaiImg from '../assets/shiv_sai_coach.png'; // Reusing or could use another
 import goaImg from '../assets/goa.png';
 import manaliImg from '../assets/manali.png';
 import kashmirImg from '../assets/kashmir.png';
@@ -21,9 +23,9 @@ import { injectStructuredData, getTravelAgencySchema } from '../utils/seo';
 const Home = ({ onEnquiry }) => {
   React.useEffect(() => {
     updateMetaTags({
-      title: 'Partner\'s Bus Service | Luxury Bus Rental Chalisgaon',
-      description: 'Chalisgaon\'s most reliable bus rental service. Book 35-50 seater luxury buses and sleeper coaches for weddings, school trips, and corporate travel.',
-      keywords: 'Bus Rental Chalisgaon, Tourist Bus Jalgaon, Sleeper Coach Booking, Group Transport Chalisgaon',
+      title: 'Partner\'s Bus Service | Daily Intercity Bus Operator Chalisgaon',
+      description: 'Chalisgaon\'s premium bus operator. Daily luxury sleeper bus services to Surat, Pune, Mumbai, and Nashik. Book your seat online via WhatsApp or Call.',
+      keywords: 'Daily Bus Chalisgaon, Chalisgaon to Surat Bus, Pune Sleeper Coach, Mumbai Bus Operator',
     });
 
     injectStructuredData(getTravelAgencySchema(CONTACT_CONFIG));
@@ -43,10 +45,10 @@ const Home = ({ onEnquiry }) => {
         />
         <div className="hero-overlay"></div>
         <div className="container hero-content fade-in-up">
-          <div className="badge badge-orange ripple mb-16">Chalisgaon's Premium Bus Company • 24/7 Support</div>
-          <h1 className="mb-24">Luxury Bus Rental <br/><span>Service in Chalisgaon</span></h1>
+          <div className="badge badge-orange ripple mb-16">Daily Intercity Services • Night Sleeper Coach • 24/7 Booking</div>
+          <h1 className="mb-24">Premium Intercity <br/><span>Bus Operator Chalisgaon</span></h1>
           <p className="mb-32">
-            <strong>Partner's Bus Service</strong> provides professional group transport solutions. We specialize in 35-50 Seater Tourist Buses and Premium Sleeper Coaches for all your group travel needs across Maharashtra.
+            <strong>Partner's Bus Service</strong> operates daily premium sleeper and luxury coach services to major cities. Experience the most comfortable and safe intercity travel in Maharashtra.
           </p>
           <div className="hero-btns">
             <a 
@@ -94,48 +96,79 @@ const Home = ({ onEnquiry }) => {
              data-full-width-responsive="true"></ins>
       </div>
 
-      <section className="section-padding bg-light glass-effect">
+      {/* Daily Routes Section */}
+      <section className="section-padding bg-light">
         <div className="container">
           <div className="section-title">
-            <div className="badge badge-blue mb-16">Our Services</div>
-            <h2 className="mb-16">Professional <span>Bus Transport</span></h2>
-            <p>Reliable and safe transport for every occasion.</p>
+            <div className="badge badge-blue mb-16">Active Routes</div>
+            <h2 className="mb-16">Daily <span>Intercity Services</span></h2>
+            <p>Reliable daily departures to major cities with premium sleeper coaches.</p>
           </div>
           
           <div className="grid grid-3">
-            <div className="service-card ripple">
-              <div className="s-icon"><Bus size={32}/></div>
-              <h3>Wedding Bus Booking</h3>
-              <p>Punctual and decorated buses for your special day. We ensure your guests travel in comfort.</p>
-              <Link to="/rental" className="s-link">Book for Wedding <ArrowRight size={16}/></Link>
-            </div>
-            
-            <div className="service-card ripple">
-              <div className="s-icon"><Bus size={32}/></div>
-              <h3>School & College Trips</h3>
-              <p>Safety-first transport for educational tours and excursions with experienced drivers.</p>
-              <Link to="/rental" className="s-link">Enquire for Trip <ArrowRight size={16}/></Link>
-            </div>
-            
-            <div className="service-card ripple">
-              <div className="s-icon"><Bus size={32}/></div>
-              <h3>Corporate Travel</h3>
-              <p>Premium buses for corporate retreats, site visits, and employee transport solutions.</p>
-              <Link to="/rental" className="s-link">Corporate Booking <ArrowRight size={16}/></Link>
-            </div>
+            <RouteCard 
+              from="Chalisgaon" 
+              to="Surat" 
+              image={sleeperNightImg} 
+              tag="Most Popular"
+              time="Daily 9:00 PM"
+              badge="Daily Service"
+            />
+            <RouteCard 
+              from="Chalisgaon" 
+              to="Pune" 
+              image={luxuryBusImg} 
+              tag="Night Service"
+              time="Daily 10:30 PM"
+              badge="Daily Service"
+            />
+            <RouteCard 
+              from="Chalisgaon" 
+              to="Mumbai" 
+              image={shivSaiImg} 
+              tag="Limited Seats"
+              time="Daily 10:00 PM"
+              badge="Daily Service"
+            />
+            <RouteCard 
+              from="Chalisgaon" 
+              to="Nashik" 
+              image={miniBusImg} 
+              tag="Fast Service"
+              time="Multiple Times"
+              badge="Daily Service"
+            />
+            <RouteCard 
+              from="Chalisgaon" 
+              to="Rajasthan" 
+              image={heroImg} 
+              tag="Group Special"
+              time="Weekly Tours"
+              badge="Group Tour"
+            />
+          </div>
+        </div>
+      </section>
 
-            <div className="service-card ripple">
-              <div className="s-icon"><Bus size={32}/></div>
-              <h3>Pilgrimage Tours</h3>
-              <p>Comfortable group travel to Shirdi, Jyotirlingas, and other religious destinations.</p>
-              <Link to="/rental" className="s-link">Book Yatra Bus <ArrowRight size={16}/></Link>
+      {/* Trust Builders Section */}
+      <section className="trust-bar bg-primary text-white py-24">
+        <div className="container">
+          <div className="grid grid-4 text-center">
+            <div className="trust-item">
+              <CheckCircle size={20} className="text-accent" />
+              <span>Daily Service Available</span>
             </div>
-
-            <div className="service-card ripple">
-              <div className="s-icon"><Bus size={32}/></div>
-              <h3>Outstation Service</h3>
-              <p>Reliable long-distance bus rentals for intercity travel across Maharashtra and beyond.</p>
-              <Link to="/rental" className="s-link">Get Outstation Quote <ArrowRight size={16}/></Link>
+            <div className="trust-item">
+              <CheckCircle size={20} className="text-accent" />
+              <span>Professional Drivers</span>
+            </div>
+            <div className="trust-item">
+              <CheckCircle size={20} className="text-accent" />
+              <span>Safe Night Travel</span>
+            </div>
+            <div className="trust-item">
+              <CheckCircle size={20} className="text-accent" />
+              <span>Comfortable Journey</span>
             </div>
           </div>
         </div>
@@ -208,31 +241,37 @@ const Home = ({ onEnquiry }) => {
       <section className="section-padding bg-dark text-white">
         <div className="container">
           <div className="section-title">
-            <div className="badge badge-orange mb-16">Our Bus Fleet</div>
-            <h2 className="text-white mb-16">Premium <span>Bus Options</span></h2>
+            <div className="badge badge-orange mb-16">Our Premium Fleet</div>
+            <h2 className="text-white mb-16">Premium <span>Bus Fleet</span></h2>
           </div>
-          <div className="grid grid-3">
+          <div className="grid grid-2" style={{gap: '3rem'}}>
              <FleetCard 
-                image={tempoImg} 
-                name="17 Seater Executive Bus" 
-                capacity="17 Seater" 
-                features={["AC", "Push-back Seats", "Music System"]} 
+                image={shivSaiImg} 
+                name="Shiv Sai Luxury Coach" 
+                capacity="45 Seater" 
+                features={["AC", "Push-back Seats", "LCD Entertainment", "Luggage Space"]} 
+             />
+             <FleetCard 
+                image={sleeperNightImg} 
+                name="Premium AC Sleeper Bus" 
+                capacity="30 Berths" 
+                features={["Full AC", "Charging Points", "Night Lights", "Air Suspension"]} 
              />
              <FleetCard 
                 image={miniBusImg} 
-                name="35 Seater Tourist Bus" 
+                name="Tourist Luxury Coach" 
                 capacity="35 Seater" 
-                features={["Full AC", "High Roof", "LCD Entertainment"]} 
+                features={["Push-back Seats", "Music System", "Window Curtains", "Clean Interior"]} 
              />
              <FleetCard 
                 image={heroImg} 
-                name="Luxury Sleeper Bus" 
-                capacity="30 Berths" 
-                features={["Premium Berths", "Charging Points", "Air Suspension"]} 
+                name="35 Seater Group Bus" 
+                capacity="35 Seater" 
+                features={["Economy Rates", "Experienced Staff", "Safe Travel", "Ample Space"]} 
              />
           </div>
           <div className="text-center mt-40">
-             <Link to="/rental" className="btn btn-primary btn-lg ripple">View Fleet & Pricing</Link>
+             <Link to="/rental" className="btn btn-primary btn-lg ripple">View Full Fleet & Booking</Link>
           </div>
         </div>
       </section>
@@ -326,22 +365,46 @@ const Home = ({ onEnquiry }) => {
   );
 };
 
+const RouteCard = ({ from, to, image, tag, time, badge }) => (
+  <div className="route-card ripple">
+    <div className="r-img">
+      <Image src={image} alt={`${from} to ${to} Bus`} width={400} height={250} />
+      {tag && <div className="r-tag">{tag}</div>}
+      <div className="r-badge">{badge}</div>
+    </div>
+    <div className="r-content">
+      <div className="r-header">
+        <h3>{from} <ArrowRight size={16} /> {to}</h3>
+        <p className="r-time"><Clock size={14} /> {time}</p>
+      </div>
+      <div className="r-actions">
+        <button className="btn-book-seat" onClick={() => sendWhatsApp(`Hi, I want to book a seat for ${from} to ${to} on ${time}.`)}>
+          Book Seat Now
+        </button>
+        <div className="r-btns-group">
+          <a href={getCallLink()} className="r-btn-icon" title="Call Now"><Phone size={18} /></a>
+          <button className="r-btn-icon whatsapp" onClick={() => sendWhatsApp(`Enquiry for ${from} to ${to} route.`)} title="WhatsApp"><MessageSquare size={18} /></button>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
 const FleetCard = ({ image, name, capacity, features }) => (
   <div className="fleet-card ripple">
     <div className="f-img">
       <Image src={image} alt={name} width={400} height={250} />
       <div className="f-capacity">{capacity}</div>
     </div>
-    <div className="f-info">
+    <div className="f-content">
       <h3>{name}</h3>
-      <ul className="f-features">
-        {features.map((f, i) => <li key={i}>{f}</li>)}
-      </ul>
-      <button 
-        className="btn btn-whatsapp full-width mt-16"
-        onClick={() => sendWhatsApp('bus', name)}
-      >
-        <MessageSquare size={16} /> Enquire on WhatsApp
+      <div className="f-features">
+        {features.map((feat, i) => (
+          <span key={i} className="f-feat"><CheckCircle size={14} /> {feat}</span>
+        ))}
+      </div>
+      <button className="btn-fleet-book" onClick={() => sendWhatsApp(`Hi, I want to book the ${name} for our group trip.`)}>
+        Book for Group
       </button>
     </div>
   </div>

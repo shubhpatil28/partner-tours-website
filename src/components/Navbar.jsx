@@ -38,7 +38,7 @@ const Navbar = ({ isOpen, setIsOpen }) => {
 
         <div className={`nav-links ${isOpen ? 'active' : ''}`}>
           <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link>
-          <Link to="/packages" className={location.pathname.includes('/package') ? 'active' : ''}>Bus Tours</Link>
+          <Link to="/packages" className={location.pathname.includes('/package') ? 'active' : ''}>Daily Routes</Link>
           <Link to="/rental" className={location.pathname === '/rental' ? 'active' : ''}>Bus Fleet</Link>
           <Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>Contact</Link>
           
