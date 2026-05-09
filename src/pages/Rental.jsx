@@ -10,51 +10,51 @@ import updateMetaTags from '../utils/updateMetaTags';
 const vehicles = [
   {
     id: 1,
-    name: "Tempo Traveller",
-    type: "12 Seater - AC",
-    seats: "12 + 1",
-    bags: 8,
+    name: "17 Seater Executive Bus",
+    type: "Mini Bus - AC",
+    seats: "17 + 1",
+    bags: 15,
     transmission: "Manual",
     priceKm: "₹25",
     priceDay: "₹6,000",
-    features: ["Push-back Seats", "Music System", "Ample Luggage Space", "Experienced Driver"],
-    image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957',
+    features: ["Push-back Seats", "Music System", "Ample Luggage Space", "Experienced Driver", "Charging Points"],
+    image: '/src/assets/tempo_traveller.png',
     urgency: "Only 2 slots left this weekend"
   },
   {
     id: 2,
-    name: "Mini Bus",
-    type: "17 Seater - AC",
-    seats: "17 + 1",
-    bags: 12,
+    name: "35 Seater Luxury Bus",
+    type: "Tourist Coach - AC",
+    seats: "35 + 2",
+    bags: 35,
     transmission: "Manual",
-    priceKm: "₹30",
-    priceDay: "₹8,500",
-    features: ["Air Conditioned", "High Roof", "Reading Lights", "Perfect for Groups"],
-    image: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e',
-    urgency: "12 people viewed today"
+    priceKm: "₹45",
+    priceDay: "₹12,500",
+    features: ["Air Conditioned", "High Roof", "Reading Lights", "Perfect for Groups", "Mic & Audio System"],
+    image: '/src/assets/mini_bus.png',
+    urgency: "Popular for weddings"
   },
   {
     id: 3,
-    name: "Luxury Bus",
-    type: "35 Seater - Pushback",
-    seats: "35 + 1",
-    bags: 25,
+    name: "Premium Sleeper Coach",
+    type: "30 Berth - AC",
+    seats: "30 Berths",
+    bags: 50,
     transmission: "Manual",
-    priceKm: "₹45",
-    priceDay: "₹15,000",
-    features: ["Premium Push-back", "Luxury Interior", "LCD Entertainment", "Tour Specialist Driver"],
-    image: 'https://images.unsplash.com/photo-1494515843206-f3117d3f51b7',
-    urgency: "Last slot available for May 15"
+    priceKm: "₹65",
+    priceDay: "₹22,000",
+    features: ["Full Sleeper Berths", "Privacy Curtains", "AC & Ventilation", "Smooth Suspension", "Night Light"],
+    image: '/src/assets/sleeper_coach.png',
+    urgency: "Night travel specialist"
   }
-].filter(v => v.image && v.name); // Safety filter
+];
 
 const Rental = () => {
   React.useEffect(() => {
     updateMetaTags({
-      title: 'Luxury Bus & Car Rental Chalisgaon | Partner\'s Travels',
-      description: 'Rent premium AC luxury buses, Swift Dzire, and Innova Crysta in Chalisgaon. Best rates for outstation trips from Jalgaon district. Verified drivers and 24/7 support.',
-      keywords: 'Bus Rental Chalisgaon, Luxury Bus Jalgaon, Car Hire Chalisgaon, Innova Rental Chalisgaon',
+      title: 'Our Bus Fleet | Partner\'s Bus Service Chalisgaon',
+      description: 'Explore our premium bus fleet including 17 seater executive buses, 35 seater luxury coaches, and AC sleeper buses. Professional group transport in Chalisgaon.',
+      keywords: 'Bus Rental Chalisgaon, Luxury Bus Jalgaon, 35 Seater Bus Hire, Sleeper Coach Chalisgaon',
     });
   }, []);
 
@@ -62,9 +62,9 @@ const Rental = () => {
     <div className="rental-page">
       <div className="page-header section-padding parallax-hero">
         <div className="container">
-          <div className="badge badge-orange mb-16">Premium Fleet</div>
-          <h1>Chalisgaon Vehicle Rental</h1>
-          <p>Hire the most reliable cars and luxury buses with professional drivers for safe journeys.</p>
+          <div className="badge badge-orange mb-16">Premium Bus Fleet</div>
+          <h1>Partner's Bus Fleet</h1>
+          <p>The most reliable luxury buses in Chalisgaon for safe and comfortable group journeys.</p>
         </div>
       </div>
 
@@ -76,10 +76,10 @@ const Rental = () => {
           </div>
           <div className="intro-text">
             <p>
-              Whether you are planning a family wedding in Chalisgaon, a corporate outing to Mumbai, or a group pilgrimage to Shirdi or Saputara, <strong>Partner's Tours & Travels</strong> offers the most diverse and well-maintained fleet of vehicles in the region. We understand that comfort and safety are paramount when traveling with loved ones, which is why every vehicle in our fleet undergoes regular mechanical checks and deep cleaning.
+              Whether you are planning a family wedding in Chalisgaon, a school trip, or a corporate retreat, <strong>Partner's Bus Service</strong> offers the most reliable fleet of buses in the region. We specialize strictly in group transport, ensuring safety and comfort for all passengers.
             </p>
             <p>
-              Our fleet includes fuel-efficient sedans like the <strong>Swift Dzire</strong> for small families, premium SUVs like the <strong>Innova Crysta</strong> for luxury travel, and spacious <strong>Tempo Travellers</strong> for larger groups. For even larger gatherings, we offer 32 to 50-seater luxury AC buses with modern amenities like push-back seats and high-quality sound systems.
+              Our fleet includes executive <strong>17 Seater Mini Buses</strong>, luxury <strong>35 Seater Coaches</strong>, and premium <strong>Sleeper Buses</strong> for long-distance travel.
             </p>
           </div>
         </div>
@@ -233,3 +233,5 @@ const Rental = () => {
 };
 
 export default Rental;
+
+

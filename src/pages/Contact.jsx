@@ -20,9 +20,9 @@ const Contact = () => {
 
   useEffect(() => {
     updateMetaTags({
-      title: 'Contact Us | Partner\'s Tours & Travels Chalisgaon',
-      description: 'Get in touch with Partner\'s Tours & Travels for luxury bus rentals, flight bookings, and customized tour packages from Chalisgaon.',
-      keywords: 'Contact Partner Tours, Chalisgaon Travel Agency Phone, Book Bus Chalisgaon',
+      title: 'Contact Us | Luxury Bus Booking Chalisgaon',
+      description: 'Get in touch with Partner\'s Tours & Travels for luxury bus rentals, tempo travellers, and group transport solutions in Chalisgaon.',
+      keywords: 'Contact Partner Tours, Chalisgaon Bus Booking Phone, Rent Bus Chalisgaon',
     });
     if (nameInputRef.current) nameInputRef.current.focus();
     cleanupAndSyncLeads();
@@ -189,10 +189,10 @@ const Contact = () => {
         <div className="container text-center">
           <div className="trust-badge-mini fade-in">
              <ShieldCheck size={14} color="#25D366" />
-             <span>Encrypted Transmission Active</span>
+             <span>Secure Booking System Active</span>
           </div>
-          <h1>Start Your Next Adventure</h1>
-          <p>Book with Chalisgaon's most secure travel agency.</p>
+          <h1>Book Your Group Transport</h1>
+          <p>Hire luxury buses with Chalisgaon's most reliable transport service.</p>
         </div>
       </div>
 
@@ -203,8 +203,8 @@ const Contact = () => {
               <div className="benefit-card">
                  <div className="b-icon"><Zap size={20} /></div>
                  <div className="b-content">
-                    <h4>Priority Support</h4>
-                    <p>Chalisgaon's first 24/7 dedicated travel helpdesk.</p>
+                    <h4>Instant Bus Quotes</h4>
+                    <p>Chalisgaon's fastest response for group transport enquiries.</p>
                  </div>
               </div>
 
@@ -294,9 +294,10 @@ const Contact = () => {
                         <label>Service</label>
                         <select name="service" value={formData.service} onChange={handleChange} required>
                            <option value="">Select Category</option>
-                           <option value="Bus Booking">Luxury Bus</option>
-                           <option value="Flight Booking">Flights</option>
-                           <option value="Tour Package">Tour Packages</option>
+                           <option value="Luxury Bus Rental">Luxury Bus Rental</option>
+                           <option value="Tempo Traveller Rental">Tempo Traveller</option>
+                           <option value="Group Tour Package">Group Bus Tour</option>
+                           <option value="Corporate Booking">Corporate Transport</option>
                         </select>
                       </div>
                       <div className="p-input-group">

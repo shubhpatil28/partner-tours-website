@@ -4,11 +4,11 @@
   /* Premium Color Palette */
   --primary: #0f172a;
   --primary-light: #1e293b;
-  --accent: #25D366;
-  --accent-hover: #128C7E;
-  --accent-glow: rgba(37, 211, 102, 0.4);
-  --secondary: #f59e0b;
-  --secondary-hover: #d97706;
+  --accent: #10b981;
+  --accent-hover: #059669;
+  --accent-glow: rgba(16, 185, 129, 0.4);
+  --secondary: #10b981;
+  --secondary-hover: #059669;
   --success: #25D366;
   --danger: #ef4444;
   --white: #ffffff;

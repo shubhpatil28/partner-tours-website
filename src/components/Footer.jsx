@@ -13,9 +13,9 @@ const Footer = () => {
         <div className="footer-grid">
           <div className="footer-info">
             <Link to="/" className="footer-logo">
-              Partner's<span>Tours</span>
+              Partner's<span>Bus Service</span>
             </Link>
-            <p>Your trusted travel partner in Chalisgaon. We simplify travel with luxury bus bookings, instant flight tickets, and curated holiday packages across India.</p>
+            <p>Chalisgaon's premier bus rental and group transport specialist. Providing luxury buses and sleeper coaches for weddings, schools, and corporate trips since 2015.</p>
             <div className="social-links">
               <a href="https://instagram.com/partners_tours" target="_blank" rel="noreferrer" title="Instagram"><Camera size={20}/></a>
               <a href="https://facebook.com/partnerstours" target="_blank" rel="noreferrer" title="Facebook"><Globe size={20}/></a>
@@ -28,8 +28,8 @@ const Footer = () => {
             <ul>
               <li><Link to="/">Home</Link></li>
               <li><Link to="/about">About Us</Link></li>
-              <li><Link to="/packages">Tour Packages</Link></li>
-              <li><Link to="/rental">Bus Services</Link></li>
+              <li><Link to="/packages">Bus Tours</Link></li>
+              <li><Link to="/rental">Bus Booking</Link></li>
               <li><Link to="/contact">Contact Us</Link></li>
             </ul>
           </div>

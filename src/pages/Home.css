@@ -499,3 +499,74 @@
   .hero-content p { font-size: 1rem; margin-bottom: 1.5rem; }
   .whatsapp-cta-section { padding: 0 1rem 4rem 1rem; }
 }
+/* Fleet Card Styles */
+.fleet-card {
+  background: #1e293b;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: var(--transition);
+}
+
+.fleet-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--accent);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.f-img {
+  height: 220px;
+  position: relative;
+  overflow: hidden;
+}
+
+.f-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.f-capacity {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--accent);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.875rem;
+  box-shadow: var(--shadow-md);
+}
+
+.f-info {
+  padding: 2rem;
+}
+
+.f-info h3 {
+  color: var(--white);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.f-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.f-features li {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--slate-400);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+  .fleet-card { margin-bottom: 1.5rem; }
+}

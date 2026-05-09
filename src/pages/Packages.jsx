@@ -16,68 +16,36 @@ import updateMetaTags from '../utils/updateMetaTags';
 
 const packagesData = [
   { 
-    id: 'kashmir-trip', 
-    image: kashmirImg, 
-    title: "Kashmir Paradise Tour", 
-    duration: "6 Days / 5 Nights", 
-    price: "₹18,999", 
-    category: "Paradise",
-    badge: "Limited Offer",
-    badgeType: "offer"
-  },
-  { 
-    id: 'manali-trip', 
-    image: manaliImg, 
-    title: "Manali Adventure Escape", 
-    duration: "5 Days / 4 Nights", 
-    price: "₹12,499", 
-    category: "Mountains",
-    badge: "Best Seller",
+    id: 'shirdi-yatra', 
+    image: 'https://images.unsplash.com/photo-1626014303757-636611689443', 
+    title: "Shirdi Group Bus Tour", 
+    duration: "Full Day / Overnight", 
+    price: "₹1,200/seat", 
+    category: "Pilgrimage",
+    badge: "Daily Service",
     badgeType: "bestseller"
   },
   { 
-    id: 'goa-trip', 
-    image: goaImg, 
-    title: "Goa Beach Vacation", 
-    duration: "3 Days / 2 Nights", 
-    price: "₹7,999", 
-    category: "Beach",
-    badge: "Budget Friendly",
-    badgeType: "budget"
+    id: 'mahabaleshwar-group', 
+    image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb', 
+    title: "Mahabaleshwar Corporate Excursion", 
+    duration: "2 Days / 1 Night", 
+    price: "₹35,000/bus", 
+    category: "Corporate",
+    badge: "Most Popular",
+    badgeType: "offer"
   },
   { 
-    id: 'dubai-trip', 
-    image: dubaiImg, 
-    title: "Luxury Dubai City Tour", 
-    duration: "5 Days / 4 Nights", 
-    price: "₹45,999", 
-    category: "International",
-    badge: "Luxury",
+    id: 'school-trip-ajanta', 
+    image: 'https://images.unsplash.com/photo-1566552881560-0be862a7c445', 
+    title: "Ajanta Ellora School Trip", 
+    duration: "Full Day", 
+    price: "₹18,000/bus", 
+    category: "Educational",
+    badge: "Safety First",
     badgeType: "luxury"
-  },
-  { 
-    id: 'thailand-trip', 
-    image: thailandImg, 
-    title: "Exotic Thailand Holiday", 
-    duration: "6 Days / 5 Nights", 
-    price: "₹38,500", 
-    category: "International",
-    badge: "Best Value",
-    badgeType: "bestseller",
-    slots: "Only 4 slots left"
-  },
-  { 
-    id: 'kerala-trip', 
-    image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944', 
-    title: "Kerala Backwater Serenity", 
-    duration: "4 Days / 3 Nights", 
-    price: "₹15,500", 
-    category: "Nature",
-    badge: "Limited Offer",
-    badgeType: "luxury",
-    slots: "Only 2 slots left"
   }
-].filter(pkg => pkg.image && pkg.title); // Safety filter
+]; // Safety filter
 
 const Packages = ({ onEnquiry }) => {
   const [activeCategory, setActiveCategory] = React.useState('All Deals');
@@ -87,9 +55,9 @@ const Packages = ({ onEnquiry }) => {
 
   React.useEffect(() => {
     updateMetaTags({
-      title: 'Cheap Tour Packages | Best Travel Agency in Chalisgaon',
-      description: 'Explore verified domestic and international tour packages from Chalisgaon. Kashmir, Goa, Dubai, and Thailand tours at guaranteed lowest prices. Book your dream vacation today.',
-      image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=800',
+      title: 'Bus Tours & Group Excursions Chalisgaon | Partner\'s Travels',
+      description: 'Book group bus tours from Chalisgaon to Shirdi, Mahabaleshwar, Mumbai, and Konkan. Specialized in group transport for schools, colleges, and families. Guaranteed best rates.',
+      image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=800',
     });
 
     const saved = JSON.parse(localStorage.getItem('recently_viewed') || '[]');
@@ -147,8 +115,8 @@ const Packages = ({ onEnquiry }) => {
     <div className="packages-page">
       <div className="page-header section-padding parallax-hero">
         <div className="container">
-          <h1 className="fade-in-up">Tour Packages</h1>
-          <p className="fade-in-up">Discover hand-picked travel experiences with guaranteed best prices.</p>
+          <h1 className="fade-in-up">Group Bus Excursions</h1>
+          <p className="fade-in-up">Fixed-rate group travel packages for schools, offices, and pilgrimages.</p>
         </div>
       </div>
 
@@ -292,7 +260,7 @@ const Packages = ({ onEnquiry }) => {
              <div className="testimonial-track">
                 <div className="testimonial-card premium-card">
                   <div className="stars">⭐⭐⭐⭐⭐</div>
-                  <p>"The Kashmir trip was flawlessly organized. Everything from houseboats to transport was premium. Best travel agency in Jalgaon district!"</p>
+                  <p>"We booked a custom bus tour for our senior citizen group to Ashtavinayak. The driver was patient and the bus was very comfortable. Best transport service in Chalisgaon!"</p>
                   <div className="user">
                     <div className="user-avatar">R</div>
                     <div className="user-info">
@@ -303,7 +271,7 @@ const Packages = ({ onEnquiry }) => {
                 </div>
                 <div className="testimonial-card premium-card">
                   <div className="stars">⭐⭐⭐⭐⭐</div>
-                  <p>"Best prices I found online. The team at Partner's Tours was available 24/7 for my Dubai trip. Truly professional service."</p>
+                  <p>"Organized our college industrial visit with Partner's Tours. Their 50-seater bus was in excellent condition and the rates were very competitive."</p>
                   <div className="user">
                     <div className="user-avatar">A</div>
                     <div className="user-info">
@@ -314,7 +282,7 @@ const Packages = ({ onEnquiry }) => {
                 </div>
                 <div className="testimonial-card premium-card">
                   <div className="stars">⭐⭐⭐⭐⭐</div>
-                  <p>"Seamless booking through WhatsApp. Loved the itinerary for Manali. Very helpful staff at the Bhadgaon Road office."</p>
+                  <p>"Seamless booking for our family Shirdi trip. The Tempo Traveller was clean and the driver was very well-mannered. Highly recommended!"</p>
                   <div className="user">
                     <div className="user-avatar">V</div>
                     <div className="user-info">

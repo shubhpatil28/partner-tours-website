@@ -33,15 +33,13 @@ const Navbar = ({ isOpen, setIsOpen }) => {
     <nav className="navbar">
       <div className="container nav-container">
         <h1 className="logo">
-          <Link to="/">Partner's<span>Tours</span></Link>
+          <Link to="/">Partner's<span>Bus Service</span></Link>
         </h1>
 
         <div className={`nav-links ${isOpen ? 'active' : ''}`}>
           <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link>
-          <Link to="/packages" className={location.pathname.includes('/package') ? 'active' : ''}>Tour Packages</Link>
-          <Link to="/rental" className={location.pathname === '/rental' ? 'active' : ''}>Bus Service</Link>
-          <Link to="/blog" className={location.pathname.includes('/blog') ? 'active' : ''}>Blog</Link>
-          <Link to="/gallery" className={location.pathname === '/gallery' ? 'active' : ''}>Gallery</Link>
+          <Link to="/packages" className={location.pathname.includes('/package') ? 'active' : ''}>Bus Tours</Link>
+          <Link to="/rental" className={location.pathname === '/rental' ? 'active' : ''}>Bus Fleet</Link>
           <Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>Contact</Link>
           
         </div>

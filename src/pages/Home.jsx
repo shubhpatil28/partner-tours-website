@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 import { Phone, MessageSquare, Bus, Plane, Globe, Star, Shield, Award, CheckCircle, ArrowRight } from 'lucide-react';
 import './Home.css';
 import Image from '../components/common/Image';
-import heroImg from '../assets/hero.png';
+import heroImg from '../assets/hero_bus.png';
+import tempoImg from '../assets/tempo_traveller.png';
+import miniBusImg from '../assets/mini_bus.png';
+import luxuryBusImg from '../assets/hero_bus.png'; // Reusing or could use another
 import goaImg from '../assets/goa.png';
 import manaliImg from '../assets/manali.png';
 import kashmirImg from '../assets/kashmir.png';
@@ -18,9 +21,9 @@ import { injectStructuredData, getTravelAgencySchema } from '../utils/seo';
 const Home = ({ onEnquiry }) => {
   React.useEffect(() => {
     updateMetaTags({
-      title: 'Partner\'s Tours & Travels | Best Travel Agency in Chalisgaon',
-      description: 'Partner\'s Tours & Travels is the most trusted travel agency in Chalisgaon. We offer premium holiday packages, luxury bus rentals, and flight bookings across Jalgaon district.',
-      keywords: 'Travel Agency Chalisgaon, Best Tour Operator Jalgaon, Bus Rental Chalisgaon, Flight Booking Chalisgaon, Partner Tours',
+      title: 'Partner\'s Bus Service | Luxury Bus Rental Chalisgaon',
+      description: 'Chalisgaon\'s most reliable bus rental service. Book 35-50 seater luxury buses and sleeper coaches for weddings, school trips, and corporate travel.',
+      keywords: 'Bus Rental Chalisgaon, Tourist Bus Jalgaon, Sleeper Coach Booking, Group Transport Chalisgaon',
     });
 
     injectStructuredData(getTravelAgencySchema(CONTACT_CONFIG));
@@ -40,10 +43,10 @@ const Home = ({ onEnquiry }) => {
         />
         <div className="hero-overlay"></div>
         <div className="container hero-content fade-in-up">
-          <div className="badge badge-orange ripple mb-16">1000+ Happy Customers • Best Price • 24/7 Support</div>
-          <h1 className="mb-24">Experience Your Next <br/><span>Perfect Journey</span></h1>
+          <div className="badge badge-orange ripple mb-16">Chalisgaon's Premium Bus Company • 24/7 Support</div>
+          <h1 className="mb-24">Luxury Bus Rental <br/><span>Service in Chalisgaon</span></h1>
           <p className="mb-32">
-            <strong>Partner's Tours & Travels</strong> is the most trusted travel agency in <strong>Chalisgaon</strong>. Since 2015, we have been serving the Jalgaon district with premium holiday packages, luxury bus rentals, and instant flight bookings. Our office is located at Bhadgaon Road, ready to plan your dream vacation.
+            <strong>Partner's Bus Service</strong> provides professional group transport solutions. We specialize in 35-50 Seater Tourist Buses and Premium Sleeper Coaches for all your group travel needs across Maharashtra.
           </p>
           <div className="hero-btns">
             <a 
@@ -91,55 +94,48 @@ const Home = ({ onEnquiry }) => {
              data-full-width-responsive="true"></ins>
       </div>
 
-      {/* Services Section */}
       <section className="section-padding bg-light glass-effect">
         <div className="container">
           <div className="section-title">
-            <div className="badge badge-blue mb-16">Our Specialized Services</div>
-            <h2 className="mb-16">Chalisgaon's Most <span>Reliable Travel Partner</span></h2>
-            <p>We combine local Chalisgaon expertise with world-class travel standards to bring you the best deals on tours, rentals, and bookings.</p>
+            <div className="badge badge-blue mb-16">Our Services</div>
+            <h2 className="mb-16">Professional <span>Bus Transport</span></h2>
+            <p>Reliable and safe transport for every occasion.</p>
           </div>
           
           <div className="grid grid-3">
             <div className="service-card ripple">
               <div className="s-icon"><Bus size={32}/></div>
-              <h3>Luxury Bus Rentals</h3>
-              <p>Book premium AC/Non-AC luxury buses for family trips, weddings, or corporate outings from Chalisgaon to anywhere in Maharashtra.</p>
-              <ul className="s-list mb-16">
-                <li><CheckCircle size={16}/> Daily Pune-Mumbai Routes</li>
-                <li><CheckCircle size={14}/> 12 to 50 Seater Options</li>
-              </ul>
-              <Link to="/rental" className="s-link" onClick={() => trackEvent(ANALYTICS_EVENTS.RENTAL_VIEW)}>Check Rates <ArrowRight size={16}/></Link>
+              <h3>Wedding Bus Booking</h3>
+              <p>Punctual and decorated buses for your special day. We ensure your guests travel in comfort.</p>
+              <Link to="/rental" className="s-link">Book for Wedding <ArrowRight size={16}/></Link>
             </div>
             
             <div className="service-card ripple">
-              <div className="s-icon"><Plane size={32}/></div>
-              <h3>Instant Flight Booking</h3>
-              <p>Forget the online booking hassle. Get instant E-tickets for domestic and international flights at our Chalisgaon office at the lowest fares.</p>
-              <ul className="s-list mb-16">
-                <li><CheckCircle size={16}/> Group Booking Discounts</li>
-                <li><CheckCircle size={14}/> 24/7 Cancellation Support</li>
-              </ul>
-              <button 
-                className="s-link"
-                onClick={() => {
-                  trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { type: 'flights' });
-                  sendWhatsApp('general', 'Flight Booking');
-                }}
-              >
-                Get Best Fare <ArrowRight size={16}/>
-              </button>
+              <div className="s-icon"><Bus size={32}/></div>
+              <h3>School & College Trips</h3>
+              <p>Safety-first transport for educational tours and excursions with experienced drivers.</p>
+              <Link to="/rental" className="s-link">Enquire for Trip <ArrowRight size={16}/></Link>
             </div>
             
             <div className="service-card ripple">
-              <div className="s-icon"><Globe size={32}/></div>
-              <h3>Curated Tour Packages</h3>
-              <p>Hand-picked domestic and international holiday packages designed for comfort and luxury, starting right from Chalisgaon/Jalgaon.</p>
-               <ul className="s-list mb-16">
-                <li><CheckCircle size={16}/> Honeymoon & Family Tours</li>
-                <li><CheckCircle size={14}/> Religious & Heritage Trips</li>
-              </ul>
-              <Link to="/packages" className="s-link">Explore Tours <ArrowRight size={16}/></Link>
+              <div className="s-icon"><Bus size={32}/></div>
+              <h3>Corporate Travel</h3>
+              <p>Premium buses for corporate retreats, site visits, and employee transport solutions.</p>
+              <Link to="/rental" className="s-link">Corporate Booking <ArrowRight size={16}/></Link>
+            </div>
+
+            <div className="service-card ripple">
+              <div className="s-icon"><Bus size={32}/></div>
+              <h3>Pilgrimage Tours</h3>
+              <p>Comfortable group travel to Shirdi, Jyotirlingas, and other religious destinations.</p>
+              <Link to="/rental" className="s-link">Book Yatra Bus <ArrowRight size={16}/></Link>
+            </div>
+
+            <div className="service-card ripple">
+              <div className="s-icon"><Bus size={32}/></div>
+              <h3>Outstation Service</h3>
+              <p>Reliable long-distance bus rentals for intercity travel across Maharashtra and beyond.</p>
+              <Link to="/rental" className="s-link">Get Outstation Quote <ArrowRight size={16}/></Link>
             </div>
           </div>
         </div>
@@ -174,31 +170,31 @@ const Home = ({ onEnquiry }) => {
         <div className="container">
           <div className="grid grid-2 align-center">
             <div className="city-info">
-              <div className="badge badge-orange mb-16">Why Chalisgaon Chooses Us</div>
-              <h2 className="mb-24">10 Years of <span>Travel Excellence</span></h2>
-              <p className="mb-32">As a locally owned business, we take pride in serving our community. We don't just book tickets; we create memories. Our office on Bhadgaon Road is always open for personal consultations to help you plan your perfect trip.</p>
+              <div className="badge badge-orange mb-16">Why Choose Our Bus Service</div>
+              <h2 className="mb-24">Premium <span>Group Transport</span></h2>
+              <p className="mb-32">Partner's Bus Service is dedicated to providing the best-in-class transport experience for large groups. With a decade of expertise, we ensure every journey is safe, comfortable, and punctual.</p>
               
               <div className="grid grid-2 mt-40" style={{gap: '2rem'}}>
                 <div className="feature-item ripple" style={{display: 'flex', gap: '1rem', padding: '1rem', background: 'var(--slate-50)', borderRadius: 'var(--radius-md)'}}>
-                  <Shield className="text-accent" size={24} style={{color: 'var(--accent)'}} />
+                  <CheckCircle className="text-accent" size={24} />
                   <div>
-                    <h4 style={{marginBottom: '0.25rem'}}>Secure & Verified</h4>
-                    <p style={{fontSize: '0.875rem', color: 'var(--slate-500)'}}>GST registered with verified hotel partners.</p>
+                    <h4 style={{marginBottom: '0.25rem'}}>Professional Drivers</h4>
+                    <p style={{fontSize: '0.875rem', color: 'var(--slate-500)'}}>Experienced and verified staff for safe travel.</p>
                   </div>
                 </div>
                 <div className="feature-item ripple" style={{display: 'flex', gap: '1rem', padding: '1rem', background: 'var(--slate-50)', borderRadius: 'var(--radius-md)'}}>
-                  <Award className="text-accent" size={24} style={{color: 'var(--accent)'}} />
+                  <Shield className="text-accent" size={24} />
                   <div>
-                    <h4 style={{marginBottom: '0.25rem'}}>Best Price</h4>
-                    <p style={{fontSize: '0.875rem', color: 'var(--slate-500)'}}>We match any verified quote in Jalgaon district.</p>
+                    <h4 style={{marginBottom: '0.25rem'}}>24/7 Support</h4>
+                    <p style={{fontSize: '0.875rem', color: 'var(--slate-500)'}}>Dedicated booking and en-route assistance.</p>
                   </div>
                 </div>
               </div>
             </div>
             <div className="city-img-container">
                <Image 
-                src={dubaiImg} 
-                alt="Partner's Tours & Travels - Best Tour Operator in Jalgaon District" 
+                src={heroImg} 
+                alt="Partner's Bus Service Fleet" 
                 className="rounded-img shadow-lg" 
                 width={600}
                 height={400}
@@ -208,12 +204,45 @@ const Home = ({ onEnquiry }) => {
         </div>
       </section>
 
+      {/* Our Bus Fleet Section */}
+      <section className="section-padding bg-dark text-white">
+        <div className="container">
+          <div className="section-title">
+            <div className="badge badge-orange mb-16">Our Bus Fleet</div>
+            <h2 className="text-white mb-16">Premium <span>Bus Options</span></h2>
+          </div>
+          <div className="grid grid-3">
+             <FleetCard 
+                image={tempoImg} 
+                name="17 Seater Executive Bus" 
+                capacity="17 Seater" 
+                features={["AC", "Push-back Seats", "Music System"]} 
+             />
+             <FleetCard 
+                image={miniBusImg} 
+                name="35 Seater Tourist Bus" 
+                capacity="35 Seater" 
+                features={["Full AC", "High Roof", "LCD Entertainment"]} 
+             />
+             <FleetCard 
+                image={heroImg} 
+                name="Luxury Sleeper Bus" 
+                capacity="30 Berths" 
+                features={["Premium Berths", "Charging Points", "Air Suspension"]} 
+             />
+          </div>
+          <div className="text-center mt-40">
+             <Link to="/rental" className="btn btn-primary btn-lg ripple">View Fleet & Pricing</Link>
+          </div>
+        </div>
+      </section>
+
       {/* Featured Packages */}
       <section className="section-padding bg-light glass-effect">
         <div className="container">
           <div className="section-title">
-            <div className="badge badge-blue mb-16">Tour Packages</div>
-            <h2 className="mb-16">Popular <span>Destinations</span></h2>
+            <div className="badge badge-blue mb-16">Bus Tours</div>
+            <h2 className="mb-16">Group <span>Excursions</span></h2>
           </div>
           <div className="grid grid-3">
              <PackageSummaryCard 
@@ -242,7 +271,7 @@ const Home = ({ onEnquiry }) => {
              />
           </div>
           <div className="text-center mt-50">
-             <Link to="/packages" className="btn btn-secondary btn-lg ripple">View All Tour Packages</Link>
+             <Link to="/packages" className="btn btn-secondary btn-lg ripple">View All Bus Tours</Link>
           </div>
         </div>
       </section>
@@ -256,12 +285,12 @@ const Home = ({ onEnquiry }) => {
           </div>
           <div className="testimonial-slider-container">
              <div className="testimonial-track">
-                <TestimonialCard name="Rajesh Deshmukh" location="Chalisgaon" text="I booked my Kashmir honeymoon with Partner's Tours. The arrangements at Srinagar were world-class. Best travel agency in Chalisgaon!" />
-                <TestimonialCard name="Priyanka Patil" location="Jalgaon" text="Their luxury bus service to Mumbai is very punctual. The drivers are professional and the seats are comfortable for long journeys." />
-                <TestimonialCard name="Amol Sonawane" location="Pachora" text="Excellent flight booking service. I got a much better rate than online portals for my Dubai trip. Highly recommended!" />
-                <TestimonialCard name="Rajesh Deshmukh" location="Chalisgaon" text="I booked my Kashmir honeymoon with Partner's Tours. The arrangements at Srinagar were world-class. Best travel agency in Chalisgaon!" />
-                <TestimonialCard name="Priyanka Patil" location="Jalgaon" text="Their luxury bus service to Mumbai is very punctual. The drivers are professional and the seats are comfortable for long journeys." />
-                <TestimonialCard name="Amol Sonawane" location="Pachora" text="Excellent flight booking service. I got a much better rate than online portals for my Dubai trip. Highly recommended!" />
+                <TestimonialCard name="Rajesh Deshmukh" location="Chalisgaon" text="We booked a 50-seater luxury bus for our son's wedding. The bus was clean, punctual, and the driver was very professional. Highly recommended for wedding transport!" />
+                <TestimonialCard name="Priyanka Patil" location="Jalgaon" text="Our school trip to Mahabaleshwar was seamless thanks to Partner's Tours. The Tempo Traveller was comfortable and safe for the kids." />
+                <TestimonialCard name="Amol Sonawane" location="Pachora" text="Excellent corporate bus booking service. We use them for all our company outings. Best rates in Jalgaon district!" />
+                <TestimonialCard name="Rajesh Deshmukh" location="Chalisgaon" text="We booked a 50-seater luxury bus for our son's wedding. The bus was clean, punctual, and the driver was very professional." />
+                <TestimonialCard name="Priyanka Patil" location="Jalgaon" text="Our school trip to Mahabaleshwar was seamless thanks to Partner's Tours. The Tempo Traveller was comfortable and safe for the kids." />
+                <TestimonialCard name="Amol Sonawane" location="Pachora" text="Excellent corporate bus booking service. We use them for all our company outings." />
              </div>
           </div>
         </div>
@@ -296,6 +325,27 @@ const Home = ({ onEnquiry }) => {
     </div>
   );
 };
+
+const FleetCard = ({ image, name, capacity, features }) => (
+  <div className="fleet-card ripple">
+    <div className="f-img">
+      <Image src={image} alt={name} width={400} height={250} />
+      <div className="f-capacity">{capacity}</div>
+    </div>
+    <div className="f-info">
+      <h3>{name}</h3>
+      <ul className="f-features">
+        {features.map((f, i) => <li key={i}>{f}</li>)}
+      </ul>
+      <button 
+        className="btn btn-whatsapp full-width mt-16"
+        onClick={() => sendWhatsApp('bus', name)}
+      >
+        <MessageSquare size={16} /> Enquire on WhatsApp
+      </button>
+    </div>
+  </div>
+);
 
 const PackageSummaryCard = ({ id, image, title, dur, price, onEnquiry }) => (
   <div className="p-sum-card ripple" onClick={() => onEnquiry(title)}>

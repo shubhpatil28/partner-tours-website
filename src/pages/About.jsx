@@ -8,17 +8,17 @@ import updateMetaTags from '../utils/updateMetaTags';
 const About = () => {
   useEffect(() => {
     updateMetaTags({
-      title: 'About Us | Best Travel Agency in Chalisgaon & Jalgaon',
-      description: 'Partner\'s Tours & Travels is a premier travel agency in Chalisgaon since 2015. We specialize in luxury bus rentals, international holiday packages, and instant flight bookings with 100% customer satisfaction.',
-      keywords: 'Chalisgaon Travel Agency, Best Tour Operator Maharashtra, Partner Tours History',
+      title: 'About Us | Luxury Bus Rental & Group Transport Chalisgaon',
+      description: 'Partner\'s Bus Service is Chalisgaon\'s leading group transport provider since 2015. We specialize in luxury bus rentals, school trips, and corporate transport solutions.',
+      keywords: 'Chalisgaon Bus Rental, Group Transport Jalgaon, Partner Bus History, Luxury Bus Chalisgaon',
     });
   }, []);
   return (
     <div className="about-page">
       <section className="about-hero">
         <div className="container">
-          <h1 className="fade-in">About Partner's Tours & Travels</h1>
-          <p className="subtitle fade-in-delay">Your Trusted Travel Companion in Chalisgaon since 2015</p>
+          <h1 className="fade-in">About Partner's Bus Service</h1>
+          <p className="subtitle fade-in-delay">Chalisgaon's Premier Bus Rental Specialist since 2015</p>
         </div>
       </section>
 
@@ -26,15 +26,15 @@ const About = () => {
         <div className="container">
           <div className="grid grid-2 align-center">
             <div className="about-text">
-              <h2>A Legacy of Trusted Travel</h2>
+              <h2>A Legacy of Reliable Transport</h2>
               <p>
-                Founded in 2015, <strong>Partner's Tours & Travels</strong> has grown from a small local transport provider to one of the most respected travel agencies in the Jalgaon district. Based in the heart of Chalisgaon, we have spent nearly a decade building a reputation for reliability, safety, and exceptional customer service.
+                Founded in 2015, <strong>Partner's Bus Service</strong> has grown from a local transport provider to Chalisgaon's most trusted name in <strong>Luxury Bus Rental & Group Travel</strong>. We specialize in providing high-quality transport solutions for groups of all sizes across the Jalgaon district.
               </p>
               <p>
-                Our deep roots in Chalisgaon allow us to offer a unique perspective on travel. We understand the specific needs of our local community, whether it's arranging a comfortable bus for a pilgrimage to Shirdi, booking urgent flight tickets for business travelers, or planning a dream international holiday for families. We aren't just a travel agency; we are your neighbors committed to making your journeys stress-free.
+                Our deep roots in Chalisgaon allow us to offer unparalleled transport logistics. We understand the specific needs of our community, whether it's providing a decorated luxury bus for a wedding, a safe mini-bus for a family pilgrimage, or a fleet of coaches for school and college excursions. We aren't just a travel service; we are your transport partners committed to making group journeys seamless and safe.
               </p>
               <p>
-                At Partner's Tours & Travels, we believe that travel should be accessible to everyone. That's why we work tirelessly to negotiate the best rates with hotels, transport providers, and airlines, passing those savings directly to you. Our team of travel experts is passionate about discovering new destinations and refining our existing packages to ensure you get the best value for your hard-earned money.
+                At Partner's Bus Service, we believe that group travel should be comfortable and affordable. That's why we maintain our own fleet of modern buses, ensuring that we can offer the most competitive rates and the highest standards of vehicle maintenance in Northern Maharashtra.
               </p>
               <div className="about-stats mt-40">
                 <div className="stat-item">
@@ -53,8 +53,8 @@ const About = () => {
             </div>
             <div className="about-image">
               <Image 
-                src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&q=80&w=1000" 
-                alt="About Partner's Tours Chalisgaon" 
+                src="/src/assets/hero_bus.png" 
+                alt="Partner's Luxury Bus Fleet" 
                 className="rounded-img shadow-lg" 
                 width={800}
                 height={600}
@@ -66,11 +66,11 @@ const About = () => {
             <div className="grid grid-2">
               <div className="about-card glass-effect p-32">
                 <h3>Our Vision</h3>
-                <p>To be the leading travel platform in Northern Maharashtra, known for bridging the gap between local travelers and global destinations through technology and personalized care. We aim to make every resident of Chalisgaon feel confident and excited about exploring the world.</p>
+                <p>To be the leading group transport platform in Northern Maharashtra, known for bridging the gap between local travelers and their destinations through safety and personalized care. We aim to make every group trip from Chalisgaon a premium experience.</p>
               </div>
               <div className="about-card glass-effect p-32">
                 <h3>Our Commitment</h3>
-                <p>We are committed to ethical business practices and transparency. Unlike generic online portals, we provide face-to-face consultations at our Chalisgaon office, ensuring that you know exactly what you are paying for with no hidden costs or last-minute surprises.</p>
+                <p>We are committed to passenger safety and vehicle excellence. Unlike generic booking portals, we manage our own fleet and provide professional, verified drivers for every journey, ensuring no compromises on your group's comfort.</p>
               </div>
             </div>
             
@@ -133,3 +133,4 @@ const About = () => {
 };
 
 export default About;
+
