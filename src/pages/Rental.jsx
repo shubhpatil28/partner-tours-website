@@ -1,5 +1,20 @@
 import React from 'react';
 import { Users, Briefcase, MessageSquare, Wind, Fuel, Map, CheckCircle, ShieldCheck, Zap, Phone, ExternalLink } from 'lucide-react';
+
+// Centralized icon structure to prevent runtime crashes
+const Icons = {
+  Users: Users || (() => null),
+  Briefcase: Briefcase || (() => null),
+  MessageSquare: MessageSquare || (() => null),
+  Wind: Wind || (() => null),
+  Fuel: Fuel || (() => null),
+  Map: Map || (() => null),
+  CheckCircle: CheckCircle || (() => null),
+  ShieldCheck: ShieldCheck || (() => null),
+  Zap: Zap || (() => null),
+  Phone: Phone || (() => null),
+  ExternalLink: ExternalLink || (() => null)
+};
 import './Rental.css';
 import Image from '../components/common/Image';
 import { getCallLink, sendWhatsApp } from '../utils/contactHelpers';
@@ -103,7 +118,7 @@ const Rental = () => {
                     <span>From {vehicle.priceKm}/km</span>
                   </div>
                   <div className="v-urgency-badge">
-                     <Zap size={10} /> {vehicle.urgency}
+                     <Icons.Zap size={10} /> {vehicle.urgency}
                   </div>
                 </div>
                 <div className="vehicle-info">
@@ -113,15 +128,15 @@ const Rental = () => {
                   </div>
                   
                   <div className="vehicle-main-features">
-                    <div className="v-feat"><Users size={18}/> {vehicle.seats}</div>
-                    <div className="v-feat"><Briefcase size={18}/> {vehicle.bags}</div>
-                    <div className="v-feat"><Wind size={18}/> AC</div>
-                    <div className="v-feat"><Fuel size={18}/> Petrol/Diesel</div>
+                    <div className="v-feat"><Icons.Users size={18}/> {vehicle.seats}</div>
+                    <div className="v-feat"><Icons.Briefcase size={18}/> {vehicle.bags}</div>
+                    <div className="v-feat"><Icons.Wind size={18}/> AC</div>
+                    <div className="v-feat"><Icons.Fuel size={18}/> Petrol/Diesel</div>
                   </div>
 
                   <ul className="v-feature-list">
                     {vehicle.features.map((f, i) => (
-                      <li key={i}><CheckCircle size={14} color="#2ed573"/> {f}</li>
+                      <li key={i}><Icons.CheckCircle size={14} color="#2ed573"/> {f}</li>
                     ))}
                   </ul>
 
@@ -138,14 +153,14 @@ const Rental = () => {
                           sendWhatsApp('bus', vehicle.name);
                         }}
                       >
-                        <MessageSquare size={18}/> WhatsApp
+                        <Icons.MessageSquare size={18}/> WhatsApp
                       </button>
                       <a 
                         href={getCallLink()} 
                         className="btn btn-primary ripple"
                         onClick={() => trackEvent(ANALYTICS_EVENTS.CALL_CLICK)}
                       >
-                        <Phone size={18}/> Call Now
+                        <Icons.Phone size={18}/> Call Now
                       </a>
                     </div>
                   </div>
@@ -167,7 +182,7 @@ const Rental = () => {
                   className="btn btn-secondary ripple"
                   onClick={() => trackEvent('redbus_redirect')}
                 >
-                  Book on RedBus <ExternalLink size={18} />
+                  Book on RedBus <Icons.ExternalLink size={18} />
                 </a>
              </div>
           </div>
@@ -233,5 +248,6 @@ const Rental = () => {
 };
 
 export default Rental;
+
 
 

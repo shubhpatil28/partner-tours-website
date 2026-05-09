@@ -1,6 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, MessageSquare, Bus, Plane, Globe, Star, Shield, Award, CheckCircle, ArrowRight } from 'lucide-react';
+import { Phone, MessageSquare, Bus, Plane, Globe, Star, Shield, Award, CheckCircle, ArrowRight, Clock, MapPin, ShieldCheck, MessageCircle } from 'lucide-react';
+
+// Centralized icon structure to prevent runtime crashes
+const Icons = {
+  Phone: Phone || (() => null),
+  MessageSquare: MessageSquare || (() => null),
+  Bus: Bus || (() => null),
+  Plane: Plane || (() => null),
+  Globe: Globe || (() => null),
+  Star: Star || (() => null),
+  Shield: Shield || (() => null),
+  Award: Award || (() => null),
+  CheckCircle: CheckCircle || (() => null),
+  ArrowRight: ArrowRight || (() => null),
+  Clock: Clock || (() => null),
+  MapPin: MapPin || (() => null),
+  ShieldCheck: ShieldCheck || (() => null),
+  MessageCircle: MessageCircle || (() => null)
+};
 import './Home.css';
 import Image from '../components/common/Image';
 import heroImg from '../assets/hero_bus.png';
@@ -56,7 +74,7 @@ const Home = ({ onEnquiry }) => {
               className="btn btn-primary btn-lg ripple"
               onClick={() => trackEvent(ANALYTICS_EVENTS.CALL_CLICK)}
             >
-              <Phone size={20}/> Call Now
+              <Icons.Phone size={20}/> Call Now
             </a>
             <button 
               className="btn btn-whatsapp btn-lg ripple"
@@ -65,7 +83,7 @@ const Home = ({ onEnquiry }) => {
                 sendWhatsApp('general', 'Home Hero');
               }}
             >
-              <MessageSquare size={20}/> Book on WhatsApp
+              <Icons.MessageSquare size={20}/> Book on WhatsApp
             </button>
           </div>
           
@@ -155,19 +173,19 @@ const Home = ({ onEnquiry }) => {
         <div className="container">
           <div className="grid grid-4 text-center">
             <div className="trust-item">
-              <CheckCircle size={20} className="text-accent" />
+              <Icons.CheckCircle size={20} className="text-accent" />
               <span>Daily Service Available</span>
             </div>
             <div className="trust-item">
-              <CheckCircle size={20} className="text-accent" />
+              <Icons.CheckCircle size={20} className="text-accent" />
               <span>Professional Drivers</span>
             </div>
             <div className="trust-item">
-              <CheckCircle size={20} className="text-accent" />
+              <Icons.CheckCircle size={20} className="text-accent" />
               <span>Safe Night Travel</span>
             </div>
             <div className="trust-item">
-              <CheckCircle size={20} className="text-accent" />
+              <Icons.CheckCircle size={20} className="text-accent" />
               <span>Comfortable Journey</span>
             </div>
           </div>
@@ -179,7 +197,7 @@ const Home = ({ onEnquiry }) => {
         <div className="container">
           <div className="redbus-banner ripple">
             <div className="redbus-icon-wrap">
-              <Bus size={32} />
+              <Icons.Bus size={32} />
             </div>
             <div className="redbus-text">
               <h3>Book Bus Tickets Online</h3>
@@ -209,14 +227,14 @@ const Home = ({ onEnquiry }) => {
               
               <div className="grid grid-2 mt-40" style={{gap: '2rem'}}>
                 <div className="feature-item ripple" style={{display: 'flex', gap: '1rem', padding: '1rem', background: 'var(--slate-50)', borderRadius: 'var(--radius-md)'}}>
-                  <CheckCircle className="text-accent" size={24} />
+                  <Icons.Shield size={24} className="text-accent" />
                   <div>
                     <h4 style={{marginBottom: '0.25rem'}}>Professional Drivers</h4>
                     <p style={{fontSize: '0.875rem', color: 'var(--slate-500)'}}>Experienced and verified staff for safe travel.</p>
                   </div>
                 </div>
                 <div className="feature-item ripple" style={{display: 'flex', gap: '1rem', padding: '1rem', background: 'var(--slate-50)', borderRadius: 'var(--radius-md)'}}>
-                  <Shield className="text-accent" size={24} />
+                  <Icons.ShieldCheck size={24} className="text-accent" />
                   <div>
                     <h4 style={{marginBottom: '0.25rem'}}>24/7 Support</h4>
                     <p style={{fontSize: '0.875rem', color: 'var(--slate-500)'}}>Dedicated booking and en-route assistance.</p>
@@ -342,7 +360,7 @@ const Home = ({ onEnquiry }) => {
             <div className="cta-glow"></div>
             <div className="cta-content">
               <div className="cta-icon-wrap">
-                <MessageSquare size={32} />
+                <Icons.Bus size={32} />
               </div>
               <div className="cta-text">
                 <h2>Get Latest Tour Offers on WhatsApp</h2>
@@ -355,7 +373,7 @@ const Home = ({ onEnquiry }) => {
                 rel="noreferrer"
                 onClick={() => trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { location: 'footer_banner' })}
               >
-                <MessageSquare size={20} /> Join Now
+                <Icons.MessageSquare size={20} /> Join Now
               </a>
             </div>
           </div>
@@ -374,16 +392,16 @@ const RouteCard = ({ from, to, image, tag, time, badge }) => (
     </div>
     <div className="r-content">
       <div className="r-header">
-        <h3>{from} <ArrowRight size={16} /> {to}</h3>
-        <p className="r-time"><Clock size={14} /> {time}</p>
+        <h3>{from} <Icons.ArrowRight size={16} /> {to}</h3>
+        <p className="r-time"><Icons.Clock size={14} /> {time}</p>
       </div>
       <div className="r-actions">
         <button className="btn-book-seat" onClick={() => sendWhatsApp(`Hi, I want to book a seat for ${from} to ${to} on ${time}.`)}>
           Book Seat Now
         </button>
         <div className="r-btns-group">
-          <a href={getCallLink()} className="r-btn-icon" title="Call Now"><Phone size={18} /></a>
-          <button className="r-btn-icon whatsapp" onClick={() => sendWhatsApp(`Enquiry for ${from} to ${to} route.`)} title="WhatsApp"><MessageSquare size={18} /></button>
+          <a href={getCallLink()} className="r-btn-icon" title="Call Now"><Icons.Phone size={18} /></a>
+          <button className="r-btn-icon whatsapp" onClick={() => sendWhatsApp(`Enquiry for ${from} to ${to} route.`)} title="WhatsApp"><Icons.MessageSquare size={18} /></button>
         </div>
       </div>
     </div>
@@ -400,7 +418,7 @@ const FleetCard = ({ image, name, capacity, features }) => (
       <h3>{name}</h3>
       <div className="f-features">
         {features.map((feat, i) => (
-          <span key={i} className="f-feat"><CheckCircle size={14} /> {feat}</span>
+          <span key={i} className="f-feat"><Icons.CheckCircle size={14} /> {feat}</span>
         ))}
       </div>
       <button className="btn-fleet-book" onClick={() => sendWhatsApp(`Hi, I want to book the ${name} for our group trip.`)}>
@@ -432,7 +450,7 @@ const TestimonialCard = ({ name, location, text }) => (
   <div className="testimonial-card premium-card ripple">
     <div className="stars mb-16">
       {[...Array(5)].map((_, i) => (
-        <Star key={i} size={16} fill="#f59e0b" color="#f59e0b" />
+        <Icons.Star key={i} size={16} fill="#f59e0b" color="#f59e0b" />
       ))}
     </div>
     <p className="mb-16">"{text}"</p>
@@ -447,3 +465,4 @@ const TestimonialCard = ({ name, location, text }) => (
 );
 
 export default Home;
+

@@ -1,6 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Clock, MapPin, Search, Zap, Shield, Award, Star } from 'lucide-react';
+import { Clock, MapPin, Search, Zap, Shield, Award, Star, Phone, MessageCircle, Bus, ShieldCheck } from 'lucide-react';
+
+// Centralized icon structure to prevent runtime crashes
+const Icons = {
+  Clock: Clock || (() => null),
+  MapPin: MapPin || (() => null),
+  Search: Search || (() => null),
+  Zap: Zap || (() => null),
+  Shield: Shield || (() => null),
+  Award: Award || (() => null),
+  Star: Star || (() => null),
+  Phone: Phone || (() => null),
+  MessageCircle: MessageCircle || (() => null),
+  Bus: Bus || (() => null),
+  ShieldCheck: ShieldCheck || (() => null)
+};
 import './Packages.css';
 import Image from '../components/common/Image';
 import goaImg from '../assets/goa.png';
@@ -153,7 +168,7 @@ const Packages = ({ onEnquiry }) => {
         <div className="container">
           <div className="filter-bar sticky-filters">
             <div className="search-box">
-              <Search size={20} className="search-icon"/>
+              <Icons.Search size={20} className="search-icon"/>
               <input 
                 type="text" 
                 placeholder="Search destinations (e.g. Goa, Kashmir)..." 
@@ -187,6 +202,7 @@ const Packages = ({ onEnquiry }) => {
                           width={300}
                           height={200}
                         />
+                        <div className="p-badge best"><Icons.Zap size={14}/> {pkg.badge}</div>
                         <div className="rv-info">
                            <h5>{pkg.title}</h5>
                            <span>{pkg.price}</span>
@@ -301,9 +317,11 @@ const Packages = ({ onEnquiry }) => {
          <div className="container text-center">
             <h3>Our Premium Partners</h3>
             <div className="trust-icons mt-40">
-               <Shield size={40} color="var(--accent)"/>
-               <Star size={40} color="#FFC107" fill="#FFC107"/>
-               <Award size={40} color="var(--primary)"/>
+             <div className="flex gap-24 justify-center">
+                <Icons.Shield size={40} color="var(--accent)"/>
+                <Icons.Star size={40} color="#FFC107" fill="#FFC107"/>
+                <Icons.Award size={40} color="var(--primary)"/>
+             </div>
             </div>
          </div>
       </section>
@@ -327,20 +345,20 @@ const PackageCard = ({ pkg, handlePackageClick, handleLeadCapture }) => (
       </span>
       <div className="card-badges">
         {pkg.badge && <span className={`badge badge-${pkg.badgeType} floating-badge`}>{pkg.badge}</span>}
-        <span className="rating-badge">
-           <Star size={12} fill="currentColor" /> 4.8
-        </span>
+        <div className="rating-badge">
+          <Icons.Star size={12} fill="currentColor" /> 4.8
+       </div>
       </div>
       <div className="urgency-badge">
-         <Zap size={10} /> {pkg.slots || '12 people viewed this today'}
+         <Icons.Zap size={10} /> {pkg.slots || '12 people viewed this today'}
       </div>
     </div>
     <div className="package-info">
       <div className="category-label">{pkg.category}</div>
       <h3>{pkg.title}</h3>
       <div className="package-meta">
-        <span><Clock size={16}/> {pkg.duration}</span>
-        <span><MapPin size={16}/> {pkg.category === 'International' ? 'Abroad' : 'India'}</span>
+        <span><Icons.Clock size={16}/> {pkg.duration}</span>
+        <span><Icons.MapPin size={16}/> India</span>
       </div>
       <div className="card-actions">
         <Link 
@@ -370,3 +388,4 @@ const PackageCard = ({ pkg, handlePackageClick, handleLeadCapture }) => (
 );
 
 export default Packages;
+

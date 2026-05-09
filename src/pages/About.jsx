@@ -1,6 +1,15 @@
 import React, { useEffect } from 'react';
 import './About.css';
 import { Shield, Award, MapPin, Phone, Clock } from 'lucide-react';
+
+// Centralized icon structure to prevent runtime crashes
+const Icons = {
+  Shield: Shield || (() => null),
+  Award: Award || (() => null),
+  MapPin: MapPin || (() => null),
+  Phone: Phone || (() => null),
+  Clock: Clock || (() => null)
+};
 import { CONTACT_CONFIG } from '../config';
 import Image from '../components/common/Image';
 import updateMetaTags from '../utils/updateMetaTags';
@@ -100,17 +109,17 @@ const About = () => {
           </div>
           <div className="grid grid-3">
             <div className="feature-card">
-              <Shield size={40} className="mb-16 text-primary" />
+              <Icons.Shield size={40} className="mb-16 text-primary" />
               <h3>Unmatched Safety</h3>
               <p>We only partner with verified hotels and transport providers who meet our stringent safety and hygiene standards. Your family's well-being is our highest priority.</p>
             </div>
             <div className="feature-card">
-              <Award size={40} className="mb-16 text-primary" />
+              <Icons.Award size={40} className="mb-16 text-primary" />
               <h3>Local Expertise</h3>
               <p>As a Chalisgaon-based agency, we know the local logistics better than anyone. We ensure seamless pick-ups and drops from your doorstep in the Jalgaon district.</p>
             </div>
             <div className="feature-card">
-              <Clock size={40} className="mb-16 text-primary" />
+              <Icons.Clock size={40} className="mb-16 text-primary" />
               <h3>Human Connection</h3>
               <p>No bots, no endless waiting on hold. You get a dedicated travel manager who understands your preferences and is always ready to help with a smile.</p>
             </div>
@@ -122,8 +131,8 @@ const About = () => {
         <div className="container text-center">
           <h2>Visit Our Chalisgaon Office</h2>
           <div className="location-info mt-32">
-            <p><MapPin className="inline-icon" /> Bhadgaon Road, Near Station, Chalisgaon, Jalgaon, Maharashtra - 424101</p>
-            <p><Phone className="inline-icon" /> {CONTACT_CONFIG.DISPLAY_PHONE}</p>
+            <p><Icons.MapPin className="inline-icon" /> Bhadgaon Road, Near Station, Chalisgaon, Jalgaon, Maharashtra - 424101</p>
+            <p><Icons.Phone className="inline-icon" /> {CONTACT_CONFIG.DISPLAY_PHONE}</p>
             <p>Email: {CONTACT_CONFIG.EMAIL}</p>
           </div>
         </div>
@@ -133,4 +142,5 @@ const About = () => {
 };
 
 export default About;
+
 

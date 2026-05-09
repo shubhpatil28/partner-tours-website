@@ -1,6 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Camera, Globe, Globe2, Send, Clock } from 'lucide-react';
+
+// Centralized icon structure to prevent runtime crashes
+const Icons = {
+  Mail: Mail || (() => null),
+  Phone: Phone || (() => null),
+  MapPin: MapPin || (() => null),
+  Camera: Camera || (() => null),
+  Globe: Globe || (() => null),
+  Globe2: Globe2 || (() => null),
+  Send: Send || (() => null),
+  Clock: Clock || (() => null)
+};
 import './Footer.css';
 import { CONTACT_CONFIG } from '../config';
 import { getWhatsAppLink, getCallLink } from '../utils/contactHelpers';
@@ -17,9 +29,9 @@ const Footer = () => {
             </Link>
             <p>Chalisgaon's premier bus rental and group transport specialist. Providing luxury buses and sleeper coaches for weddings, schools, and corporate trips since 2015.</p>
             <div className="social-links">
-              <a href="https://instagram.com/partners_tours" target="_blank" rel="noreferrer" title="Instagram"><Camera size={20}/></a>
-              <a href="https://facebook.com/partnerstours" target="_blank" rel="noreferrer" title="Facebook"><Globe size={20}/></a>
-              <a href="https://youtube.com/@partnerstours" target="_blank" rel="noreferrer" title="YouTube"><Globe2 size={20}/></a>
+              <a href="https://instagram.com/partners_tours" target="_blank" rel="noreferrer" title="Instagram"><Icons.Camera size={20}/></a>
+              <a href="https://facebook.com/partnerstours" target="_blank" rel="noreferrer" title="Facebook"><Icons.Globe size={20}/></a>
+              <a href="https://youtube.com/@partnerstours" target="_blank" rel="noreferrer" title="YouTube"><Icons.Globe2 size={20}/></a>
             </div>
           </div>
           
@@ -48,17 +60,17 @@ const Footer = () => {
             <ul>
               <li>
                 <a href={getCallLink()} className="footer-contact-link">
-                  <Phone size={18}/> <span>{CONTACT_CONFIG.DISPLAY_PHONE}</span>
+                  <Icons.Phone size={18}/> <span>{CONTACT_CONFIG.DISPLAY_PHONE}</span>
                 </a>
               </li>
               <li>
                 <a href={getWhatsAppLink()} className="footer-contact-link" style={{color: 'var(--accent)'}}>
-                  <Globe2 size={18}/> <span>Book on WhatsApp</span>
+                  <Icons.Send size={18}/> <span>Book on WhatsApp</span>
                 </a>
               </li>
               <li>
                 <a href="https://g.page/r/YOUR_BUSINESS_ID" target="_blank" rel="noreferrer" className="footer-contact-link">
-                  <MapPin size={18}/> <span>{CONTACT_CONFIG.ADDRESS}</span>
+                  <Icons.MapPin size={18}/> <span>{CONTACT_CONFIG.ADDRESS}</span>
                 </a>
               </li>
             </ul>
@@ -88,4 +100,5 @@ const Footer = () => {
 };
 
 export default Footer;
+
 

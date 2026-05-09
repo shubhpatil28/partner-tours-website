@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, MessageSquare } from 'lucide-react';
+
+// Centralized icon structure to prevent runtime crashes
+const Icons = {
+  Menu: Menu || (() => null),
+  X: X || (() => null),
+  Phone: Phone || (() => null),
+  MessageSquare: MessageSquare || (() => null)
+};
 import './Navbar.css';
 import { CONTACT_CONFIG } from '../config';
 import { getWhatsAppLink, getCallLink, sendWhatsApp } from '../utils/contactHelpers';
@@ -50,7 +58,7 @@ const Navbar = ({ isOpen, setIsOpen }) => {
             className="phone-link ripple"
             onClick={() => trackEvent(ANALYTICS_EVENTS.CALL_CLICK, { location: 'navbar_desktop' })}
           >
-            <Phone size={20}/> {CONTACT_CONFIG.DISPLAY_PHONE}
+            <Icons.Phone size={20}/> {CONTACT_CONFIG.DISPLAY_PHONE}
           </a>
           <button 
             className="btn btn-whatsapp ripple"
@@ -59,12 +67,12 @@ const Navbar = ({ isOpen, setIsOpen }) => {
               sendWhatsApp('general', 'Navbar Desktop');
             }}
           >
-            <MessageSquare size={18}/> Book on WhatsApp
+            <Icons.MessageSquare size={18}/> Book on WhatsApp
           </button>
         </div>
 
         <button className="menu-toggle" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
+          {isOpen ? <Icons.X size={28} /> : <Icons.Menu size={28} />}
         </button>
       </div>
     </nav>
@@ -72,4 +80,5 @@ const Navbar = ({ isOpen, setIsOpen }) => {
 };
 
 export default Navbar;
+
 
