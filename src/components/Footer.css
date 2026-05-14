@@ -2,6 +2,10 @@
   background: var(--primary);
   color: var(--white);
   padding: 100px 0 30px;
+  width: 100%;
+  max-width: 100%;
+  padding-inline: 1rem;
+  overflow: hidden;
 }
 
 .footer-grid {

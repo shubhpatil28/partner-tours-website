@@ -1,7 +1,10 @@
 .packages-page {
   background: var(--slate-50);
   min-height: 100vh;
-  padding-bottom: 0; /* Updated for sticky bar */
+  padding-bottom: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .packages-page .page-header {
@@ -729,16 +732,19 @@
 
 /* Testimonial Slider */
 .testimonial-slider-container {
-  overflow: hidden;
-  position: relative;
-  padding: 2rem 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 1.5rem 0;
+  -webkit-overflow-scrolling: touch;
 }
 
 .testimonial-track {
   display: flex;
-  gap: 2rem;
-  animation: slideTestimonials 30s linear infinite;
+  gap: 1rem;
   width: max-content;
+  animation: none; /* Disable animation for better mobile scroll */
 }
 
 .testimonial-track:hover {
@@ -748,6 +754,13 @@
 @keyframes slideTestimonials {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
+}
+
+.testimonial-card {
+  min-width: 85%;
+  max-width: 85%;
+  flex-shrink: 0;
+  scroll-snap-align: center;
 }
 
 .premium-card {

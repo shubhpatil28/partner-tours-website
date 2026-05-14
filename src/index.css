@@ -47,6 +47,14 @@
   height: 100vh !important;
 }
 
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -68,6 +76,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   letter-spacing: -0.01em;
   text-rendering: optimizeLegibility;
+  overscroll-behavior-x: none;
+  touch-action: pan-y;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -96,6 +106,7 @@ ul {
 
 img {
   max-width: 100%;
+  height: auto;
   display: block;
 }
 
@@ -244,6 +255,12 @@ img {
 .grid-3 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
 .grid-4 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
 
+@media (max-width: 768px) {
+  .grid-2, .grid-3, .grid-4, .grid-layout {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 /* Badges */
 .badge {
   display: inline-flex;
@@ -365,11 +382,16 @@ img {
 .app-wrapper {
   display: flex;
   flex-direction: column;
-  min-height: 100dvh; /* Modern viewport handling */
+  min-height: 100dvh;
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
 }
 
 .main-content {
   flex: 1;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 /* AdSense Global Styles */
@@ -408,6 +430,8 @@ img {
   left: 0;
   right: 0;
   width: 100%;
+  max-width: 100%;
+  overflow: hidden;
   z-index: 1000;
   background: rgba(15, 23, 42, 0.95);
   backdrop-filter: blur(6px);
@@ -437,13 +461,14 @@ img {
 .sticky-bar-btns {
   display: flex;
   width: 100%;
-  gap: 10px;
+  gap: 0.75rem;
   max-width: 500px;
 }
 
 .sticky-bar-btns a, 
 .sticky-bar-btns button {
   flex: 1;
+  min-width: 0;
   display: flex;
   align-items: center;
   justify-content: center;
