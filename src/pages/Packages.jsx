@@ -176,16 +176,18 @@ const Packages = ({ onEnquiry }) => {
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
-            <div className="category-filters">
-              {categories.map(cat => (
-                <button 
-                  key={cat}
-                  className={activeCategory === cat ? 'active ripple' : 'ripple'}
-                  onClick={() => setActiveCategory(cat)}
-                >
-                  {cat}
-                </button>
-              ))}
+            <div className="category-scroll">
+              <div className="category-row">
+                {categories.map(cat => (
+                  <button 
+                    key={cat}
+                    className={`${activeCategory === cat ? 'active' : ''} category-btn ripple`}
+                    onClick={() => setActiveCategory(cat)}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
