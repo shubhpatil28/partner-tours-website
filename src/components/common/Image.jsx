@@ -67,7 +67,6 @@ const Image = React.memo(({
         width: width ? (typeof width === 'number' ? `${width}px` : width) : "100%",
         aspectRatio: (width && height) ? `${width} / ${height}` : "auto",
         display: "block",
-        background: "#0f172a",
         ...style
       }}
     >

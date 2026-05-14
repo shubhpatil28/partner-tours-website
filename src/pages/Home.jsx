@@ -24,9 +24,12 @@ import Image from '../components/common/Image';
 import heroImg from '../assets/hero_bus.png';
 import tempoImg from '../assets/tempo_traveller.png';
 import miniBusImg from '../assets/mini_bus.png';
-import luxuryBusImg from '../assets/hero_bus.png';
-import sleeperNightImg from '../assets/sleeper_night.png';
-import shivSaiImg from '../assets/shiv_sai_coach.png'; // Reusing or could use another
+
+// Route Imports
+import suratBus from '../assets/routes/surat-bus.png';
+import puneBus from '../assets/routes/pune-bus.png';
+import mumbaiBus from '../assets/routes/mumbai-bus.png';
+
 import goaImg from '../assets/goa.png';
 import manaliImg from '../assets/manali.png';
 import kashmirImg from '../assets/kashmir.png';
@@ -124,46 +127,22 @@ const Home = ({ onEnquiry }) => {
           </div>
           
           <div className="grid grid-3">
-            <RouteCard 
-              from="Chalisgaon" 
-              to="Surat" 
-              image={sleeperNightImg} 
-              tag="Most Popular"
-              time="Daily 9:00 PM"
-              badge="Daily Service"
-            />
-            <RouteCard 
-              from="Chalisgaon" 
-              to="Pune" 
-              image={luxuryBusImg} 
-              tag="Night Service"
-              time="Daily 10:30 PM"
-              badge="Daily Service"
-            />
-            <RouteCard 
-              from="Chalisgaon" 
-              to="Mumbai" 
-              image={shivSaiImg} 
-              tag="Limited Seats"
-              time="Daily 10:00 PM"
-              badge="Daily Service"
-            />
-            <RouteCard 
-              from="Chalisgaon" 
-              to="Nashik" 
-              image={miniBusImg} 
-              tag="Fast Service"
-              time="Multiple Times"
-              badge="Daily Service"
-            />
-            <RouteCard 
-              from="Chalisgaon" 
-              to="Rajasthan" 
-              image={heroImg} 
-              tag="Group Special"
-              time="Weekly Tours"
-              badge="Group Tour"
-            />
+            {[
+              { from: "Chalisgaon", to: "Surat", image: suratBus, tag: "Most Popular", time: "Daily 9:00 PM", price: "₹700/seat" },
+              { from: "Chalisgaon", to: "Pune", image: puneBus, tag: "Night Service", time: "Daily 10:30 PM", price: "₹650/seat" },
+              { from: "Chalisgaon", to: "Mumbai", image: mumbaiBus, tag: "Limited Seats", time: "Daily 10:00 PM", price: "₹800/seat" }
+            ].map((route, idx) => (
+              <RouteCard 
+                key={idx}
+                from={route.from} 
+                to={route.to} 
+                image={route.image} 
+                tag={route.tag}
+                time={route.time}
+                price={route.price}
+                badge="Daily Service"
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -264,13 +243,13 @@ const Home = ({ onEnquiry }) => {
           </div>
           <div className="grid grid-2" style={{gap: '3rem'}}>
              <FleetCard 
-                image={shivSaiImg} 
+                image={mumbaiBus} 
                 name="Shiv Sai Luxury Coach" 
                 capacity="45 Seater" 
                 features={["AC", "Push-back Seats", "LCD Entertainment", "Luggage Space"]} 
              />
              <FleetCard 
-                image={sleeperNightImg} 
+                image={suratBus} 
                 name="Premium AC Sleeper Bus" 
                 capacity="30 Berths" 
                 features={["Full AC", "Charging Points", "Night Lights", "Air Suspension"]} 
@@ -383,26 +362,36 @@ const Home = ({ onEnquiry }) => {
   );
 };
 
-const RouteCard = ({ from, to, image, tag, time, badge }) => (
+const RouteCard = ({ from, to, image, tag, time, price, badge }) => (
   <div className="route-card ripple">
-    <div className="r-img">
-      <Image src={image} alt={`${from} to ${to} Bus`} width={400} height={250} />
+    <div className="route-image-wrapper">
+      <Image 
+        src={image} 
+        alt={`${from} to ${to} Bus`} 
+        className="route-image"
+        width={400} 
+        height={250} 
+      />
       {tag && <div className="r-tag">{tag}</div>}
-      <div className="r-badge">{badge}</div>
+      {badge && <div className="r-badge">{badge}</div>}
     </div>
-    <div className="r-content">
-      <div className="r-header">
-        <h3>{from} <Icons.ArrowRight size={16} /> {to}</h3>
-        <p className="r-time"><Icons.Clock size={14} /> {time}</p>
+    <div className="r-info">
+      <div className="r-main">
+        <h3>{from} <Icons.ArrowRight size={18}/> {to}</h3>
+        <p><Icons.Clock size={16}/> {time}</p>
       </div>
-      <div className="r-actions">
+      <div className="r-price">
+        <small>From</small>
+        <strong>{price || '₹600'}</strong>
+      </div>
+    </div>
+    <div className="r-actions">
         <button className="btn-book-seat" onClick={() => sendWhatsApp(`Hi, I want to book a seat for ${from} to ${to} on ${time}.`)}>
           Book Seat Now
         </button>
         <div className="r-btns-group">
           <a href={getCallLink()} className="r-btn-icon" title="Call Now"><Icons.Phone size={18} /></a>
           <button className="r-btn-icon whatsapp" onClick={() => sendWhatsApp(`Enquiry for ${from} to ${to} route.`)} title="WhatsApp"><Icons.MessageSquare size={18} /></button>
-        </div>
       </div>
     </div>
   </div>

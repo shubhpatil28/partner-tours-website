@@ -29,9 +29,9 @@ import { trackEvent, ANALYTICS_EVENTS } from '../utils/analytics';
 import { injectStructuredData, getTourSchema } from '../utils/seo';
 import updateMetaTags from '../utils/updateMetaTags';
 
-import heroBusImg from '../assets/hero_bus.png';
-import sleeperNightImg from '../assets/sleeper_night.png';
-import shivSaiImg from '../assets/shiv_sai_coach.png';
+import heroBusImg from '../assets/routes/pune-bus.png';
+import sleeperNightImg from '../assets/routes/surat-bus.png';
+import shivSaiImg from '../assets/routes/mumbai-bus.png';
 
 const packagesData = [
   { 

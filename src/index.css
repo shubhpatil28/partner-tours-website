@@ -551,7 +551,6 @@ img {
 }
 
 .image-skeleton {
-  background: #0f172a;
   animation: pulseSkeleton 1.5s infinite ease-in-out;
 }
 
@@ -567,7 +566,6 @@ img {
   overflow: hidden;
   border-radius: 1rem;
   position: relative;
-  background: #0f172a;
 }
 
 .card-image img {
