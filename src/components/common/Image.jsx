@@ -67,19 +67,26 @@ const Image = React.memo(({
         width: width ? (typeof width === 'number' ? `${width}px` : width) : "100%",
         aspectRatio: (width && height) ? `${width} / ${height}` : "auto",
         display: "block",
+        background: "#0f172a",
         ...style
       }}
     >
-      {!isLoaded && <div className="skeleton-overlay" />}
+      {!isLoaded && <div className="skeleton-overlay image-skeleton" />}
       <img
-        src={imgSrc}
+        src={imgSrc || FALLBACK_IMAGE}
         alt={alt || "Travel destination image"}
         loading={priority ? "eager" : "lazy"}
         // @ts-ignore
         fetchpriority={priority ? "high" : "auto"}
         decoding="async"
         onLoad={handleLoad}
-        onError={handleError}
+        onError={(e) => {
+          handleError();
+          // Emergency direct DOM fallback if state update is too slow
+          if (e.currentTarget.src !== FALLBACK_IMAGE) {
+            e.currentTarget.src = FALLBACK_IMAGE;
+          }
+        }}
         style={{
           width: "100%",
           height: "100%",

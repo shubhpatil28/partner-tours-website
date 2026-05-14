@@ -13,6 +13,7 @@ const Icons = {
 import { CONTACT_CONFIG } from '../config';
 import Image from '../components/common/Image';
 import updateMetaTags from '../utils/updateMetaTags';
+import heroBusImg from '../assets/hero_bus.png';
 
 const About = () => {
   useEffect(() => {
@@ -62,7 +63,7 @@ const About = () => {
             </div>
             <div className="about-image">
               <Image 
-                src="/src/assets/hero_bus.png" 
+                src={heroBusImg} 
                 alt="Partner's Luxury Bus Fleet" 
                 className="rounded-img shadow-lg" 
                 width={800}

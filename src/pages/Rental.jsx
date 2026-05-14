@@ -22,6 +22,10 @@ import { trackEvent, ANALYTICS_EVENTS } from '../utils/analytics';
 import { getUnsplashSrcSet } from '../utils/imageUtils';
 import updateMetaTags from '../utils/updateMetaTags';
 
+import tempoImg from '../assets/tempo_traveller.png';
+import miniBusImg from '../assets/mini_bus.png';
+import sleeperCoachImg from '../assets/sleeper_coach.png';
+
 const vehicles = [
   {
     id: 1,
@@ -33,7 +37,7 @@ const vehicles = [
     priceKm: "₹25",
     priceDay: "₹6,000",
     features: ["Push-back Seats", "Music System", "Ample Luggage Space", "Experienced Driver", "Charging Points"],
-    image: '/src/assets/tempo_traveller.png',
+    image: tempoImg,
     urgency: "Only 2 slots left this weekend"
   },
   {
@@ -46,7 +50,7 @@ const vehicles = [
     priceKm: "₹45",
     priceDay: "₹12,500",
     features: ["Air Conditioned", "High Roof", "Reading Lights", "Perfect for Groups", "Mic & Audio System"],
-    image: '/src/assets/mini_bus.png',
+    image: miniBusImg,
     urgency: "Popular for weddings"
   },
   {
@@ -59,7 +63,7 @@ const vehicles = [
     priceKm: "₹65",
     priceDay: "₹22,000",
     features: ["Full Sleeper Berths", "Privacy Curtains", "AC & Ventilation", "Smooth Suspension", "Night Light"],
-    image: '/src/assets/sleeper_coach.png',
+    image: sleeperCoachImg,
     urgency: "Night travel specialist"
   }
 ];

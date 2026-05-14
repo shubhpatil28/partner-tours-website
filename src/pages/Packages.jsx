@@ -29,10 +29,14 @@ import { trackEvent, ANALYTICS_EVENTS } from '../utils/analytics';
 import { injectStructuredData, getTourSchema } from '../utils/seo';
 import updateMetaTags from '../utils/updateMetaTags';
 
+import heroBusImg from '../assets/hero_bus.png';
+import sleeperNightImg from '../assets/sleeper_night.png';
+import shivSaiImg from '../assets/shiv_sai_coach.png';
+
 const packagesData = [
   { 
     id: 'chalisgaon-surat', 
-    image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957', 
+    image: heroBusImg, 
     title: "Chalisgaon → Surat", 
     duration: "Daily 9:00 PM", 
     price: "₹700/seat", 
@@ -42,7 +46,7 @@ const packagesData = [
   },
   { 
     id: 'chalisgaon-pune', 
-    image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb', 
+    image: sleeperNightImg, 
     title: "Chalisgaon → Pune", 
     duration: "Daily 10:30 PM", 
     price: "₹650/seat", 
@@ -52,7 +56,7 @@ const packagesData = [
   },
   { 
     id: 'chalisgaon-mumbai', 
-    image: 'https://images.unsplash.com/photo-1566552881560-0be862a7c445', 
+    image: shivSaiImg, 
     title: "Chalisgaon → Mumbai", 
     duration: "Daily 10:00 PM", 
     price: "₹800/seat", 
@@ -60,7 +64,7 @@ const packagesData = [
     badge: "Limited Seats",
     badgeType: "luxury"
   }
-]; // Safety filter
+];
 
 const Packages = ({ onEnquiry }) => {
   const [activeCategory, setActiveCategory] = React.useState('All Deals');
