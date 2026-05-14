@@ -17,7 +17,7 @@ const Icons = {
   ShieldCheck: ShieldCheck || (() => null)
 };
 import './Packages.css';
-import Image from '../components/common/Image';
+import ProImage from '../components/common/ProImage';
 import goaImg from '../assets/goa.png';
 import manaliImg from '../assets/manali.png';
 import kashmirImg from '../assets/kashmir.png';
@@ -202,11 +202,12 @@ const Packages = ({ onEnquiry }) => {
                <div className="grid grid-4">
                   {recentlyViewed.map(pkg => (
                      <div key={`rv-${pkg.id}`} className="rv-card ripple" onClick={() => handlePackageClick(pkg)}>
-                        <Image 
+                        <ProImage 
                           src={pkg.image} 
                           alt={`${pkg.title} - Best Tour Package from Chalisgaon`} 
                           width={300}
                           height={200}
+                          aspectRatio="3/2"
                         />
                         <div className="p-badge best"><Icons.Zap size={14}/> {pkg.badge}</div>
                         <div className="rv-info">
@@ -338,11 +339,12 @@ const Packages = ({ onEnquiry }) => {
 const PackageCard = ({ pkg, handlePackageClick, handleLeadCapture }) => (
   <div className="package-card fade-in-up" onClick={() => handlePackageClick(pkg)}>
     <div className="package-img">
-      <Image 
+      <ProImage 
         src={pkg.image} 
         alt={`${pkg.title} Tour Package from Best Travel Agency in Chalisgaon`} 
         width={500}
         height={350}
+        aspectRatio="16/10"
       />
       <div className="card-overlay"></div>
       <span className="price-tag">

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { MapPin, ExternalLink } from 'lucide-react';
 import './Gallery.css';
-import Image from '../components/common/Image';
+import ProImage from '../components/common/ProImage';
 import updateMetaTags from '../utils/updateMetaTags';
 import goaImg from '../assets/goa.png';
 import manaliImg from '../assets/manali.png';
@@ -64,11 +64,12 @@ const Gallery = () => {
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
                 <div className="gallery-card">
-                  <Image 
+                  <ProImage 
                     src={img.src} 
                     alt={`${img.title} at ${img.location}`} 
                     width={400}
                     height={300}
+                    aspectRatio="4/3"
                   />
                   <div className="gallery-overlay">
                     <div className="overlay-content">

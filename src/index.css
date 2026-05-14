@@ -110,6 +110,7 @@ img {
   height: auto;
   display: block;
   object-fit: cover;
+  content-visibility: auto; /* Browser optimization for off-screen images */
 }
 
 .container {
@@ -574,9 +575,42 @@ img {
   object-fit: cover;
 }
 
-.aspect-video { aspect-ratio: 16 / 9; }
-.aspect-square { aspect-ratio: 1 / 1; }
-.aspect-photo { aspect-ratio: 4 / 3; }
+
+/* Pro Image System */
+.pro-image-container {
+  background: var(--primary-light);
+  border-radius: inherit;
+}
+
+.pro-image-skeleton {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    var(--primary) 25%,
+    var(--primary-light) 50%,
+    var(--primary) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+  z-index: 1;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.pro-image-container img {
+  transform: translateZ(0); /* Hardware acceleration */
+  will-change: opacity;
+}
+
+/* Rendering performance hardening */
+section, article, .card {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 500px;
+}
 
 .image-wrapper.loading img {
   filter: blur(10px);

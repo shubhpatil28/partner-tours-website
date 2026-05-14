@@ -16,7 +16,7 @@ const Icons = {
   ExternalLink: ExternalLink || (() => null)
 };
 import './Rental.css';
-import Image from '../components/common/Image';
+import ProImage from '../components/common/ProImage';
 import { getCallLink, sendWhatsApp } from '../utils/contactHelpers';
 import { trackEvent, ANALYTICS_EVENTS } from '../utils/analytics';
 import { getUnsplashSrcSet } from '../utils/imageUtils';
@@ -110,13 +110,12 @@ const Rental = () => {
             {vehicles.map(vehicle => (
               <div key={vehicle.id} className="vehicle-card fade-in">
                 <div className="vehicle-img">
-                  <Image 
-                    src={`${vehicle.image}?auto=format&fit=crop&q=80&w=800`} 
-                    srcSet={getUnsplashSrcSet(vehicle.image)}
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                  <ProImage 
+                    src={vehicle.image} 
                     alt={vehicle.name} 
                     width={500}
                     height={350}
+                    aspectRatio="16/10"
                   />
                   <div className="vehicle-pricing-overlay">
                     <span>From {vehicle.priceKm}/km</span>

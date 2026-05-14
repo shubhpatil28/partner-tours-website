@@ -20,7 +20,7 @@ const Icons = {
   MessageCircle: MessageCircle || (() => null)
 };
 import './Home.css';
-import Image from '../components/common/Image';
+import ProImage from '../components/common/ProImage';
 import heroImg from '../assets/hero_bus.png';
 import tempoImg from '../assets/tempo_traveller.png';
 import miniBusImg from '../assets/mini_bus.png';
@@ -56,13 +56,14 @@ const Home = ({ onEnquiry }) => {
     <div className="home-page">
       {/* Hero Section with Parallax Effect */}
       <section className="hero parallax-hero">
-        <Image 
+        <ProImage 
           src={heroImg} 
           alt="Partner's Tours & Travels - Leading Travel Agency in Chalisgaon" 
           className="hero-bg" 
           priority={true} 
           width={1920}
           height={1080}
+          aspectRatio="16/9"
         />
         <div className="hero-overlay"></div>
         <div className="container hero-content fade-in-up">
@@ -222,12 +223,13 @@ const Home = ({ onEnquiry }) => {
               </div>
             </div>
             <div className="city-img-container">
-               <Image 
+               <ProImage 
                 src={heroImg} 
                 alt="Partner's Bus Service Fleet" 
                 className="rounded-img shadow-lg" 
                 width={600}
                 height={400}
+                aspectRatio="3/2"
                />
             </div>
           </div>
@@ -365,12 +367,13 @@ const Home = ({ onEnquiry }) => {
 const RouteCard = ({ from, to, image, tag, time, price, badge }) => (
   <div className="route-card ripple">
     <div className="route-image-wrapper">
-      <Image 
+      <ProImage 
         src={image} 
         alt={`${from} to ${to} Bus`} 
         className="route-image"
         width={400} 
         height={250} 
+        aspectRatio="16/10"
       />
       {tag && <div className="r-tag">{tag}</div>}
       {badge && <div className="r-badge">{badge}</div>}
@@ -400,7 +403,13 @@ const RouteCard = ({ from, to, image, tag, time, price, badge }) => (
 const FleetCard = ({ image, name, capacity, features }) => (
   <div className="fleet-card ripple">
     <div className="f-img">
-      <Image src={image} alt={name} width={400} height={250} />
+      <ProImage 
+        src={image} 
+        alt={name} 
+        width={400} 
+        height={250} 
+        aspectRatio="16/10"
+      />
       <div className="f-capacity">{capacity}</div>
     </div>
     <div className="f-content">
@@ -420,11 +429,12 @@ const FleetCard = ({ image, name, capacity, features }) => (
 const PackageSummaryCard = ({ id, image, title, dur, price, onEnquiry }) => (
   <div className="p-sum-card ripple" onClick={() => onEnquiry(title)}>
     <div className="p-img">
-      <Image 
+      <ProImage 
         src={image} 
         alt={`${title} Tour Package from Chalisgaon Travel Agency`} 
         width={400}
         height={250}
+        aspectRatio="16/10"
       />
     </div>
     <div className="p-content">

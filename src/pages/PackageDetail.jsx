@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Clock, CheckCircle, MessageSquare, Hotel, Coffee, Car, Zap, ShieldCheck } from 'lucide-react';
 import './PackageDetail.css';
-import Image from '../components/common/Image';
+import ProImage from '../components/common/ProImage';
 import goaImg from '../assets/goa.png';
 import manaliImg from '../assets/manali.png';
 import kashmirImg from '../assets/kashmir.png';
@@ -138,13 +138,14 @@ const PackageDetail = () => {
   return (
     <div className="package-detail-page">
       <div className="detail-hero">
-        <Image 
+        <ProImage 
           src={pkg.image} 
           alt={pkg.title} 
           className="detail-hero-img" 
           priority={true} 
           width={1920}
           height={600}
+          aspectRatio="16/5"
         />
         <div className="container">
           <div className="detail-header-content fade-in">

@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Calendar, User, Clock, ArrowLeft } from 'lucide-react';
 import './BlogDetail.css';
-import Image from '../components/common/Image';
+import ProImage from '../components/common/ProImage';
 import { getWhatsAppLink } from '../utils/contactHelpers';
 import updateMetaTags from '../utils/updateMetaTags';
 
@@ -153,12 +153,13 @@ const BlogDetail = () => {
         </header>
 
         <div className="post-featured-img">
-          <Image 
+          <ProImage 
             src={post.image} 
             alt={post.title} 
             priority={true} 
             width={1200}
             height={600}
+            aspectRatio="2/1"
           />
         </div>
 
@@ -188,11 +189,12 @@ const BlogDetail = () => {
                 <div className="related-list">
                    {Object.keys(blogContent).filter(k => k !== id).slice(0, 3).map(key => (
                       <Link key={key} to={`/blog/${key}`} className="related-item">
-                         <Image 
+                         <ProImage 
                           src={blogContent[key].image} 
                           alt={blogContent[key].title} 
                           width={120}
                           height={80}
+                          aspectRatio="3/2"
                          />
                          <h6>{blogContent[key].title}</h6>
                       </Link>

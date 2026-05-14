@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, ArrowRight, Search, Clock } from 'lucide-react';
 import './Blog.css';
-import Image from '../components/common/Image';
+import ProImage from '../components/common/ProImage';
 import { getUnsplashSrcSet } from '../utils/imageUtils';
 import updateMetaTags from '../utils/updateMetaTags';
 
@@ -97,13 +97,12 @@ const Blog = () => {
             {blogPosts.map((post) => (
               <article key={post.id} className="blog-card ripple">
                 <div className="blog-card-img">
-                  <Image 
-                    src={`${post.image}?auto=format&fit=crop&q=80&w=800`} 
-                    srcSet={getUnsplashSrcSet(post.image)}
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                  <ProImage 
+                    src={post.image} 
                     alt={post.title} 
                     width={500}
                     height={300}
+                    aspectRatio="16/9"
                   />
                   <span className="blog-category-tag">{post.category}</span>
                 </div>
