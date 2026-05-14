@@ -55,54 +55,58 @@ const Home = ({ onEnquiry }) => {
   return (
     <div className="home-page">
       {/* Hero Section with Parallax Effect */}
-      <section className="hero parallax-hero">
-        <ProImage 
-          src={heroImg} 
-          alt="Partner's Tours & Travels - Leading Travel Agency in Chalisgaon" 
-          className="hero-bg" 
-          priority={true} 
-          width={1920}
-          height={1080}
-          aspectRatio="16/9"
-        />
-        <div className="hero-overlay"></div>
-        <div className="container hero-content fade-in-up">
-          <div className="badge badge-orange ripple mb-16">Daily Intercity Services • Night Sleeper Coach • 24/7 Booking</div>
-          <h1 className="mb-24">Premium Intercity <br/><span>Bus Operator Chalisgaon</span></h1>
-          <p className="mb-32">
-            <strong>Partner's Bus Service</strong> operates daily premium sleeper and luxury coach services to major cities. Experience the most comfortable and safe intercity travel in Maharashtra.
-          </p>
-          <div className="hero-btns">
-            <a 
-              href={getCallLink()} 
-              className="btn btn-primary btn-lg ripple"
-              onClick={() => trackEvent(ANALYTICS_EVENTS.CALL_CLICK)}
-            >
-              <Icons.Phone size={20}/> Call Now
-            </a>
-            <button 
-              className="btn btn-whatsapp btn-lg ripple"
-              onClick={() => {
-                trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { location: 'hero' });
-                sendWhatsApp('general', 'Home Hero');
-              }}
-            >
-              <Icons.MessageSquare size={20}/> Book on WhatsApp
-            </button>
+      <section className="hero">
+        <div className="hero-grid">
+          <div className="hero-image-side">
+            <ProImage 
+              src={heroImg} 
+              alt="Partner's Luxury Intercity Sleeper Bus" 
+              className="hero-main-img" 
+              priority={true} 
+              width={1000}
+              height={800}
+              aspectRatio="5/4"
+            />
+            <div className="hero-image-gradient"></div>
           </div>
           
-          <div className="trust-badges mt-40">
-            <div className="t-badge ripple">
-              <span className="num">9+</span> 
-              <span className="lab">Years in Chalisgaon</span>
-            </div>
-            <div className="t-badge ripple gst-badge">
-              <span className="num">GST</span> 
-              <span className="lab">Verified Agency</span>
-            </div>
-            <div className="t-badge ripple">
-              <span className="num">5000+</span> 
-              <span className="lab">Happy Travelers</span>
+          <div className="hero-content-side">
+            <div className="hero-text-wrapper fade-in-up">
+              <div className="badge badge-orange mb-16">Daily Intercity Services • Night Sleeper Coach • 24/7 Booking</div>
+              <h1 className="hero-title mb-24">Premium Intercity <br/><span>Bus Operator</span></h1>
+              <p className="hero-desc mb-32">
+                <strong>Partner's Bus Service</strong> operates daily premium sleeper and luxury coach services to major cities. Experience the most comfortable and safe intercity travel in Maharashtra.
+              </p>
+              
+              <div className="hero-btns">
+                <a 
+                  href={getCallLink()} 
+                  className="btn btn-primary btn-lg ripple"
+                  onClick={() => trackEvent(ANALYTICS_EVENTS.CALL_CLICK)}
+                >
+                  <Icons.Phone size={20}/> Call Now
+                </a>
+                <button 
+                  className="btn btn-whatsapp btn-lg ripple"
+                  onClick={() => {
+                    trackEvent(ANALYTICS_EVENTS.WHATSAPP_REDIRECT, { location: 'hero' });
+                    sendWhatsApp('general', 'Home Hero');
+                  }}
+                >
+                  <Icons.MessageSquare size={20}/> Book on WhatsApp
+                </button>
+              </div>
+              
+              <div className="trust-badges mt-40">
+                <div className="t-badge">
+                  <span className="num">9+</span> 
+                  <span className="lab">Years in Chalisgaon</span>
+                </div>
+                <div className="t-badge">
+                  <span className="num">5000+</span> 
+                  <span className="lab">Happy Travelers</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
