@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 :root {
   /* Premium Color Palette */
@@ -27,12 +27,12 @@
   --glass-border: rgba(255, 255, 255, 0.1);
   --glass-light: rgba(255, 255, 255, 0.8);
   
-  --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease, border-color 0.3s ease;
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 10px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 15px 35px -12px rgb(0 0 0 / 0.2);
   
   --radius-sm: 0.375rem;
   --radius: 0.5rem;
@@ -130,6 +130,13 @@ img {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+  .glass, .glass-light {
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
 }
 
 /* Buttons */
@@ -434,7 +441,7 @@ img {
   overflow: hidden;
   z-index: 1000;
   background: rgba(15, 23, 42, 0.95);
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(4px);
   padding: 0.75rem 1rem max(10px, env(safe-area-inset-bottom, 0px));
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.4);
@@ -442,6 +449,7 @@ img {
   align-items: center;
   gap: 0.5rem;
   transform: translateY(100%) translateZ(0); /* GPU acceleration */
+  will-change: transform;
   animation: slideUpContact 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   touch-action: manipulation; /* Optimized for mobile taps */
 }
@@ -512,6 +520,11 @@ img {
 
   body.menu-open {
     overflow: hidden !important;
+  }
+
+  * {
+    animation-duration: 0.2s !important;
+    transition-duration: 0.2s !important;
   }
 }
 

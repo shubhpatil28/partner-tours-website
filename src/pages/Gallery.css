@@ -40,7 +40,7 @@
 .gallery-item {
   opacity: 0;
   transform: translateY(30px);
-  transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+  transition: opacity 0.8s cubic-bezier(0.2, 1, 0.3, 1), transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
 }
 
 .gallery-item.reveal {
@@ -57,7 +57,7 @@
   background: var(--white);
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
   border: 1px solid var(--slate-100);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease, border-color 0.4s ease;
   cursor: pointer;
 }
 
@@ -85,12 +85,12 @@
   align-items: flex-end;
   padding: 2rem;
   opacity: 0;
-  transition: all 0.4s ease;
+  transition: opacity 0.4s ease;
 }
 
 .overlay-content {
   transform: translateY(20px);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   width: 100%;
 }
 
@@ -124,7 +124,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .btn-view-details:hover {
