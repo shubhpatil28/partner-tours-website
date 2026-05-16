@@ -1,43 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Core Pages -->
   <url>
     <loc>https://partner-tour.site/</loc>
-    <lastmod>2024-05-01</lastmod>
+    <lastmod>2026-05-16</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://partner-tour.site/about</loc>
-    <lastmod>2024-05-01</lastmod>
+    <lastmod>2026-05-16</lastmod>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://partner-tour.site/packages</loc>
-    <lastmod>2024-05-01</lastmod>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://partner-tour.site/rental</loc>
-    <lastmod>2024-05-01</lastmod>
-    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://partner-tour.site/contact</loc>
-    <lastmod>2024-05-01</lastmod>
+    <lastmod>2026-05-16</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://partner-tour.site/blog</loc>
+    <lastmod>2026-05-16</lastmod>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Route SEO Pages -->
+  <url>
+    <loc>https://partner-tour.site/chalisgaon-to-surat-bus</loc>
+    <lastmod>2026-05-16</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://partner-tour.site/chalisgaon-to-pune-bus</loc>
+    <lastmod>2026-05-16</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://partner-tour.site/chalisgaon-to-mumbai-bus</loc>
+    <lastmod>2026-05-16</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://partner-tour.site/chalisgaon-to-nashik-bus</loc>
+    <lastmod>2026-05-16</lastmod>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Legal Pages -->
+  <url>
     <loc>https://partner-tour.site/privacy-policy</loc>
-    <lastmod>2024-05-01</lastmod>
+    <lastmod>2026-05-16</lastmod>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://partner-tour.site/terms</loc>
-    <lastmod>2024-05-01</lastmod>
+    <lastmod>2026-05-16</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://partner-tour.site/cancellation-policy</loc>
+    <lastmod>2026-05-16</lastmod>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://partner-tour.site/disclaimer</loc>
-    <lastmod>2024-05-01</lastmod>
+    <lastmod>2026-05-16</lastmod>
     <priority>0.5</priority>
+  </url>
+
+  <!-- Blog Posts -->
+  <url>
+    <loc>https://partner-tour.site/blog/best-places-near-chalisgaon</loc>
+    <lastmod>2026-05-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://partner-tour.site/blog/shirdi-tour-cost-guide</loc>
+    <lastmod>2026-05-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://partner-tour.site/blog/ajanta-ellora-caves-guide</loc>
+    <lastmod>2026-05-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://partner-tour.site/blog/goa-trip-under-5000</loc>
+    <lastmod>2026-05-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://partner-tour.site/blog/budget-travel-maharashtra</loc>
+    <lastmod>2026-05-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://partner-tour.site/blog/best-sleeper-bus-chalisgaon-to-pune</loc>
+    <lastmod>2026-05-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://partner-tour.site/blog/chalisgaon-to-surat-bus-timings</loc>
+    <lastmod>2026-05-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://partner-tour.site/blog/best-group-bus-booking-maharashtra</loc>
+    <lastmod>2026-05-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://partner-tour.site/blog/wedding-bus-rental-guide</loc>
+    <lastmod>2026-05-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://partner-tour.site/blog/best-night-bus-service-tips</loc>
+    <lastmod>2026-05-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://partner-tour.site/blog/intercity-bus-safety-guide</loc>
+    <lastmod>2026-05-16</lastmod>
+    <priority>0.7</priority>
   </url>
 </urlset>

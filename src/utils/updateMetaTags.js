@@ -4,7 +4,7 @@
  */
 
 const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=1200';
-const DEFAULT_TITLE = "Partner's Tours & Travels | Best Travel Agency in Chalisgaon";
+const DEFAULT_TITLE = "Partner's Bus Service | Premium Intercity Bus Operator in Chalisgaon";
 
 /**
  * Helper to set or update a meta tag
@@ -62,7 +62,7 @@ const updateMetaTags = ({
     // 1. Browser Check
     if (typeof window === 'undefined' || typeof document === 'undefined') return;
 
-    const finalTitle = title ? (title.includes("Partner's") ? title : `${title} | Partner's Tours & Travels`) : DEFAULT_TITLE;
+    const finalTitle = title ? (title.includes("Partner's") ? title : `${title} | Partner's Bus Service`) : DEFAULT_TITLE;
     const finalUrl = url || window.location.href;
 
     // 2. Standard Meta Tags
@@ -75,7 +75,7 @@ const updateMetaTags = ({
     setLinkTag('canonical', finalUrl);
 
     // 4. Open Graph (Facebook, WhatsApp, LinkedIn)
-    setMetaTag('property', 'og:site_name', "Partner's Tours & Travels");
+    setMetaTag('property', 'og:site_name', "Partner's Bus Service");
     setMetaTag('property', 'og:title', finalTitle);
     setMetaTag('property', 'og:description', description);
     setMetaTag('property', 'og:image', image);
