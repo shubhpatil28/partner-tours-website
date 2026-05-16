@@ -63,6 +63,26 @@ const packagesData = [
     category: "Daily",
     badge: "Limited Seats",
     badgeType: "luxury"
+  },
+  { 
+    id: 'chalisgaon-nashik', 
+    image: heroBusImg, 
+    title: "Chalisgaon → Nashik", 
+    duration: "Daily 7:00 AM", 
+    price: "₹400/seat", 
+    category: "Daily",
+    badge: "Morning Service",
+    badgeType: "offer"
+  },
+  { 
+    id: 'chalisgaon-rajasthan', 
+    image: sleeperNightImg, 
+    title: "Chalisgaon → Rajasthan", 
+    duration: "Alternate Days", 
+    price: "₹1800/seat", 
+    category: "Daily",
+    badge: "Long Distance",
+    badgeType: "luxury"
   }
 ];
 

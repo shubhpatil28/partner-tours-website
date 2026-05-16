@@ -73,7 +73,7 @@ const Home = ({ onEnquiry }) => {
           <div className="hero-content-side">
             <div className="hero-text-wrapper fade-in-up">
               <div className="badge badge-orange mb-16">Daily Intercity Services • Night Sleeper Coach • 24/7 Booking</div>
-              <h1 className="hero-title mb-24">Premium Intercity <br/><span>Bus Operator</span></h1>
+              <h1 className="hero-title mb-24">Premium Intercity <br/><span>Bus Operator in Chalisgaon</span></h1>
               <p className="hero-desc mb-32">
                 <strong>Partner's Bus Service</strong> operates daily premium sleeper and luxury coach services to major cities. Experience the most comfortable and safe intercity travel in Maharashtra.
               </p>
@@ -133,9 +133,11 @@ const Home = ({ onEnquiry }) => {
           
           <div className="grid grid-3">
             {[
-              { from: "Chalisgaon", to: "Surat", image: suratBus, tag: "Most Popular", time: "Daily 9:00 PM", price: "₹700/seat" },
-              { from: "Chalisgaon", to: "Pune", image: puneBus, tag: "Night Service", time: "Daily 10:30 PM", price: "₹650/seat" },
-              { from: "Chalisgaon", to: "Mumbai", image: mumbaiBus, tag: "Limited Seats", time: "Daily 10:00 PM", price: "₹800/seat" }
+              { from: "Chalisgaon", to: "Surat", image: suratBus, tag: "Most Popular", time: "Daily 9:00 PM", price: "₹700/seat", link: "/chalisgaon-to-surat-bus" },
+              { from: "Chalisgaon", to: "Pune", image: puneBus, tag: "Night Service", time: "Daily 10:30 PM", price: "₹650/seat", link: "/chalisgaon-to-pune-bus" },
+              { from: "Chalisgaon", to: "Mumbai", image: mumbaiBus, tag: "Limited Seats", time: "Daily 10:00 PM", price: "₹800/seat", link: "/chalisgaon-to-mumbai-bus" },
+              { from: "Chalisgaon", to: "Nashik", image: suratBus, tag: "Daily Morning", time: "Daily 7:00 AM", price: "₹400/seat", link: "/chalisgaon-to-nashik-bus" },
+              { from: "Chalisgaon", to: "Rajasthan", image: mumbaiBus, tag: "Long Distance", time: "Alternate Days", price: "₹1800/seat", link: "/chalisgaon-to-surat-bus" }
             ].map((route, idx) => (
               <RouteCard 
                 key={idx}
@@ -146,6 +148,7 @@ const Home = ({ onEnquiry }) => {
                 time={route.time}
                 price={route.price}
                 badge="Daily Service"
+                link={route.link}
               />
             ))}
           </div>
@@ -338,6 +341,36 @@ const Home = ({ onEnquiry }) => {
         </div>
       </section>
 
+      {/* FAQ Section for SEO */}
+      <section className="section-padding bg-light">
+        <div className="container">
+          <div className="section-title">
+            <div className="badge badge-blue mb-16">Help Center</div>
+            <h2 className="mb-16">Frequently Asked <span>Questions</span></h2>
+            <p>Common questions about our bus services and bookings.</p>
+          </div>
+          
+          <div className="faq-grid mt-40">
+            <div className="faq-item card ripple">
+              <h4>How do I book a seat?</h4>
+              <p>You can book your seat instantly by calling us or sending a message on WhatsApp. We provide quick confirmation and seat numbers.</p>
+            </div>
+            <div className="faq-item card ripple">
+              <h4>What are the bus timings from Chalisgaon to Pune?</h4>
+              <p>Our premium sleeper bus to Pune departs daily from Chalisgaon at 10:30 PM and reaches Pune by early morning.</p>
+            </div>
+            <div className="faq-item card ripple">
+              <h4>Is AC available in all buses?</h4>
+              <p>We operate both AC Sleeper and Non-AC Seater buses. Most of our intercity routes use Premium AC Sleeper coaches.</p>
+            </div>
+            <div className="faq-item card ripple">
+              <h4>What is the cancellation policy?</h4>
+              <p>Cancellations made 24 hours before departure get a 90% refund. Please check our Cancellation Policy page for detailed terms.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* WhatsApp CTA Banner */}
       <section className="whatsapp-cta-section mb-50">
         <div className="container">
@@ -368,23 +401,25 @@ const Home = ({ onEnquiry }) => {
   );
 };
 
-const RouteCard = ({ from, to, image, tag, time, price, badge }) => (
+const RouteCard = ({ from, to, image, tag, time, price, badge, link }) => (
   <div className="route-card ripple">
-    <div className="route-image-wrapper">
-      <ProImage 
-        src={image} 
-        alt={`${from} to ${to} Bus`} 
-        className="route-image"
-        width={400} 
-        height={250} 
-        aspectRatio="16/10"
-      />
-      {tag && <div className="r-tag">{tag}</div>}
-      {badge && <div className="r-badge">{badge}</div>}
-    </div>
+    <Link to={link || "#"} className="route-link-wrapper">
+      <div className="route-image-wrapper">
+        <ProImage 
+          src={image} 
+          alt={`${from} to ${to} Bus`} 
+          className="route-image"
+          width={400} 
+          height={250} 
+          aspectRatio="16/10"
+        />
+        {tag && <div className="r-tag">{tag}</div>}
+        {badge && <div className="r-badge">{badge}</div>}
+      </div>
+    </Link>
     <div className="r-info">
       <div className="r-main">
-        <h3>{from} <Icons.ArrowRight size={18}/> {to}</h3>
+        <h3><Link to={link || "#"}>{from} <Icons.ArrowRight size={18}/> {to}</Link></h3>
         <p><Icons.Clock size={16}/> {time}</p>
       </div>
       <div className="r-price">

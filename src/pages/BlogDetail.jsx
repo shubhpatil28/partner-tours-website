@@ -118,6 +118,97 @@ const blogContent = {
 
       <p>No matter which destination you choose, <strong>Partner's Tours & Travels</strong> ensures your family travels in comfort. Book our 12-seater Tempo Traveller for a safe journey from Chalisgaon.</p>
     `
+  },
+  'best-sleeper-bus-chalisgaon-to-pune': {
+    title: 'Best Sleeper Bus From Chalisgaon To Pune: A Comfort Guide',
+    date: 'May 12, 2026',
+    author: 'Partner Bus Team',
+    category: 'Bus Service',
+    image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=1200',
+    content: `
+      <p>When it comes to traveling from Chalisgaon to Pune, the night sleeper bus is the most popular choice for both professionals and students. But what makes a bus the "best"? It's not just about reaching the destination; it's about the quality of sleep you get on the way.</p>
+      <h2>Why Choose Partner’s Sleeper Coach?</h2>
+      <p>Our premium AC Sleeper coaches are maintained to the highest standards. With wide berths, clean pillows, and sanitized blankets, we ensure you feel at home even on the road.</p>
+      <ul>
+        <li><strong>Timely Departures:</strong> We respect your time. Our Pune bus leaves Chalisgaon at 10:30 PM sharp.</li>
+        <li><strong>Safety:</strong> Our buses are equipped with GPS and driven by two experienced drivers on long routes.</li>
+        <li><strong>Comfort:</strong> Individual AC vents and charging points for every berth.</li>
+      </ul>
+      <p>Book your seat today for a restful journey to Pune!</p>
+    `
+  },
+  'chalisgaon-to-surat-bus-timings': {
+    title: 'Chalisgaon To Surat Bus Timings: Everything You Need to Know',
+    date: 'May 10, 2026',
+    author: 'Admin',
+    category: 'Route Guide',
+    image: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&q=80&w=1200',
+    content: `
+      <p>Surat is a major business hub, especially for the textile and diamond industries. Travelers from Chalisgaon frequently visit Surat for trade. Having the correct bus timings is crucial for planning your business day.</p>
+      <h2>Daily Timings</h2>
+      <p>Our premium service to Surat departs daily from Chalisgaon at 9:00 PM. This ensures you reach Surat by early morning (around 5:00 AM), giving you a full day for your work.</p>
+      <h2>Ticket Pricing</h2>
+      <p>Tickets for the Chalisgaon-Surat route start at ₹700 for a sleeper berth. We recommend booking at least 2 days in advance during weekends as this route is highly popular.</p>
+      <p>Contact <strong>Partner’s Bus Service</strong> on WhatsApp for instant seat availability.</p>
+    `
+  },
+  'best-group-bus-booking-maharashtra': {
+    title: 'Best Group Bus Booking In Maharashtra: Corporate & Family Guide',
+    date: 'May 08, 2026',
+    author: 'Travel Expert',
+    category: 'Group Booking',
+    image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=1200',
+    content: `
+      <p>Organizing a group trip for 40+ people can be a logistical nightmare. Whether it's a corporate team-building outing or a large family pilgrimage, choosing the right bus operator is the first step to a successful trip.</p>
+      <h2>What to Look for in a Group Booking</h2>
+      <p>Always verify the bus's fitness certificate and the operator's GST registration. At Partner's, we provide all documentation upfront for corporate compliance.</p>
+      <p>Our fleet includes 35-seater, 45-seater, and 50-seater luxury coaches. For smaller groups, our 17-seater Tempo Traveller is a perfect choice.</p>
+      <p>Ask for a "Group Discount" when booking more than one bus!</p>
+    `
+  },
+  'wedding-bus-rental-guide': {
+    title: 'Wedding Bus Rental Guide: How to Transport Your Guests in Style',
+    date: 'May 05, 2026',
+    author: 'Event Planner',
+    category: 'Wedding',
+    image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&q=80&w=1200',
+    content: `
+      <p>Weddings in India are grand, and transporting the 'Baraat' or outstation guests requires careful planning. A dedicated wedding bus rental ensures everyone arrives together and on time.</p>
+      <h2>Wedding Logistics Tips</h2>
+      <p>1. <strong>Book Early:</strong> Wedding seasons in Maharashtra see a massive demand for buses. Book your rental at least 3 months in advance.</p>
+      <p>2. <strong>Decorations:</strong> Most operators, including Partner’s, allow subtle decorations. Coordinate with your florist to make the bus part of the celebration.</p>
+      <p>3. <strong>Refreshments:</strong> Keep water bottles and light snacks on the bus for guests, especially if the journey is longer than 2 hours.</p>
+      <p>Partner’s Bus Service specialized in wedding transport across Jalgaon district.</p>
+    `
+  },
+  'best-night-bus-service-tips': {
+    title: 'Best Night Bus Service: 7 Tips for a Restful Journey',
+    date: 'May 03, 2026',
+    author: 'Partner Bus Team',
+    category: 'Travel Tips',
+    image: 'https://images.unsplash.com/photo-1562620644-65bb470359c4?auto=format&fit=crop&q=80&w=1200',
+    content: `
+      <p>Night travel is efficient as it saves you a day of vacation and the cost of a hotel night. However, waking up tired can ruin your day. Follow these tips for a better experience:</p>
+      <ul>
+        <li><strong>Choose the Lower Berth:</strong> Lower berths have less movement compared to upper ones, leading to better sleep.</li>
+        <li><strong>Carry Earplugs:</strong> While we maintain a quiet environment, earplugs help block out road noise.</li>
+        <li><strong>Dress in Layers:</strong> AC temperatures can fluctuate; having a light jacket helps.</li>
+        <li><strong>Avoid Heavy Meals:</strong> Eat light before boarding for a more comfortable sleep.</li>
+      </ul>
+    `
+  },
+  'intercity-bus-safety-guide': {
+    title: 'Safety First: Our Guide to Secure Intercity Bus Travel',
+    date: 'May 01, 2026',
+    author: 'Safety Officer',
+    category: 'Safety',
+    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1200',
+    content: `
+      <p>Safety is the non-negotiable aspect of travel. At Partner’s Bus Service, we implement strict safety protocols that exceed industry standards.</p>
+      <h2>Our Safety Protocols</h2>
+      <p>Every bus in our fleet undergoes a thorough mechanical check after every long trip. Our drivers are trained in defensive driving and have mandatory rest periods between shifts.</p>
+      <p>We also provide a dedicated 24/7 helpline for passengers on the road. For solo female travelers, we ensure they are seated in safe, designated areas of the bus.</p>
+    `
   }
 };
 

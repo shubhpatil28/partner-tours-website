@@ -56,6 +56,66 @@ const blogPosts = [
     category: 'Family Travel',
     image: 'https://images.unsplash.com/photo-1596402184320-417d7178b2cd',
     readTime: '9 min read'
+  },
+  {
+    id: 'best-sleeper-bus-chalisgaon-to-pune',
+    title: 'Best Sleeper Bus From Chalisgaon To Pune: A Comfort Guide',
+    excerpt: 'Looking for a comfortable night journey? Discover why our premium sleeper coach is the preferred choice for Chalisgaon to Pune travelers.',
+    date: 'May 12, 2026',
+    author: 'Partner Bus Team',
+    category: 'Bus Service',
+    image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957',
+    readTime: '7 min read'
+  },
+  {
+    id: 'chalisgaon-to-surat-bus-timings',
+    title: 'Chalisgaon To Surat Bus Timings: Everything You Need to Know',
+    excerpt: 'Planning a business trip to Surat? Check the latest bus timings, pickup points, and ticket prices for the Chalisgaon-Surat route.',
+    date: 'May 10, 2026',
+    author: 'Admin',
+    category: 'Route Guide',
+    image: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e',
+    readTime: '6 min read'
+  },
+  {
+    id: 'best-group-bus-booking-maharashtra',
+    title: 'Best Group Bus Booking In Maharashtra: Corporate & Family Guide',
+    excerpt: 'Learn how to book a luxury bus for large groups in Maharashtra. We cover pricing, fleet options, and booking tips for your next outing.',
+    date: 'May 08, 2026',
+    author: 'Travel Expert',
+    category: 'Group Booking',
+    image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957',
+    readTime: '10 min read'
+  },
+  {
+    id: 'wedding-bus-rental-guide',
+    title: 'Wedding Bus Rental Guide: How to Transport Your Guests in Style',
+    excerpt: 'Make your wedding logistics stress-free. Our guide covers everything from choosing the right bus size to decorating for the baraat.',
+    date: 'May 05, 2026',
+    author: 'Event Planner',
+    category: 'Wedding',
+    image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176',
+    readTime: '12 min read'
+  },
+  {
+    id: 'best-night-bus-service-tips',
+    title: 'Best Night Bus Service: 7 Tips for a Restful Journey',
+    excerpt: 'Traveling overnight? These expert tips will help you get better sleep and arrive refreshed at your destination.',
+    date: 'May 03, 2026',
+    author: 'Partner Bus Team',
+    category: 'Travel Tips',
+    image: 'https://images.unsplash.com/photo-1562620644-65bb470359c4',
+    readTime: '5 min read'
+  },
+  {
+    id: 'intercity-bus-safety-guide',
+    title: 'Safety First: Our Guide to Secure Intercity Bus Travel',
+    excerpt: 'Learn about the safety protocols followed by professional bus operators like Partner’s Bus Service to ensure a secure journey.',
+    date: 'May 01, 2026',
+    author: 'Safety Officer',
+    category: 'Safety',
+    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d',
+    readTime: '8 min read'
   }
 ].filter(post => post.image && post.title); // Safety filter
 

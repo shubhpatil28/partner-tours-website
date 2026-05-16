@@ -23,6 +23,8 @@ const BlogDetail = lazy(() => import('./pages/BlogDetail.jsx'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy.jsx'));
 const Terms = lazy(() => import('./pages/Terms.jsx'));
 const Disclaimer = lazy(() => import('./pages/Disclaimer.jsx'));
+const CancellationPolicy = lazy(() => import('./pages/CancellationPolicy.jsx'));
+const RoutePage = lazy(() => import('./pages/RoutePage.jsx'));
 
 // Loading Fallback
 const PageLoader = () => (
@@ -81,6 +83,8 @@ function App() {
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/terms" element={<Terms />} />
                 <Route path="/disclaimer" element={<Disclaimer />} />
+                <Route path="/cancellation-policy" element={<CancellationPolicy />} />
+                <Route path="/:slug" element={<RoutePage />} />
               </Routes>
             </Suspense>
           </main>

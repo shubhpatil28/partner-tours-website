@@ -48,6 +48,7 @@ const Navbar = ({ isOpen, setIsOpen }) => {
           <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link>
           <Link to="/packages" className={location.pathname.includes('/package') ? 'active' : ''}>Daily Routes</Link>
           <Link to="/rental" className={location.pathname === '/rental' ? 'active' : ''}>Bus Fleet</Link>
+          <Link to="/blog" className={location.pathname === '/blog' ? 'active' : ''}>Travel Blog</Link>
           <Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>Contact</Link>
           
         </div>

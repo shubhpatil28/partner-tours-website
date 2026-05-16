@@ -27,7 +27,7 @@ if (import.meta.env.DEV) {
 export const CONTACT_CONFIG = Object.freeze(rawConfig);
 
 export const SITE_METADATA = Object.freeze({
-  title: "Partner's Bus Service | Premium Bus Rental Chalisgaon",
-  description: "Chalisgaon's premier bus rental company. Professional transport for weddings, corporate groups, and tours. 35-50 seater luxury buses and sleeper coaches.",
+  title: "Partner's Bus Service | Premium Intercity Bus Operator in Chalisgaon",
+  description: "Chalisgaon's premier intercity bus operator. Daily premium sleeper and luxury coach services to Surat, Pune, Mumbai, Nashik, and Rajasthan. Reliable, safe, and comfortable travel.",
   ogImage: "/og-image.jpg"
 });
